@@ -11,6 +11,7 @@ status: Draft
 :toc: left
 
 [.lead]
+.https://github.com/support-and-care/maven-support-and-care/issues/44[Epic 44]
 ****
 The major task of this epic is to _migrate (Maven) away from Plexus_ (original https://github.com/OpenElements/maven-support-care/issues/44[title]).
 The https://github.com/OpenElements/maven-support-care/discussions/28[discussion] which led to the epic even mentioned a migration to https://projects.eclipse.org/projects/technology.sisu[Eclipse Sisu].
@@ -18,4 +19,88 @@ The https://github.com/OpenElements/maven-support-care/discussions/28[discussion
 However, this seems to be some kind of incomplete or at least non-precise as there are many Plexus components used in Maven.
 Hence, we first need to clarify the scope of the epic by evaluating the current state and lead some xref:../README.adoc#sec:stakeholder-discussions[stakeholder discussions].
 ****
+
+== Problem statement
+
+=== Background: Context and Dependency Injection
+
+While running a Maven build, Maven executes many plugins.
+In fact, Maven can be considered as a framework for plugin execution.
+Plugins need some context, and - in many cases - options to communicate across so-called lifecycle phases.
+The context contains information about the surrounding environment, in the case of Maven, the project which is subject to the Maven build.
+
+To provide context, Java frameworks have established the so-called  https://en.wikipedia.org/wiki/Dependency_injection[dependency injection] techniquefootnote:[
+We will not elaborate on implementation considerations and a pro/con discussion here] (DI), thus following the https://en.wikipedia.org/wiki/Dependency_inversion_principle[Dependency Inversion] principle.
+Historically, Maven has used the https://codehaus-plexus.github.io/plexus-containers/[Plexus Container] framework to implement DI.
+Plexus Container now is in deprecated state and has moved to https://eclipse.dev/sisu/[Eclipse Sisu].
+
+== Further Findings
+[CAUTION]
+.Unclear project/source status
+====
+As of 2025-01-04,
+the contained Eclipse Sisu project seems outdated on its https://projects.eclipse.org/projects/technology.sisu[Eclipse project page].
+====
+
+=== Target: Use Maven Dependency Injection
+
+For misc.{nbsp}reasons (TBD:
+which reasons), Maven 4 developed its own https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI container].
+Now, all (core) components should switch to the new DI framework,
+resulting in complete independence of Eclipse Sisu (and any other intermediate DI framework,
+e.g., https://github.com/google/guice[Google Guice]).
+
+== Boundaries
+
+https://codehaus-plexus.github.io/[Plexus] is a large framework containing many components to make Java development easier, for instance, by
+
+* Handling operating-system-specific issues.
+* Adding convenient language features.
+* Handling compilers.
+
+Therefore, we will find many dependencies to some of the classic Plexus' components.
+But we should be aware that only very little has a relationship to dependency injection.
+Getting rid of more Plexus dependencies is subject to other activities and beyond our scope here.
+
+
+== Todos
+
+* [ ] Document <<sec:current-state,current state>>
+** [ ] Check current documentation
+** [ ] Evaluate dependencies, e.g., with https://jqassistant.org[jQAssistant]{nbsp}->{nbsp}This might also help for other Epics
+* [ ] Document new DI framework (https://github.com/apache/maven/tree/master/api/maven-api-di[Code] seems to have not even Javadocs)
+* [ ] Propose a migration path
+* [ ] Add automation where possible, e.g., via https://docs.openrewrite.org/[OpenRewrite]
+
+[[sec:current-state]]
+== Current state of DI migration
+
+TBD
+
+=== Current documentation
+
+* Check the link:++https://lists.apache.org/list?dev@maven.apache.org:2021-2:Dependency%20Injection++[dev mailing list]
+* Check Confluence, e.g.,
+** for https://cwiki.apache.org/confluence/dosearchsite.action?queryString=dependency+injection&where=MAVEN&additional=page+excerpt&labels=&contentType=[Dependency Injection],
+** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22plexus%22+and+space+%3D+%22MAVEN%22&queryString=plexus[Plexus], or
+** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22guice%22+and+space+%3D+%22MAVEN%22&queryString=guice[Guice]
+* Check https://issues.apache.org/jira/[Jira], e.g.,
+** https://issues.apache.org/jira/browse/MNG-7954[MNG-7954]: Provide a cleaner DI api
+** Note that searching Jira is hard in this case, as many issues contain the terms `dependency` or `Plexus`
+
+=== Current DI dependencies
+
+* Check the list of https://maven.apache.org/plugins/[internal/widely used plugins]
+* Search for other plugins, e.g.,
+** https://github.com/mojohaus[Mojohaus]
+** https://github.com/fabric8io[Fabric8]
+** Other ASF projects like https://github.com/jmeter-maven-plugin[JMeter]
+** https://github.com/sonatype[Sonatype]
+** GitHub in General (note: There are not so many that have the `<packaging>maven-plugin</packaging>`, according to some API search)
++
+[source,shell]
+----
+curl -H "Accept: application/vnd.github.v3+json" \
+     "https://api.github.com/search/repositories?q=<packaging>maven-plugin</packaging>&type=repositories" | tee gh-repos.json
+----
 
