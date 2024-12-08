@@ -1,0 +1,21 @@
+---
+# Do not change this
+issue: 44
+# This might change in the course of the work
+title: Migrate to Maven Dependency Injection
+# This might be one of TBD
+status: Draft
+---
+= Migrate to Maven Dependency Injection
+:icons: font
+:toc: left
+
+[.lead]
+****
+The major task of this epic is to _migrate (Maven) away from Plexus_ (original https://github.com/OpenElements/maven-support-care/issues/44[title]).
+The https://github.com/OpenElements/maven-support-care/discussions/28[discussion] which led to the epic even mentioned a migration to https://projects.eclipse.org/projects/technology.sisu[Eclipse Sisu].
+
+However, this seems to be some kind of incomplete or at least non-precise as there are many Plexus components used in Maven.
+Hence, we first need to clarify the scope of the epic by evaluating the current state and lead some xref:../README.adoc#sec:stakeholder-discussions[stakeholder discussions].
+****
+
