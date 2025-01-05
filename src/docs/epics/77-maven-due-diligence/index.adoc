@@ -1,0 +1,263 @@
+---
+# Do not change this
+issue: 77
+# This might change in the course of the work
+title: Maven Due Dilligence
+# This might be one of TBD
+status: Draft
+---
+:skip-front-matter:
+= Maven Due Diligence
+:icons: font
+:toc: left
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
+
+[.lead]
+.https://github.com/support-and-care/maven-support-and-care/issues/77[Epic 77]
+****
+The major task of this epic is to _investigate the current state of the Maven build_ and to ensure that we can build all projects with the required JDK and Maven versions.
+We want to use tools like https://jqassistant.org[jQAssistant] to analyze the quality of Maven and perform further analysis like overall dependency checks.
+A precondition for successful analysis is that we can build all projects with the respective JDK and Maven versions.
+
+[[box:maven-source]]
+[IMPORTANT]
+.Maven Source and Reactor Build
+====
+Maven Source::
+Most of the content in this document refers to the so-called _Maven Source_ (cf. https://maven.apache.org/scm.html[SCM section] of the Maven documentation).
+Whenever we use this term, we refer to the collection of Maven components provided with the described SCM structure.
+
+Reactor Build::
+Note that the Maven Source also contains a Maven https://github.com/apache/maven-sources/blob/master/aggregator/pom.xml[_reactor build_] which builds most of the Maven components in a single run (in the checked out state of the Source, you can find the reactor in `sources/aggregator`).
+====
+****
+
+== Summary and resulting tasks
+
+We would like to ensure that we can build all Maven projects with the required JDK and Maven versions
+
+* As _reactor build_ (cf. https://maven.apache.org/guides/development/guide-building-maven.html[Building Maven]), but also
+* As _individual_ projects (e.g., to check for outdated dependencies).
+
+=== Current state
+
+The Maven build is in a rather good state, taking into account that there are 133 subprojects developed and maintained since about 20 years by only a small number of committers.
+The build is well-structured and uses a reactor build to build most projects in a single run.
+However, there are some problems with the build, mainly due to outdated Java versions and dependencies.
+The <<sec:detailed-build-investigation,detailed investigation>> (current state) shows the problems which prohibit a successful build of the Maven projects.
+
+=== Resulting tasks
+
+==== Quick wins
+
+We derived following tasks from the current state above.
+They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.
+
+* [ ] Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
+** [ ] Archive unnecessary components.
+** [ ] Drop them from the Maven Source (or at least from the reactor build).
+Life would become easier if the so-called _Maven Studies_ and the `Maven Repository Tools` would be dropped from the reactor build.
+
+* [ ] Update the Java version in all projects to at least Java 8.
+** [ ] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin] and drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
+** [ ] https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]
+** [ ] https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]
+** [ ] https://github.com/apache/maven-mapping[Maven Mapping]
+** [ ] https://github.com/apache/maven-project-utils[Maven Project Utils]
+** [ ] https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (Maven Studies)
+** [ ] https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (Maven Studies)
+
+* Other tasks
+** [ ] Add `org.codehaus.plexus:plexus-xml:4.0.4` in test scope to https://github.com/apache/maven-shared-io[Maven Shared IO].
+** [ ] Fix checkstyle violations in https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension] (Maven studies): add Javadoc comment + fix whitespace issue.
+** [ ] Drop https://github.com/apache/maven-repository-tools[Maven Repository Tools] (aka. Maven _Meeper_) from the reactor build as
+*** It is archived (so no further development is expected),
+*** It has many non-straightforward problems (see below).
+
++
+TIP: Drop all https://github.com/apache/maven-sources/blob/76686444ebcfb213386d6eccf6e429eb3a9b07d2/aggregator/svn/pom.xml[SVN components] from the (yet) _unmaintained_ https://github.com/apache/maven-sources/blob/95b62b049f497191d1db6e3ebe4d04c2b55d6237/aggregator/pom.xml#L68[reactor build], since the Meeper component was the last one of them.
+
+==== Further tasks
+
+The following tasks are just ideas and have no particular order!
+
+===== Component design
+
+* [ ] Check for some components whether they should be kept in the current form, or whether some rework is necessary.
+For example, the Doxia Tools (`linkcheck`, `book-renderer`, `book-maven-plugin`) are based on Doxia 1.3, which is outdated.
+In particular, it contains some https://maven.apache.org/doxia/references/index.html[deprecated] formats (e.g., iText).
+
+===== Branches
+
+* [ ] Check the setup of the `maven-studies` repository (cf. <<sec:maven-studies>>).
+Either merge them into a single branch or drop them from the overall structure.
+* [ ] Check the purpose of the open branches and in particular if they are still necessary.
+Perhaps we can close some of them as they are already merged?
+* [ ] Should there be a branch naming policy in the long run?
+
+===== Documentation
+
+* [ ] Almost all components have a `README.md` file which contains some generic text how to contribute to the project.
+It would be nice to have a more detailed description of the component itself in the `README.md` file (or at least some link to further documentation).
+* [ ] Make all sections in the Maven site referable (e.g., by using anchors).
+* [ ] Test/ensure referential integrity of docs and code, i.e.,
+** Ensure all https://github.com/apache/maven-site/blob/master/content/markdown/scm.md[SCM] projects correspond to the actual projects in the https://github.com/apache/maven-sources/blob/master/default.xml[Google repo configuration] (aka. <<box:maven-source>>).
+** Ensure they correspond to the component graphics in the https://maven.apache.org/scm.html[SCM] page.
+
+===== Integration Tests
+
+* [ ] Run integration tests (profile `run-its`) for all Maven projects and check out the result (-> Stability of the build).
+
+===== Reactor build
+
+* [ ] Enable Maven `verify` for the https://github.com/apache/maven-sources[reactor build].
+* [ ] Enable reactor build for pull-requests of the subprojects -> Trigger reactor build with particular branch of subproject repository (how to handle forks?).
+
+[[sec:detailed-build-investigation]]
+== Detailed Build investigation
+
+[[sec:preconditions]]
+=== Preconditions
+
+[[box:sac-maven-tools]]
+.Support and Care Maven Tools
+****
+If you are a member of the Support and Care team, or interested in our approach to the Maven build, you can use our https://github.com/support-and-care/sac-maven-tools.git[SAC Maven Tools] to check out and work with the <<box:maven-source>> (Hint: Among others it asks you to perform the following step as well to get the Maven Source code, so the approach is not completely different).
+****
+
+* (Otherwise, ) Check out the <<box:maven-source>> from the ASF GitHub repositories by following the instructions in the https://maven.apache.org/scm.html[SCM section] of the Maven documentation.
+* Use JDK 21 (the following problems were found with Temurin 21.0.5 on Apple Silicon).
+* Use Maven 3.9.9 (but not yet 4.x).
+
+=== Build Maven projects and reactor
+
+Either (Users of <<box:sac-maven-tools>>):: Run the `run-maven` script from the `bin` directory of the Maven Source, e.g.,
+* `bin/run-maven clean verify` (Build all projects separately, except for the reactor)
+* `PROJECTS=core/maven,core/maven-3 bin/run-maven clean verify` (Build only Maven 3 + 4 core)
+* `PROJECTS=shared/shared-io bin/run-maven clean verify` (Build `maven-shared-io` only)
+* `PROJECTS=sources/aggregator bin/run-maven -P run-its clean install` (Build and install reactor and run integration tests)
+Or:: Build the Maven projects with `mvn` (few contain a Maven wrapper), e.g.,
+* `cd ...; mvn clean verify` (Build the respective project)
+* If you want to build separate projects, you have to change to the respective directories.
+* `cd sources/aggregator mvn -P run-its clean install` (Build reactor and run integration tests)
+
+=== General questions
+
+[[sec:maven-studies]]
+==== Maven Studies
+
+The <<box:maven-source>> contains some case studies or proof-of-concepts (i.e., `maven-studies`).
+They live on different branches of the same repository, which makes it hard to work with them, in particular with the `repo` tool of <<box:maven-source>>.
+* Should we merge them into a single branch?
+* Or completely drop them from the overall structure (at least from the reactor build)?
+
+CAUTION: A similar problem might occur with the `core/maven` and `core/maven-3` repositories as they follow the same pattern which makes working with <<box:maven-source>> difficult.
+
+==== Maven 4 branches
+
+Some projects have `mvn4` branches (some even `maven4`) which seem rather old (though Maven 4 is not yet GA released).
+Could we drop them as this is somehow irritating to new users of the Maven Source?
+
+=== Build problems
+
+==== Reactor build
+
+* https://github.com/apache/maven-wagon[Maven Wagon]: Flaky (unit) tests
+* https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]: Wrong Java Version
+** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.`:
+*** Changing property `javaVersion` to `8` revealed a checkstyle error due to duplicate license in `src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java`: Dropping the license led to successful build
+** Upgrade the POM to parent version 43 leads to: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.13.1`.
+This is due to the parent chain:
++
+`org.apache.maven.plugins:maven-plugins:43`
++
+-[:HAS_PARENT]-> `org.apache.maven:maven-parent:43`
++
+-[:HAS_PARENT]-> `org.apache:apache:33`
++
+-[:HAS_DEPENDENCY]-> `org.apache.maven.plugin-tools:maven-plugin-annotations:3.13.1`
+** Bumping (property)) `version.maven-plugin-tools` to 3.15.1 does not resolve the problem: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1`
+
+* https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]: Wrong Java Version
+** enforcer problem: `Restricted to JDK 1.7 yet commons-io:commons-io:jar:2.14.0:compile contains org/apache/commons/io/ByteOrderMark.class targeted to JDK 8
+Found Banned Dependency: commons-io:commons-io:jar:2.14.0`
+** Adding property `javaVersion` with value `8` resolved the problem.
+
+* https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]: Wrong Java Version
+** is _deprecated_ (on its `master` branch)
+** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
+** Changing property `javaVersion` to `8` resolved the problem.
+
+*  https://github.com/apache/maven-mapping[Maven Mapping]: Wrong Java Version
+** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
+** Changing property `javaVersion` to `8` resolved the problem.
+
+* https://github.com/apache/maven-project-utils[Maven Project Utils]: Wrong Java Version
+** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
+** Changing property `javaVersion` to `8` resolved the problem.
+
+* https://github.com/apache/maven-studies[Maven Studies]: Wrong Java Version(s)
+** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM]:
+*** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
+*** Adding properties `maven.compiler.source` and `maven.compiler.target` with value `8` resolved the problem.
+** https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension]: Checkstyle violations
+*** `There are two errors reported by Checkstyle 6.18 with config/maven_checks.xml ruleset.
+[ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[46] (javadoc) JavadocType: Missing a Javadoc comment.
+[ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[68,72] (whitespace) ParenPad: ')' is not preceded with whitespace.`
+*** Adding a Javadoc comment to `SoundPlayingListener.java` and fixing the whitespace issue resolved the problem.
+** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study]: Wrong Java Version
+*** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
+*** Adding property `javaVersion` to `8` resolved the problem.
+
+* https://github.com/apache/maven-repository-tools[Maven Repository Tools]: Dependency problem + Wrong Java version
++
+WARNING: The project is in _archived_ state (see <<sec:archived-components>>)!
+Why is it still part of the reactor build?
+
+** Build error: `[ERROR] Failed to execute goal on project maven-meeper: Could not collect dependencies for project org.apache.maven:maven-meeper:jar:1.0-SNAPSHOT
+[ERROR] Failed to read artifact descriptor for org.apache.commons:commons-csv:jar:1.0-SNAPSHOT`
+** Changing the version of `commons-csv` to `1.0` lead to the next problem: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile (default-compile) on project maven-meeper: Compilation failure: Compilation failure:
+[ERROR]: Source option 1.4 is no longer supported. Use 8 or later.
+[ERROR] error: Target option 1.4 is no longer supported. Use 8 or later.`
+** Adding property `javaVersion` to `8` did _not_ resolve the problem.
+** Changing to a newer (current) parent POM (`43`) revealed new problems:
+...
+
++
+CAUTION: This project has so many problems and seems completely unused -> We suggest dropping it from the reactor build.
+
+* https://github.com/apache/maven-shared-io[Maven Shared IO]: Misc.{nbsp}errors
+** The reactor build leads to `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check (default) on project maven-shared-io: Execution default of goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check failed: An API incompatibility was encountered while executing com.diffplug.spotless:spotless-maven-plugin:2.28.0:check: java.lang.NoSuchMethodError: 'com.sun.tools.javac.tree.JCTree com.sun.tools.javac.tree.JCTree$JCImport.getQualifiedIdentifier()'`
+** Upgrading to the current parent project (`43`) leads to: Test errors
++
+`[ERROR] Errors:
+[ERROR]   DefaultDownloadManagerTest.testShouldLookupInstanceDefaultRoleHint:77->PlexusTestCase.lookup:201->PlexusTestCase.getContainer:141->PlexusTestCase.setupContainer:98 » NoClassDefFound org/codehaus/plexus/util/xml/pull/XmlPullParserException`
+** Adding the dependency `org.codehaus.plexus:plexus-xml` (with `test` scope) resolved the problem.
+
+==== Other builds (not part of reactor)
+
+* https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
+** `The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT`
+
+[[sec:archived-components]]
+=== Archived Components
+
+* https://github.com/apache/maven-sandbox
+* https://github.com/apache/maven-repository-tools
+* https://github.com/apache/maven-doxia-ide
+* https://github.com/codehaus-plexus/plexus-components
+* https://github.com/codehaus-plexus/plexus-containers
+* https://github.com/codehaus-plexus/plexus-swizzle
+** uses `org.codehaus.plexus:plexus-components` in version 4.0.0-SNAPSHOT as parent which does not resolve.
+The parent is a SNAPSHOT, but the repository (version) needs to be identified.
+Version https://github.com/codehaus-plexus/plexus-components/releases/tag/plexus-components-4.0[4.0] is close, but the owner has archived the source code by Dec. 2023, and it contains many later versions.
+* https://github.com/codehaus-plexus/plexus-digest
+* https://github.com/codehaus-plexus/plexus-cli
+* https://github.com/codehaus-plexus/plexus-cipher
