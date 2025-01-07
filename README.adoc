@@ -1,4 +1,14 @@
 = Support &amp; Care for Apache Maven&trade;
+:icons: font
+:toc: left
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :information_source:
+:important-caption: :heavy_exclamation_mark:
+:caution-caption: :fire:
+:warning-caption: :warning:
+endif::[]
 
 This repository is used to track the work of https://open-elements.com/support-care-maven/[Support &amp; Care for Apache Maven&trade;] as open and transparent as possible.
 
@@ -19,18 +29,23 @@ Our mission is to create a sustainable source of funding for highly needed work 
 
 For more details, see https://open-elements.com/support-care-maven/[our public page].
 
-== Workflow
+== Workflow (Epics)
 
-Before we decided on what topics we would spend money on we started several discussions with the Apache Maven&trade; team. You can find all that in the https://github.com/OpenElements/maven-support-care/discussions[discussions section] of this repository.
-We extracted epic issues based on the discussions in https://github.com/OpenElements/maven-support-care/blob/main/epics.md[this document].
+Before we decided on what topics we would spend money on, we started several discussions with the Apache Maven&trade; team.
+You can find all that in the https://github.com/OpenElements/maven-support-care/discussions[discussions section] of this repository.
+We extracted epic issues based on the discussions in xref:epics.adoc[Epics].
 
 == Next steps
 
-We currently specify and estimate the epics that should be funded. All that epics will be managed as https://github.com/OpenElements/maven-support-care/issues[issues] in this repository.
+We currently specify and estimate the epics that should be funded.
+All that epics will be managed as https://github.com/support-and-care/maven-support-and-care/issues?q=is%3Aopen+is%3Aissue+label%3Aepic[issues (with label _Epic_)] in this repository.
 
-*Important:* It is not our plan to ignore the https://maven.apache.org/issue-management.html[Maven&trade; issue trackers] nor https://maven.apache.org/guides/development/guide-helping.html[Maven&trade; contribution guidelines].
+[IMPORTANT]
+====
+It is not our plan to ignore the https://maven.apache.org/issue-management.html[Maven&trade; issue trackers] nor https://maven.apache.org/guides/development/guide-helping.html[Maven&trade; contribution guidelines].
 All issues that are based on the milestones that we will define in the face-2-face meeting will be handled in the Maven&trade; issue trackers and associated work will be reviewed by the wider community before merging.
 This repository is used to show the work that is done by using the given funds as transparent as possible.
+====
 
 == About us
 
