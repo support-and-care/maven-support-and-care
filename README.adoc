@@ -13,13 +13,14 @@ endif::[]
 This repository is used to track the work of https://open-elements.com/support-care-maven/[Support &amp; Care for Apache Maven&trade;] as open and transparent as possible.
 
 The *Support &amp; Care for Maven* Initiative is a groundbreaking program to help secure the future of the https://maven.apache.org/[Apache Maven&trade; project] through sustainable support and care.
-The initiative aims to strengthen the development and maintenance of Maven&trade; through funding of needed contributions to the project, thus ensuring the high quality and availability of Apache Maven&trade; that the Java ecosystem needs.
+The initiative aims to strengthen the development and maintenance of Maven&trade; through funding of necessary contributions to the project, thus ensuring the high quality and availability of Apache Maven&trade; that the Java ecosystem needs.
 
 == Our Mission
 
 Apache Maven&trade; is a critical tool in the Java ecosystem, used by millions of developers worldwide with &gt;100 million downloads per year.
 Despite its importance, Maven&trade; is maintained primarily on a volunteer basis with no fixed financial support.
-Our mission is to create a sustainable source of funding for highly needed work around the Apache Maven&trade; project and direct contribution to the project. Our goal is to enable continuous improvements and professional support for Maven&trade;.
+Our mission is to create a sustainable source of funding for highly necessary work around the Apache Maven&trade; project and direct contribution to the project.
+Our goal is to enable continuous improvements and professional support for Maven&trade;.
 
 == How we work
 
@@ -44,7 +45,7 @@ All that epics will be managed as https://github.com/support-and-care/maven-supp
 ====
 It is not our plan to ignore the https://maven.apache.org/issue-management.html[Maven&trade; issue trackers] nor https://maven.apache.org/guides/development/guide-helping.html[Maven&trade; contribution guidelines].
 All issues that are based on the milestones that we will define in the face-2-face meeting will be handled in the Maven&trade; issue trackers and associated work will be reviewed by the wider community before merging.
-This repository is used to show the work that is done by using the given funds as transparent as possible.
+This repository is used to show the work done by using the given funds as transparent as possible.
 ====
 
 == About us
