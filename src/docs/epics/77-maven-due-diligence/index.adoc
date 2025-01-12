@@ -60,10 +60,15 @@ The <<sec:detailed-build-investigation,detailed investigation>> (current state) 
 We derived following tasks from the current state above.
 They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.
 
-* [ ] Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
+[[desc-item:triage]]
+Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
 ** [ ] Archive unnecessary components.
 ** [ ] Drop them from the Maven Source (or at least from the reactor build).
-Life would become easier if the so-called _Maven Studies_ and the `Maven Repository Tools` would be dropped from the reactor build.
+The reactor build would become easier if the following components would be dropped from the reactor build
+*** [ ] The so-called _Maven Studies_,
+*** [ ] The `Maven Repository Tools`.
+*** [ ] The `Artifact Transfer`, and
+*** [ ] The `Project Utils`.
 
 * [ ] Update the Java version in all projects to at least Java 8.
 ** [ ] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin] and drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
@@ -83,6 +88,34 @@ Life would become easier if the so-called _Maven Studies_ and the `Maven Reposit
 
 +
 TIP: Drop all https://github.com/apache/maven-sources/blob/76686444ebcfb213386d6eccf6e429eb3a9b07d2/aggregator/svn/pom.xml[SVN components] from the (yet) _unmaintained_ https://github.com/apache/maven-sources/blob/95b62b049f497191d1db6e3ebe4d04c2b55d6237/aggregator/pom.xml#L68[reactor build], since the Meeper component was the last one of them.
+
+Maven 4 updates::
+To enable successful build with Maven 4.0.0 (RC-2) the following changes are necessary.
++
+[IMPORTANT]
+====
+We currently assume that
+
+* Maven Studies,
+* Maven Repository Tools, and
+* Maven Artifact Transfer
+
+will not survive the <<desc-item:triage,triage>> and concentrate on the remaining Components.
+====
+
+* [ ] Maven Verifier Plugin:
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+* [ ] Maven Stage Plugin:
+** Drop `parent.relativePath`.
+** Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+* [ ] Maven Mapping:
+** Drop `parent.relativePath`.
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+
 
 ==== Further tasks
 
@@ -134,7 +167,7 @@ If you are a member of the Support and Care team, or interested in our approach 
 
 * (Otherwise, ) Check out the <<box:maven-source>> from the ASF GitHub repositories by following the instructions in the https://maven.apache.org/scm.html[SCM section] of the Maven documentation.
 * Use JDK 21 (the following problems were found with Temurin 21.0.5 on Apple Silicon).
-* Use Maven 3.9.9 (but not yet 4.x).
+* Use Maven 3.9.9 and 4.0.0-RC-2 (not yet 3.6.3).
 
 === Build Maven projects and reactor
 
@@ -155,99 +188,209 @@ Or:: Build the Maven projects with `mvn` (few contain a Maven wrapper), e.g.,
 
 The <<box:maven-source>> contains some case studies or proof-of-concepts (i.e., `maven-studies`).
 They live on different branches of the same repository, which makes it hard to work with them, in particular with the `repo` tool of <<box:maven-source>>.
+
 * Should we merge them into a single branch?
 * Or completely drop them from the overall structure (at least from the reactor build)?
 
 CAUTION: A similar problem might occur with the `core/maven` and `core/maven-3` repositories as they follow the same pattern which makes working with <<box:maven-source>> difficult.
 
-==== Maven 4 branches
+==== Maven 4 (.0.0-RC-2) branches
 
 Some projects have `mvn4` branches (some even `maven4`) which seem rather old (though Maven 4 is not yet GA released).
 Could we drop them as this is somehow irritating to new users of the Maven Source?
 
 === Build problems
 
-==== Reactor build
+==== Builds
 
-* https://github.com/apache/maven-wagon[Maven Wagon]: Flaky (unit) tests
-* https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]: Wrong Java Version
-** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.`:
-*** Changing property `javaVersion` to `8` revealed a checkstyle error due to duplicate license in `src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java`: Dropping the license led to successful build
-** Upgrade the POM to parent version 43 leads to: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.13.1`.
-This is due to the parent chain:
-+
-`org.apache.maven.plugins:maven-plugins:43`
-+
--[:HAS_PARENT]-> `org.apache.maven:maven-parent:43`
-+
--[:HAS_PARENT]-> `org.apache:apache:33`
-+
--[:HAS_DEPENDENCY]-> `org.apache.maven.plugin-tools:maven-plugin-annotations:3.13.1`
-** Bumping (property)) `version.maven-plugin-tools` to 3.15.1 does not resolve the problem: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1`
+We do have several problems with the build of the Maven projects.
 
-* https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]: Wrong Java Version
-** enforcer problem: `Restricted to JDK 1.7 yet commons-io:commons-io:jar:2.14.0:compile contains org/apache/commons/io/ByteOrderMark.class targeted to JDK 8
+===== Maven Wagon
+
+https://github.com/apache/maven-wagon[Maven Wagon] has Flaky (unit) tests (at least in the reactor builds).
++
+We perform no action by now, perhaps test retries in the future?
+
+===== Maven Verifier Plugin
+
+https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
+
+Maven 3 (.9.9):: Wrong Java Version
+
+* Compile error(s): `Source option 7 is no longer supported. Use 8 or later.`
++
+-> Change property `javaVersion` to `8` to resolve the problem.
+* Reveals a checkstyle error due to duplicate license in `src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java`:
+
++
++
+-> Dropping the license led to successful build.
+// ** Alternate path (not yet successful): Upgrade the POM to parent version 43 leads to: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.13.1`.
+// This is due to the parent chain:
+// +
+// `org.apache.maven.plugins:maven-plugins:43`
+// +
+// -[:HAS_PARENT]-> `org.apache.maven:maven-parent:43`
+// +
+// -[:HAS_PARENT]-> `org.apache:apache:33`
+// +
+// -[:HAS_DEPENDENCY]-> `org.apache.maven.plugin-tools:maven-plugin-annotations:3.13.1`
+// +
+// Bumping (property)) `version.maven-plugin-tools` to 3.15.1 does not resolve the problem: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.15.1`
+
+Maven 4 (.0.0-RC-2)::
+* Enforcer Error: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-verifier-plugin: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.<init>(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'`
++
+-> Update to Parent 43
+* Spotless Errors: `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-verifier-plugin: The following files had format violations:
+...`
++
+-> Apply Spotless to the codebase.
+
+===== Maven Stage Plugin
+
+https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]
+
+Maven 3 (.9.9):: Wrong Java Version
+* Enforcer error: `Restricted to JDK 1.7 yet commons-io:commons-io:jar:2.14.0:compile contains org/apache/commons/io/ByteOrderMark.class targeted to JDK 8
 Found Banned Dependency: commons-io:commons-io:jar:2.14.0`
-** Adding property `javaVersion` with value `8` resolved the problem.
++
+-> Add property `javaVersion` with value `8` to resolve the problem.
 
-* https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]: Wrong Java Version
-** is _deprecated_ (on its `master` branch)
+Maven 4 (.0.0-RC-2)::
+* Validation error: `'parent.relativePath' of POM org.apache.maven.plugins:maven-stage-plugin:1.1-SNAPSHOT (/Users/ascheman/wrk/maven/maven/plugins/tools/maven-stage-plugin/pom.xml) points at '../../pom/maven/maven-plugins/pom.xml' but no POM could be found`
++
+-> Drop.
+* Enforcer Error: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-stage-plugin: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.<init>(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'`
++
+-> Update to Parent 43.
+* Checkstyle error: `[ERROR] src/main/java/org/apache/maven/plugins/stage/DefaultRepositoryCopier.java:[83,5] (sizes) MethodLength: Method copy length is 192 lines (max allowed is 150).``
++
+-> Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
+* Spotless error:  `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-stage-plugin: The following files had format violations:
+...` (cf. build this commit)
++
+-> Apply Spotless to the codebase.
+
+===== Maven Artifact Transfer (Deprecated)
+
+https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]: Wrong Java Version
+
+* Component is _deprecated_ (on its `master` branch)
++
+-> Dropping it from the reactor build.
+* Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
++
+-> Change property `javaVersion` to `8` to resolve the problem.
+
+===== Maven Mapping
+
+https://github.com/apache/maven-mapping[Maven Mapping]
+
+Maven 3 (.9.9):: Wrong Java Version
+
+* Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
++
+-> Change property `javaVersion` to `8` to resolve the problem.
+
+Maven 4 (.0.0-RC-2)::
+* Validation error: `'parent.relativePath' of POM org.apache.maven.shared:maven-mapping:3.0.1-SNAPSHOT (/Users/ascheman/wrk/maven/maven/shared/mapping/pom.xml) points at '../../pom/maven/maven-shared-components/pom.xml' but no POM could be found, please verify your project structure @ line 23, column 3`
++
+-> Drop.
+* Enforcer error: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-mapping: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.<init>(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'
+...`
++
+-> Update to Parent 43
+* Spotless error: `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-mapping: The following files had format violations:
+...`
++
+-> Apply Spotless to the codebase.
+
+===== Maven Project Utils (Deprecated)
+
+https://github.com/apache/maven-project-utils[Maven Project Utils]
+
+Maven 3 (.9.9):: Wrong Java Version
+
+* Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
++
+-> Change property `javaVersion` to `8` to resolve the problem.
+
+Maven 4 (.0.0-RC-2)::
+
+* Enforcer error: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-project-utils: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.<init>(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'` -> Update to Parent 43
+* Spotless error: `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-project-utils: The following files had format violations:
+...`
+
+===== Maven Studies
+
+https://github.com/apache/maven-studies[Maven Studies]:
+
+Maven 3 (.9.9):: Wrong Java Version(s)
+
+* https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM]:
 ** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
-** Changing property `javaVersion` to `8` resolved the problem.
-
-*  https://github.com/apache/maven-mapping[Maven Mapping]: Wrong Java Version
-** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
-** Changing property `javaVersion` to `8` resolved the problem.
-
-* https://github.com/apache/maven-project-utils[Maven Project Utils]: Wrong Java Version
-** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
-** Changing property `javaVersion` to `8` resolved the problem.
-
-* https://github.com/apache/maven-studies[Maven Studies]: Wrong Java Version(s)
-** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM]:
-*** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
-*** Adding properties `maven.compiler.source` and `maven.compiler.target` with value `8` resolved the problem.
-** https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension]: Checkstyle violations
-*** `There are two errors reported by Checkstyle 6.18 with config/maven_checks.xml ruleset.
+** Adding properties `maven.compiler.source` and `maven.compiler.target` with value `8` resolved the problem.
+* https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension]: Checkstyle violations
+** `There are two errors reported by Checkstyle 6.18 with config/maven_checks.xml ruleset.
 [ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[46] (javadoc) JavadocType: Missing a Javadoc comment.
 [ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[68,72] (whitespace) ParenPad: ')' is not preceded with whitespace.`
-*** Adding a Javadoc comment to `SoundPlayingListener.java` and fixing the whitespace issue resolved the problem.
-** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study]: Wrong Java Version
-*** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
-*** Adding property `javaVersion` to `8` resolved the problem.
-
-* https://github.com/apache/maven-repository-tools[Maven Repository Tools]: Dependency problem + Wrong Java version
+** Adding a Javadoc comment to `SoundPlayingListener.java` and fixing the whitespace issue resolved the problem.
+* https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study]: Wrong Java Version
+** Compile error(s): `Source option 7 is no longer supported. Use 8 or later.` ...
 +
+-> Add property `javaVersion` to `8` to resolve the problem.
+
+Maven 4 (.0.0-RC-2):: Not investigated (we should drop them, at least from the reactor build).
+
+===== Maven Repository Tools
+
+https://github.com/apache/maven-repository-tools[Maven Repository Tools]: Dependency problem + Wrong Java version
+
 WARNING: The project is in _archived_ state (see <<sec:archived-components>>)!
 Why is it still part of the reactor build?
 
-** Build error: `[ERROR] Failed to execute goal on project maven-meeper: Could not collect dependencies for project org.apache.maven:maven-meeper:jar:1.0-SNAPSHOT
+* Build error: `[ERROR] Failed to execute goal on project maven-meeper: Could not collect dependencies for project org.apache.maven:maven-meeper:jar:1.0-SNAPSHOT
 [ERROR] Failed to read artifact descriptor for org.apache.commons:commons-csv:jar:1.0-SNAPSHOT`
-** Changing the version of `commons-csv` to `1.0` lead to the next problem: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile (default-compile) on project maven-meeper: Compilation failure: Compilation failure:
-[ERROR]: Source option 1.4 is no longer supported. Use 8 or later.
-[ERROR] error: Target option 1.4 is no longer supported. Use 8 or later.`
-** Adding property `javaVersion` to `8` did _not_ resolve the problem.
+* Changing the version of `commons-csv` to `1.0` lead to the next problem: `[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile (default-compile) on project maven-meeper: Compilation failure: Compilation failure:
+[ERROR]: Source option 1.4 is no longer supported.
+Use 8 or later.
+[ERROR] error: Target option 1.4 is no longer supported.
+Use 8 or later.`
++
+-> Adding property `javaVersion` to `8` did _not_ resolve the problem.
+
 ** Changing to a newer (current) parent POM (`43`) revealed new problems:
 ...
 
-+
 CAUTION: This project has so many problems and seems completely unused -> We suggest dropping it from the reactor build.
 
-* https://github.com/apache/maven-shared-io[Maven Shared IO]: Misc.{nbsp}errors
-** The reactor build leads to `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check (default) on project maven-shared-io: Execution default of goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check failed: An API incompatibility was encountered while executing com.diffplug.spotless:spotless-maven-plugin:2.28.0:check: java.lang.NoSuchMethodError: 'com.sun.tools.javac.tree.JCTree com.sun.tools.javac.tree.JCTree$JCImport.getQualifiedIdentifier()'`
-** Upgrading to the current parent project (`43`) leads to: Test errors
+===== Maven Shared IO
+
+https://github.com/apache/maven-shared-io[Maven Shared IO]: Misc.{nbsp}errors
+
+* The reactor build leads to `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check (default) on project maven-shared-io: Execution default of goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check failed: An API incompatibility was encountered while executing com.diffplug.spotless:spotless-maven-plugin:2.28.0:check: java.lang.NoSuchMethodError: 'com.sun.tools.javac.tree.JCTree com.sun.tools.javac.tree.JCTree$JCImport.getQualifiedIdentifier()'`
++
+-> Upgrade to the current parent project (`43`)
+* Leads to: Test errors
 +
 `[ERROR] Errors:
 [ERROR]   DefaultDownloadManagerTest.testShouldLookupInstanceDefaultRoleHint:77->PlexusTestCase.lookup:201->PlexusTestCase.getContainer:141->PlexusTestCase.setupContainer:98 » NoClassDefFound org/codehaus/plexus/util/xml/pull/XmlPullParserException`
-** Adding the dependency `org.codehaus.plexus:plexus-xml` (with `test` scope) resolved the problem.
++
+-> Add the dependency `org.codehaus.plexus:plexus-xml` (with `test` scope) to resolve the problem.
 
 ==== Other builds (not part of reactor)
 
-* https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
-** `The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT`
+===== Plexus Swizzle
+
+https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
+
+* `The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT`
 
 [[sec:archived-components]]
 === Archived Components
+
+Should they be dropped from Maven Source?
 
 * https://github.com/apache/maven-sandbox
 * https://github.com/apache/maven-repository-tools
