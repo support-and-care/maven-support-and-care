@@ -57,61 +57,76 @@ The <<sec:detailed-build-investigation,detailed investigation>> (current state) 
 
 ==== Quick wins
 
+[IMPORTANT]
+====
+To visualize the problems and the results of below discussed quick wins, we added a build to the Maven projects.
+Both currently make use of JDK 21 and Maven 3.9.9, as well as Maven 4.0.0-RC-2.
+We can show the initial results of the builds (without changes), and the results for both Maven versions.
+
+It is clear, that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
+For instance, it does not yet cover full integration tests, or documentation checks.
+Nevertheless, it is a starting point which allows for step-by-step improvements.
+In particular, it allows to build the projects (and execute at least their unit tests) with the required JDK and currently two out of three supported Maven versions.
+
+* For each of the single repositories below (running `mvn verify`), the build (on the respective PRs) are successful.
+See the build links in the discussion below.
+* For the reactor build (running `mvn install site`.footnote:[We know, `install` is not necessary here, `verify should do the job for a full reactor build.
+We already prepare for further build steps based on the fresh installation.]), it is a bit more complicated.
+** For Maven 3.9.9, the build is successful, but with some errors (resulting from site building).
+** For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them (-> Work-in-Progress).
+====
+
 We derived following tasks from the current state above.
 They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.
 
 [[desc-item:triage]]
 Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
 ** [ ] Archive unnecessary components.
-** [ ] Drop them from the Maven Source (or at least from the reactor build).
+** [ ] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[Draft PR for both M3 and M4]).
 The reactor build would become easier if the following components would be dropped from the reactor build
-*** [ ] The so-called _Maven Studies_,
-*** [ ] The `Maven Repository Tools`.
-*** [ ] The `Artifact Transfer`, and
-*** [ ] The `Project Utils`.
+*** [ ] The so-called _Maven Studies_ (as they are causing trouble, cf. our forks),
+**** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (Sac: https://github.com/support-and-care/maven-studies/tree/consumer-pom[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12733456692[Successful GH Action with M3]),
+**** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-extension-demo[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-add-maven-verify-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
+**** https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension Demo] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-eventsound-extension[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
+*** [ ] The https://github.com/apache/maven-project-utils[Maven Project Utils] as they are soon to be archived,
+*** [ ] The https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer] as it is deprecated and should be archived soon, and
+*** [ ] The https://github.com/apache/maven-repository-tools[Maven Repository Tools] (aka.
+Maven _Meeper_) from the reactor build (https://github.com/apache/maven-sources/pull/13[Draft PR for M3] will be withdrawn) as
+**** It is archived (so no further development is expected),
+**** It has many non-straightforward problems (see below).
 
-* [ ] Update the Java version in all projects to at least Java 8.
-** [ ] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin] and drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
-** [ ] https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]
-** [ ] https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]
-** [ ] https://github.com/apache/maven-mapping[Maven Mapping]
-** [ ] https://github.com/apache/maven-project-utils[Maven Project Utils]
-** [ ] https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (Maven Studies)
-** [ ] https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (Maven Studies)
-
-* Other tasks
-** [ ] Add `org.codehaus.plexus:plexus-xml:4.0.4` in test scope to https://github.com/apache/maven-shared-io[Maven Shared IO].
-** [ ] Fix checkstyle violations in https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension] (Maven studies): add Javadoc comment + fix whitespace issue.
-** [ ] Drop https://github.com/apache/maven-repository-tools[Maven Repository Tools] (aka. Maven _Meeper_) from the reactor build as
-*** It is archived (so no further development is expected),
-*** It has many non-straightforward problems (see below).
-
-+
-TIP: Drop all https://github.com/apache/maven-sources/blob/76686444ebcfb213386d6eccf6e429eb3a9b07d2/aggregator/svn/pom.xml[SVN components] from the (yet) _unmaintained_ https://github.com/apache/maven-sources/blob/95b62b049f497191d1db6e3ebe4d04c2b55d6237/aggregator/pom.xml#L68[reactor build], since the Meeper component was the last one of them.
-
-Maven 4 updates::
-To enable successful build with Maven 4.0.0 (RC-2) the following changes are necessary.
-+
 [IMPORTANT]
 ====
-We currently assume that
-
-* Maven Studies,
-* Maven Repository Tools, and
-* Maven Artifact Transfer
-
-will not survive the <<desc-item:triage,triage>> and concentrate on the remaining Components.
+For the next steps below we assume that the components mentioned above,
+will not survive the <<desc-item:triage,triage>> and concentrate on the remaining components.
 ====
 
-* [ ] Maven Verifier Plugin:
+Maven 3 (.9.9) Updates::
+To enable successful build with Maven 3 (.9.9) the following changes are necessary.
+
+* [ ] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
+** Update the Java version to at least Java 8, and
+** Drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
+* [ ] https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]: Update the Java version to at least Java 8
+* [ ] https://github.com/apache/maven-mapping[Maven Mapping]: Update the Java version to at least Java 8
+
+
+
+Maven 4 (.0.0-RC-2) updates::
+To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
+
+* [ ] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[Draft PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
+** Fix parent,
+** and add Plexus-XML dependency (in test scope).
+* [ ] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Draft PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
-* [ ] Maven Stage Plugin:
+* [ ] Maven Stage Plugin (https://github.com/apache/maven-stage-plugin/pull/15[Draft PR], https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925[Successful GH Action]):
 ** Drop `parent.relativePath`.
 ** Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
-* [ ] Maven Mapping:
+* [ ] Maven Mapping (https://github.com/apache/maven-mapping/pull/8[Draft PR], https://github.com/support-and-care/maven-mapping/actions/runs/12734150620[Successful GH Action]):
 ** Drop `parent.relativePath`.
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
