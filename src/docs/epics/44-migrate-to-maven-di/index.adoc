@@ -47,7 +47,7 @@ According to the dev mailing list, both are used, maven-api-di/maven/di and JSR3
 === Target: Use Maven Dependency Injection
 
 For misc.{nbsp}reasons (TBD:
-which reasons), Maven 4 developed its own https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI container].
+which reasons), Maven 4 developed its own https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI API] and https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI container].
 Now, all (core) components should switch to the new DI framework,
 resulting in complete independence of Eclipse Sisu (and any other intermediate DI framework,
 e.g., https://github.com/google/guice[Google Guice]).
@@ -70,7 +70,7 @@ Getting rid of more Plexus dependencies is subject to other activities and beyon
 * [ ] Document <<sec:current-state,current state>>
 ** [ ] Check current documentation
 ** [ ] Evaluate dependencies, e.g., with https://jqassistant.org[jQAssistant]{nbsp}->{nbsp}This might also help for other Epics
-* [ ] Situation JSR330/sisu vs maven-api-di/maven-di
+* [x] Situation JSR330/sisu vs maven-api-di/maven-di
 * [ ] Document new DI framework (https://github.com/apache/maven/tree/master/api/maven-api-di[Code] seems to have not even Javadocs)
 * [ ] Propose a migration path
 * [ ] Add automation where possible, e.g., via https://docs.openrewrite.org/[OpenRewrite]
@@ -78,43 +78,12 @@ Getting rid of more Plexus dependencies is subject to other activities and beyon
 [[sec:current-state]]
 == Current state of DI migration
 
-TBD
+Maven 4 plugins should be migrated to maven-api-di.
 
-== Analyse which Subproject is using maven-api-di / maven-di (Maven 4)
+Maven 3 plugins should be migrated to JSR330/Sisu. (Stricly speaking it is Maven 3.1 and higher)
+Maven 4 can use Maven 3 compatible plugins that have JSR330 and Sisu.
 
-=== maven-api-di
-* shared/filtering
-* plugins/packaging/maven-source-plugin
-* plugins/packaging/maven-jar-plugin
-* plugins/core/maven-resources-plugin
-* plugins/core/maven-install-plugin
-* plugins/core/maven-clean-plugin
-* plugins/core/maven-deploy-plugin
-* core/mvnd/daemon
-* core/mvnd
-* core/maven
-* core/maven/api
-* core/maven/api/maven-api-spi
-* core/maven/api/maven-api-core
-* core/maven/impl/maven-di
-* core/maven/impl/maven-impl
-
-=== maven-di
-
-* shared/filtering
-* misc/dist-tool
-* svn/sandbox/plugins
-* svn/sandbox/plugins/maven-digest-plugin
-* core/mvnd
-* core/mvnd/dist
-* core/mvnd/client
-* core/maven
-* core/maven/its
-* core/maven/its/core-it-suite
-* core/maven/impl
-* core/maven/impl/maven-impl
-* core/maven/impl/maven-core
-* core/build-cache
+Consequence is, if you want to have Maven 3 **and** Maven4 compatible plugins, these plugins have to stay at JSR330 and Sisu (see also question about it in ASF slack).
 
 === Current documentation
 
