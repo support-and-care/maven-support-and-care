@@ -82,7 +82,7 @@ They make sure that we can at least execute the Maven build with the required JD
 [[desc-item:triage]]
 Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
 ** [ ] Archive unnecessary components.
-** [ ] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[Draft PR for both M3 and M4]).
+** [ ] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[PR for both M3 and M4]).
 The reactor build would become easier if the following components would be dropped from the reactor build
 *** [ ] The so-called _Maven Studies_ (as they are causing trouble, cf. our forks),
 **** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (Sac: https://github.com/support-and-care/maven-studies/tree/consumer-pom[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12733456692[Successful GH Action with M3]),
@@ -115,18 +115,18 @@ To enable successful build with Maven 3 (.9.9) the following changes are necessa
 Maven 4 (.0.0-RC-2) updates::
 To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
 
-* [ ] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[Draft PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
+* [ ] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
 ** Fix parent,
 ** and add Plexus-XML dependency (in test scope).
-* [ ] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Draft PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
+* [ ] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Merged PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
-* [ ] Maven Stage Plugin (https://github.com/apache/maven-stage-plugin/pull/15[Draft PR], https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925[Successful GH Action]):
+* [ ] Maven Stage Plugin (https://github.com/apache/maven-stage-plugin/pull/15[PR], https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925[Successful GH Action]):
 ** Drop `parent.relativePath`.
 ** Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
-* [ ] Maven Mapping (https://github.com/apache/maven-mapping/pull/8[Draft PR], https://github.com/support-and-care/maven-mapping/actions/runs/12734150620[Successful GH Action]):
+* [ ] Maven Mapping (https://github.com/apache/maven-mapping/pull/8[PR], https://github.com/support-and-care/maven-mapping/actions/runs/12734150620[Successful GH Action]):
 ** Drop `parent.relativePath`.
 ** Upgrade to Parent version 43.
 ** Apply Spotless to the codebase.
