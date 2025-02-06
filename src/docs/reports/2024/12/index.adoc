@@ -1,0 +1,12 @@
+= December 2024
+:icons: font
+
+In December 2024
+
+* We established some documentation structure xref:../../../epics/README.adoc[for our Epics] to prepare and enable future work in a well-defined manner.
+The goal is a structured approach for documenting and managing work on Apache Maven Support & Care epics, focusing on the lifecycle of complex technical issues.
+The process involves iterative development, stakeholder discussions, and comprehensive documentation, starting from initial problem exploration through implementation phases and culminating in a final record of the solution.
+
+* We investigated the current state of the Maven build (xref:../../../epics/77-maven-due-diligence/index.adoc[due-diligence]).
+As a first result, we identified several Maven subprojects which we could not even build, in particular the so-called https://github.com/apache/maven-sources/tree/master/aggregator[Maven reactor-build].
+
