@@ -1,20 +1,19 @@
 = December 2024
 :icons: font
 
-== Working Package 1 - Security of the Supply Chain
-No working
+== Work Package 1 - Security of the Supply Chain
+No work performed
 
-== Working Package 2 - Maintenance
+== Work Package 2 - Maintenance
 * We investigated the current state of the Maven build (xref:../../../epics/77-maven-due-diligence/index.adoc[due-diligence]).
 As a first result, we identified several Maven subprojects which we could not even build, in particular the so-called https://github.com/apache/maven-sources/tree/master/aggregator[Maven reactor-build].
-* We started on working at https://github.com/support-and-care/jira-to-gh-issues[migration tool] that helps migrate Jira issues to GitHub issues. The main work was done by the Spring Team. We extended it with features, that we need for Apache Maven.
+* We started on working at https://github.com/support-and-care/jira-to-gh-issues[migration tool] that helps migrate Jira issues to GitHub issues.
+The main work was done by the Spring Team. We extended it with features, that we need for Apache Maven.
 
+== Work Package 3 - Modernisation of Core Feature
+No work performed
 
-== Working Package 3 - Modernisation of Core Feature
-
-No working
-
-== Working Package 4 - Documentation
+== Work Package 4 - Documentation
 * We established some documentation structure xref:../../../epics/README.adoc[for our Epics] to prepare and enable future work in a well-defined manner.
 The goal is a structured approach for documenting and managing work on Apache Maven Support & Care epics, focusing on the lifecycle of complex technical issues.
 The process involves iterative development, stakeholder discussions, and comprehensive documentation, starting from initial problem exploration through implementation phases and culminating in a final record of the solution.
