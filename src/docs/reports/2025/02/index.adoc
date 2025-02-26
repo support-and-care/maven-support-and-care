@@ -1,0 +1,23 @@
+= February 2025
+:icons: font
+
+== Work Package 1 - Security of the Supply Chain
+* We started a set up of a https://github.com/eclipse-apoapsis/ort-server[ORT - Server] for analyzing Apache Maven projects.
+
+== Work Package 2 - Maintenance
+* We helped migrating the first Jira projects (MJLINK, MASFRES).
+We had some learning and extended the migration tool based on that learning.
+
+
+== Work Package 3 - Modernisation of Core Feature
+
+No work performed
+
+== Work Package 4 - Documentation
+
+No work performed
+
+
+
+
+
