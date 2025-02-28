@@ -1,0 +1,12 @@
+version: "1.0"
+linter: jetbrains/qodana-jvm:2024.3
+plugins:
+  - id: org.asciidoctor.intellij.asciidoc
+profile:
+  path: .qodana/asciidoc-inspection.xml
+exclude:
+  - name: All
+    paths:
+      - qodana.yaml
+      - .qodana
+      - LICENSE
