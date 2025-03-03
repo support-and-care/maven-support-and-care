@@ -1,0 +1,508 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8e23e1df-a8e6-4481-84e7-234926a82b99" name="Changes" comment="WIP Switch to Qodana community linter &#10;&#10;and and add custom dictionary.">
+      <change beforePath="$PROJECT_DIR$/epics.adoc" beforeDir="false" afterPath="$PROJECT_DIR$/epics.adoc" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="ComposerSettings">
+    <execution />
+  </component>
+  <component name="DefaultGradleProjectSettings">
+    <option name="isMigrated" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="ROOT_SYNC" value="DONT_SYNC" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;ascheman&quot;
+  }
+}</component>
+  <component name="GitRewordedCommitMessages">
+    <option name="commitMessagesMapping">
+      <RewordedCommitMessageMapping>
+        <option name="originalMessage" value="Add stakeholder report for Decemter 2024" />
+        <option name="rewordedMessage" value="Add the stakeholder report for December 2024" />
+      </RewordedCommitMessageMapping>
+    </option>
+    <option name="currentCommit" value="1" />
+    <option name="onto" value="87323348da15a3b13335ca3560e7564ff9ae5c15" />
+  </component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;git@github.com:support-and-care/maven-support-and-care.git&quot;,
+    &quot;accountId&quot;: &quot;76174b8d-04da-465a-aaea-b2f89a88f6fc&quot;
+  }
+}</component>
+  <component name="GradleLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$/../../../asciidoctor/javaland2016-asciidoctor" value="1459885200000" />
+        <entry key="$PROJECT_DIR$/../../../jqassistant/jqassistant-plugins" value="11584066120000" />
+        <entry key="$PROJECT_DIR$/../../../jugda/teilnehmer2neo4j" value="2898446200000" />
+      </map>
+    </option>
+    <option name="projectSyncType">
+      <map>
+        <entry key="$PROJECT_DIR$/../../../MakeTestingGroovy" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../ddd/IDDD_Samples" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../jenkins/jenkinsx/ascheman-jx-quickstarts/micronaut-http-gradle" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../jenkins/jenkinsx/wrk/tst-mn" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../micronaut-libraries" value="PREVIEW" />
+        <entry key="$PROJECT_DIR$/../../../screen17/wrk/screen17-core" value="PREVIEW" />
+      </map>
+    </option>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="userSettingsFile" value="$USER_HOME$/.m2/settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="MavenRunner">
+    <option name="jreName" value="11 (2)" />
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="QODANA_PROBLEMS_VIEW_TAB" />
+    <option name="showPreview" value="true" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2ptT2HjXDyijwNxHD2PJBBM4ezO" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.source.executor&quot;: &quot;Run&quot;,
+    &quot;NIXITCH_NIXPKGS_CONFIG&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_CONF_DIR&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_OTHER_STORES&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_PATH&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_PROFILES&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_REMOTE&quot;: &quot;&quot;,
+    &quot;NIXITCH_NIX_USER_PROFILE_DIR&quot;: &quot;&quot;,
+    &quot;OrchideMappingSettingsSimpleMapping.checked&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;SONARLINT_PRECOMMIT_ANALYSIS&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;feature/code-check&quot;,
+    &quot;go.import.settings.migrated&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.ide.settings.spelling&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="Push.Settings">
+    <force-push-targets>
+      <force-push-target remote-path="origin" branch="wip/44-migrate-to-maven-di" />
+      <force-push-target remote-path="origin" branch="wip/77-maven-due-diligence" />
+      <force-push-target remote-path="origin" branch="feature/current-reports" />
+      <force-push-target remote-path="origin" branch="feature/code-check" />
+    </force-push-targets>
+  </component>
+  <component name="QodanaCIConfigService">
+    <option name="ciType" value="GITHUB" />
+    <option name="path" value="$PROJECT_DIR$/.github/workflows/qodana.yml" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/docs/epics/00-maven-due-dilligence" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration default="true" type="AZURE_FUNCTION_SUPPORT" factoryName="Run Functions">
+      <option name="appName" />
+      <option name="appServicePlanName" />
+      <option name="appServicePlanResourceGroup" />
+      <option name="appSettingsKey" value="c72938f2-efdb-4f21-bea7-2410bf328600" />
+      <option name="artifact" />
+      <option name="debugOptions" />
+      <option name="deployment" />
+      <option name="deploymentStagingDirectoryPath" />
+      <option name="funcPath" />
+      <option name="functionHostArguments" />
+      <option name="hostJsonPath" />
+      <option name="insightsName" />
+      <option name="instrumentationKey" />
+      <option name="javaVersion" />
+      <option name="localSettingsJsonPath" />
+      <option name="moduleName" />
+      <option name="os" />
+      <option name="pricingTier" />
+      <option name="providerMap">
+        <map />
+      </option>
+      <option name="region" />
+      <option name="resourceGroup" />
+      <option name="stagingFolder" />
+      <option name="subscription" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Applet">
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file enabled="true" id="idea.log" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <option name="TEST_OBJECT" value="class" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="TestNG">
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-a94e463ab2e7-intellij.indexing.shared.core-QDJVM-243.25515" />
+        <option value="bundled-js-predefined-d6986cc7102b-76f8388c3a79-JavaScript-QDJVM-243.25515" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="1" Folder0="$PROJECT_DIR$/.qodana" CustomDictionaries="1" CustomDictionary0="$PROJECT_DIR$/.qodana/dictionary.txt" DefaultDictionary="project-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8e23e1df-a8e6-4481-84e7-234926a82b99" name="Changes" comment="" />
+      <created>1689153511960</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1689153511960</updated>
+      <workItem from="1733584163801" duration="22048000" />
+      <workItem from="1733858549439" duration="1561000" />
+      <workItem from="1734721916927" duration="2693000" />
+      <workItem from="1735986653821" duration="36489000" />
+      <workItem from="1736385415267" duration="10276000" />
+      <workItem from="1736512596619" duration="25972000" />
+      <workItem from="1737355478939" duration="2328000" />
+      <workItem from="1738020118189" duration="2704000" />
+      <workItem from="1738865665231" duration="6535000" />
+      <workItem from="1740677236412" duration="509000" />
+      <workItem from="1740746484402" duration="15226000" />
+    </task>
+    <task id="LOCAL-00001" summary="Add epics column&#10;&#10;* Cf. https://openelements.slack.com/archives/C081TP1RCDB/p1733585610939769&#10;* Starting with epic #44">
+      <option name="closed" value="true" />
+      <created>1733654430222</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1733654430222</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Prepare (generic) epic  documentation&#10;&#10;* some general thoughts on work on epics&#10;* skeleton for #44">
+      <option name="closed" value="true" />
+      <created>1733666353518</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1733666353518</updated>
+    </task>
+    <task id="LOCAL-00003" summary="WIP Add problem statement and boundaries for #44">
+      <option name="closed" value="true" />
+      <created>1733668648541</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1733668648541</updated>
+    </task>
+    <task id="LOCAL-00004" summary="WIP Add next steps and current investigation for #44">
+      <option name="closed" value="true" />
+      <created>1733729303768</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1733729303768</updated>
+    </task>
+    <task id="LOCAL-00005" summary="WIP Add next steps and current investigation for #44">
+      <option name="closed" value="true" />
+      <created>1733729463493</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1733729463493</updated>
+    </task>
+    <task id="LOCAL-00006" summary="WIP Fix some typos and add hint&#10;&#10;to further findings (#44)">
+      <option name="closed" value="true" />
+      <created>1736101908517</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1736101908517</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Skip front-matter and show GH specific admonition icons">
+      <option name="closed" value="true" />
+      <created>1736102782215</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1736102782215</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Add repo problem with `studies`">
+      <option name="closed" value="true" />
+      <created>1736201498077</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1736201498077</updated>
+    </task>
+    <task id="LOCAL-00009" summary="Ignore (generated) HTML files (#77)">
+      <option name="closed" value="true" />
+      <created>1736242543384</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1736242543384</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Migrate existing docs to AsciiDoc&#10;&#10;since this format is more powerful and allows,&#10;e.g., for better cross-referencing of docs.">
+      <option name="closed" value="true" />
+      <created>1736243873618</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1736243873618</updated>
+    </task>
+    <task id="LOCAL-00011" summary="Move towards AsciiDoc features (admonitions etc.)">
+      <option name="closed" value="true" />
+      <created>1736246726145</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1736246726145</updated>
+    </task>
+    <task id="LOCAL-00012" summary="Move towards AsciiDoc features (admonitions etc.)">
+      <option name="closed" value="true" />
+      <created>1736246862775</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1736246862775</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix typos and grammar">
+      <option name="closed" value="true" />
+      <created>1736246881811</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1736246881811</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Add reference to epic #44">
+      <option name="closed" value="true" />
+      <created>1736246936562</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1736246936562</updated>
+    </task>
+    <task id="LOCAL-00015" summary="Fix typos and grammar">
+      <option name="closed" value="true" />
+      <created>1736247209129</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1736247209129</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Restructure and add more points (SQUASH)">
+      <option name="closed" value="true" />
+      <created>1736441200430</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1736441200430</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Add Maven 4 related problems and refactor &#10;&#10;existing due dilligence (#77)">
+      <option name="closed" value="true" />
+      <created>1736723090364</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1736723090364</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Add Maven 4 related problems and refactor &#10;&#10;existing due dilligence (#77)">
+      <option name="closed" value="true" />
+      <created>1736734193856</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1736734193856</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Add links (PRs, GH Actions, Branches, ...)&#10;&#10;existing due dilligence (#77)">
+      <option name="closed" value="true" />
+      <created>1736734231297</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1736734231297</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Misc. components were updated due to our PRs (#77)">
+      <option name="closed" value="true" />
+      <created>1738021531441</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1738021531441</updated>
+    </task>
+    <task id="LOCAL-00021" summary="Add stakeholder report for January 2025">
+      <option name="closed" value="true" />
+      <created>1738868755196</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1738868755196</updated>
+    </task>
+    <task id="LOCAL-00022" summary="xxx">
+      <option name="closed" value="true" />
+      <created>1738937559559</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1738937559559</updated>
+    </task>
+    <task id="LOCAL-00023" summary="Ignore (generated) PDF files">
+      <option name="closed" value="true" />
+      <created>1738946065052</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1738946065052</updated>
+    </task>
+    <task id="LOCAL-00024" summary="WIP start code analysis with Qodana">
+      <option name="closed" value="true" />
+      <created>1740748916309</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1740748916309</updated>
+    </task>
+    <task id="LOCAL-00025" summary="WIP Configure AsciiDoc linting&#10;&#10;and fix some issues ...">
+      <option name="closed" value="true" />
+      <created>1740758951044</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1740758951044</updated>
+    </task>
+    <task id="LOCAL-00026" summary="WIP Switch to Qodana community linter &#10;&#10;and and add custom dictionary.">
+      <option name="closed" value="true" />
+      <created>1741005388917</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1741005388917</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="roots">
+                    <value>
+                      <list>
+                        <option value="$PROJECT_DIR$" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myShow1" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="SHOW_DIRTY_RECURSIVELY" value="true" />
+    <MESSAGE value="Prepare (generic) epic  documentation&#10;&#10;* some general thoughts on work on epics&#10;* skeleton for #44" />
+    <MESSAGE value="WIP Add problem statement and boundaries for #44" />
+    <MESSAGE value="WIP Add next steps and current investigation for #44" />
+    <MESSAGE value="WIP Fix some typos and add hint&#10;&#10;to further findings (#44)" />
+    <MESSAGE value="Skip front-matter and show GH specific admonition icons" />
+    <MESSAGE value="Add repo problem with `studies`" />
+    <MESSAGE value="Prepare start of Plexus (DI) migration (#44)" />
+    <MESSAGE value="Ignore (generated) HTML files (#77)" />
+    <MESSAGE value="Migrate existing docs to AsciiDoc&#10;&#10;since this format is more powerful and allows,&#10;e.g., for better cross-referencing of docs." />
+    <MESSAGE value="Move towards AsciiDoc features (admonitions etc.)" />
+    <MESSAGE value="Add reference to epic #44" />
+    <MESSAGE value="Fix typos and grammar" />
+    <MESSAGE value="Restructure and add more points (SQUASH)" />
+    <MESSAGE value="Start due diligence to pick up current state&#10;&#10;and open problems of Maven Sources (#77)" />
+    <MESSAGE value="Add Maven 4 related problems and refactor &#10;&#10;existing due dilligence (#77)" />
+    <MESSAGE value="Add links (PRs, GH Actions, Branches, ...)&#10;&#10;existing due dilligence (#77)" />
+    <MESSAGE value="Misc. components were updated due to our PRs (#77)" />
+    <MESSAGE value="Add the stakeholder report for January 2025" />
+    <MESSAGE value="xxx" />
+    <MESSAGE value="Add the stakeholder report for December 2024" />
+    <MESSAGE value="Add the stakeholder report for January 2025" />
+    <MESSAGE value="Ignore (generated) PDF files" />
+    <MESSAGE value="WIP start code analysis with Qodana" />
+    <MESSAGE value="WIP Configure AsciiDoc linting&#10;&#10;and fix some issues ..." />
+    <MESSAGE value="WIP Switch to Qodana community linter &#10;&#10;and and add custom dictionary." />
+    <option name="LAST_COMMIT_MESSAGE" value="WIP Switch to Qodana community linter &#10;&#10;and and add custom dictionary." />
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+</project>

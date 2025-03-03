@@ -2,7 +2,7 @@
 # Do not change this
 issue: 77
 # This might change in the course of the work
-title: Maven Due Dilligence
+title: Maven Due Diligence
 # This might be one of TBD
 status: Draft
 ---
