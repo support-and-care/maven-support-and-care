@@ -35,7 +35,8 @@ Most of the content in this document refers to the so-called _Maven Source_ (cf.
 Whenever we use this term, we refer to the collection of Maven components provided with the described SCM structure.
 
 Reactor Build::
-Note that the Maven Source also contains a Maven https://github.com/apache/maven-sources/blob/master/aggregator/pom.xml[_reactor build_] which builds most of the Maven components in a single run (in the checked out state of the Source, you can find the reactor in `sources/aggregator`).
+Note that the Maven Source also contains a Maven https://github.com/apache/maven-sources/blob/master/aggregator/pom.xml[_reactor build_]
+which builds most of the Maven components in a single run (in the checked-out state of the source, you can find the reactor in `sources/aggregator`).
 ====
 ****
 
@@ -60,15 +61,14 @@ The <<sec:detailed-build-investigation,detailed investigation>> (current state) 
 Though applying <<sec:initial-quick-wins,initial quick-wins>>, improved the _reactor build_ already,
 we still experience build problems (also by ongoing development){nbsp}->{nbsp}<<sec:reactor-build-problems>>.
 
-
 ==== Further tasks
 
 The following tasks are just ideas and have no particular order!
 
 ===== Component design
 
-* [ ] Check for some components whether they should be kept in the current form, or whether some rework is necessary.
-For example, the Doxia Tools (`linkcheck`, `book-renderer`, `book-maven-plugin`) are based on Doxia 1.3, which is outdated.
+* [ ] Check for some components whether the Maven committers should keep them in the current form, or whether some rework is necessary.
+For example, the Doxia tools (`linkcheck`, `book-renderer`, `book-maven-plugin`) are based on Doxia 1.3, which is outdated.
 In particular, it contains some https://maven.apache.org/doxia/references/index.html[deprecated] formats (e.g., iText).
 
 ===== Branches
@@ -90,12 +90,12 @@ It would be nice to have a more detailed description of the component itself in 
 
 ===== Integration Tests
 
-* [ ] Run integration tests (profile `run-its`) for all Maven projects and check out the result (-> Stability of the build).
+* [ ] Run integration tests (profile `run-its`) for all Maven projects and check out the result{nbsp}(->{nbsp}Stability of the build).
 
 ===== Reactor build
 
 * [ ] Enable Maven `verify` for the https://github.com/apache/maven-sources[reactor build].
-* [ ] Enable reactor build for pull-requests of the subprojects -> Trigger reactor build with particular branch of subproject repository (how to handle forks?).
+* [ ] Enable reactor build for pull-requests of the subprojects{nbsp}->{nbsp}Trigger reactor build with particular branch of subproject repository (how to handle forks?).
 
 [[sec:detailed-build-investigation]]
 == Detailed Build investigation
@@ -109,8 +109,8 @@ It would be nice to have a more detailed description of the component itself in 
 If you are a member of the Support and Care team, or interested in our approach to the Maven build, you can use our https://github.com/support-and-care/sac-maven-tools.git[SAC Maven Tools] to check out and work with the <<box:maven-source>> (Hint: Among others it asks you to perform the following step as well to get the Maven Source code, so the approach is not completely different).
 ****
 
-* (Otherwise, ) Check out the <<box:maven-source>> from the ASF GitHub repositories by following the instructions in the https://maven.apache.org/scm.html[SCM section] of the Maven documentation.
-* Use JDK 21 (the following problems were found with Temurin 21.0.5 on Apple Silicon).
+* (Otherwise,{nbsp) Check out the <<box:maven-source>> from the ASF GitHub repositories by following the instructions in the https://maven.apache.org/scm.html[SCM section] of the Maven documentation.
+* Use JDK 21 (we found the following problems with Temurin 21.0.5 on Apple Silicon).
 * Use Maven 3.9.9 and 4.0.0-RC-2 (not yet 3.6.3).
 
 === Build Maven projects and reactor
@@ -195,17 +195,17 @@ To visualize the problems and the results of below discussed quick wins, we adde
 Both currently make use of JDK 21 and Maven 3.9.9, as well as Maven 4.0.0-RC-2.
 We can show the initial results of the builds (without changes), and the results for both Maven versions.
 
-It is clear, that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
-For instance, it does not yet cover full integration tests, or documentation checks.
-Nevertheless, it is a starting point which allows for step-by-step improvements.
+It is clear that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
+For instance, it does not yet cover full integration tests or documentation checks.
+Nevertheless, it is a starting point that allows for step-by-step improvements.
 In particular, it allows to build the projects (and execute at least their unit tests) with the required JDK and currently two out of three supported Maven versions.
 
-* For each of the single repositories below (running `mvn verify`), the build (on the respective PRs) are successful.
+* For each of the single repositories below (running `mvn verify`), the builds (on the respective PRs) are successful.
 See the build links in the discussion below.
 * For the reactor build (running `mvn install site`.footnote:[We know, `install` is not necessary here, `verify should do the job for a full reactor build.
 We already prepare for further build steps based on the fresh installation.]), it is a bit more complicated.
 ** For Maven 3.9.9, the build is successful, but with some errors (resulting from site building).
-** For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them (-> Work-in-Progress).
+** For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them{nbsp}(->{nbsp}Work-in-Progress).
 ====
 
 We derived the following tasks from the current state above.
@@ -215,7 +215,7 @@ They make sure that we can at least execute the Maven build with the required JD
 Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
 ** [ ] [line-through]#Archive unnecessary components#.footnote:[Actual archiving is up to the Maven committers and out of scope for the Maven Support & Care team]
 ** [x] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[Merged PR for both M3 and M4]).
-The reactor build would become easier if the following components would be dropped from the reactor build
+The reactor build would become easier if the following components were dropped from the reactor build
 *** The so-called _Maven Studies_ (as they are causing trouble, cf. our forks) are moved to a Maven profile (`studies`),
 **** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (SaC: https://github.com/support-and-care/maven-studies/tree/consumer-pom[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12733456692[Successful GH Action with M3]),
 **** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-extension-demo[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-add-maven-verify-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
@@ -229,12 +229,12 @@ Maven _Meeper_) from the reactor build (https://github.com/apache/maven-sources/
 
 [IMPORTANT]
 ====
-For the next steps below we assume that the components mentioned above,
+For the next steps below, we assume that the components mentioned above
 will not survive the <<desc-item:triage,triage>> and concentrate on the remaining components.
 ====
 
 Maven 3 (.9.9) Updates::
-To enable successful build with Maven 3 (.9.9) the following changes are necessary.
+To enable a successful build with Maven 3 (.9.9) the following changes are necessary.
 
 * [x] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
 ** Update the Java version to at least Java 8, and
@@ -243,7 +243,7 @@ To enable successful build with Maven 3 (.9.9) the following changes are necessa
 * [x] https://github.com/apache/maven-mapping[Maven Mapping]: Update the Java version to at least Java 8
 
 Maven 4 (.0.0-RC-2) updates::
-To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
+To enable a successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
 
 * [x] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
 ** Fix parent,
@@ -282,7 +282,7 @@ Maven 3 (.9.9):: Wrong Java Version
 
 +
 +
--> Dropping the license led to successful build.
+-> Dropping the license led to successful builds.
 // ** Alternate path (not yet successful): Upgrade the POM to parent version 43 leads to: `Found Banned Dependency: org.apache.maven.plugin-tools:maven-plugin-annotations:jar:3.13.1`.
 // This is due to the parent chain:
 // +
@@ -421,7 +421,7 @@ Use 8 or later.`
 ** Changing to a newer (current) parent POM (`43`) revealed new problems:
 ...
 
-CAUTION: This project has so many problems and seems completely unused -> We suggest dropping it from the reactor build.
+CAUTION: This project has so many problems and seems completely unused{nbsp}->{nbsp}We suggest dropping it from the reactor build.
 
 ==== Maven Shared IO
 
