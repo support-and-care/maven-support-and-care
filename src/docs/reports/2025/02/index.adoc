@@ -11,13 +11,8 @@ We had some learning and extended the migration tool based on that learning.
 
 == Work Package 3 - Modernisation of Core Feature
 
-No work performed
+The Maven committers adopted most changes that we provided by xref:../../../epics/77-maven-due-diligence/index.adoc[Epic 77].
 
 == Work Package 4 - Documentation
 
 No work performed
-
-
-
-
-

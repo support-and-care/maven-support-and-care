@@ -55,82 +55,6 @@ The <<sec:detailed-build-investigation,detailed investigation>> (current state) 
 
 === Resulting tasks
 
-==== Quick wins
-
-[IMPORTANT]
-====
-To visualize the problems and the results of below discussed quick wins, we added a build to the Maven projects.
-Both currently make use of JDK 21 and Maven 3.9.9, as well as Maven 4.0.0-RC-2.
-We can show the initial results of the builds (without changes), and the results for both Maven versions.
-
-It is clear, that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
-For instance, it does not yet cover full integration tests, or documentation checks.
-Nevertheless, it is a starting point which allows for step-by-step improvements.
-In particular, it allows to build the projects (and execute at least their unit tests) with the required JDK and currently two out of three supported Maven versions.
-
-* For each of the single repositories below (running `mvn verify`), the build (on the respective PRs) are successful.
-See the build links in the discussion below.
-* For the reactor build (running `mvn install site`.footnote:[We know, `install` is not necessary here, `verify should do the job for a full reactor build.
-We already prepare for further build steps based on the fresh installation.]), it is a bit more complicated.
-** For Maven 3.9.9, the build is successful, but with some errors (resulting from site building).
-** For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them (-> Work-in-Progress).
-====
-
-We derived following tasks from the current state above.
-They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.
-
-[[desc-item:triage]]
-Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
-** [ ] Archive unnecessary components.
-** [x] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[Merged PR for both M3 and M4]).
-The reactor build would become easier if the following components would be dropped from the reactor build
-*** The so-called _Maven Studies_ (as they are causing trouble, cf. our forks) are moved to a Maven profile (`studies`),
-**** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (SaC: https://github.com/support-and-care/maven-studies/tree/consumer-pom[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12733456692[Successful GH Action with M3]),
-**** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-extension-demo[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-add-maven-verify-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
-**** https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension Demo] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-eventsound-extension[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
-*** The https://github.com/apache/maven-project-utils[Maven Project Utils] as they are soon to be archived,
-*** The https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer] as it is deprecated and should be archived soon, and
-*** The https://github.com/apache/maven-repository-tools[Maven Repository Tools] (aka.
-Maven _Meeper_) from the reactor build (https://github.com/apache/maven-sources/pull/13[Draft PR for M3] will be withdrawn) as
-**** It is archived (so no further development is expected),
-**** It has many non-straightforward problems (see below).
-
-[IMPORTANT]
-====
-For the next steps below we assume that the components mentioned above,
-will not survive the <<desc-item:triage,triage>> and concentrate on the remaining components.
-====
-
-Maven 3 (.9.9) Updates::
-To enable successful build with Maven 3 (.9.9) the following changes are necessary.
-
-* [x] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
-** Update the Java version to at least Java 8, and
-** Drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
-* [x] https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]: Update the Java version to at least Java 8
-* [x] https://github.com/apache/maven-mapping[Maven Mapping]: Update the Java version to at least Java 8
-
-
-
-Maven 4 (.0.0-RC-2) updates::
-To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
-
-* [x] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
-** Fix parent,
-** and add Plexus-XML dependency (in test scope).
-* [x] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Merged PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
-** Upgrade to Parent version 43.
-** Apply Spotless to the codebase.
-* [x] Maven Stage Plugin (https://github.com/apache/maven-stage-plugin/pull/15[Merged PR], https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925[Successful GH Action]):
-** Drop `parent.relativePath`.
-** Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
-** Upgrade to Parent version 43.
-** Apply Spotless to the codebase.
-* [x] Maven Mapping (https://github.com/apache/maven-mapping/pull/8[Merged PR], https://github.com/support-and-care/maven-mapping/actions/runs/12734150620[Successful GH Action]):
-** Drop `parent.relativePath`.
-** Upgrade to Parent version 43.
-** Apply Spotless to the codebase.
-
 
 ==== Further tasks
 
@@ -216,17 +140,121 @@ Could we drop them as this is somehow irritating to new users of the Maven Sourc
 
 === Build problems
 
-==== Builds
 
-We do have several problems with the build of the Maven projects.
+==== Other builds (not part of reactor)
 
-===== Maven Wagon
+===== Plexus Swizzle
+
+https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
+
+* `The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT`
+
+[[sec:archived-components]]
+=== Archived Components
+
+Should they be dropped from Maven Source?
+
+* https://github.com/apache/maven-sandbox
+* https://github.com/apache/maven-repository-tools
+* https://github.com/apache/maven-doxia-ide
+* https://github.com/codehaus-plexus/plexus-components
+* https://github.com/codehaus-plexus/plexus-containers
+* https://github.com/codehaus-plexus/plexus-swizzle
+** uses `org.codehaus.plexus:plexus-components` in version 4.0.0-SNAPSHOT as parent which does not resolve.
+The parent is a SNAPSHOT, but the repository (version) needs to be identified.
+Version https://github.com/codehaus-plexus/plexus-components/releases/tag/plexus-components-4.0[4.0] is close, but the owner has archived the source code by Dec. 2023, and it contains many later versions.
+* https://github.com/codehaus-plexus/plexus-digest
+* https://github.com/codehaus-plexus/plexus-cli
+* https://github.com/codehaus-plexus/plexus-cipher
+
+== Resolved issues
+
+Since starting this epic, we could resolve the following issues.
+
+[[sec:initial-quick-wins]]
+=== Initial Quick wins
+
+[IMPORTANT]
+====
+To visualize the problems and the results of below discussed quick wins, we added a build to the Maven projects.
+Both currently make use of JDK 21 and Maven 3.9.9, as well as Maven 4.0.0-RC-2.
+We can show the initial results of the builds (without changes), and the results for both Maven versions.
+
+It is clear, that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
+For instance, it does not yet cover full integration tests, or documentation checks.
+Nevertheless, it is a starting point which allows for step-by-step improvements.
+In particular, it allows to build the projects (and execute at least their unit tests) with the required JDK and currently two out of three supported Maven versions.
+
+* For each of the single repositories below (running `mvn verify`), the build (on the respective PRs) are successful.
+See the build links in the discussion below.
+* For the reactor build (running `mvn install site`.footnote:[We know, `install` is not necessary here, `verify should do the job for a full reactor build.
+We already prepare for further build steps based on the fresh installation.]), it is a bit more complicated.
+** For Maven 3.9.9, the build is successful, but with some errors (resulting from site building).
+** For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them (-> Work-in-Progress).
+====
+
+We derived the following tasks from the current state above.
+They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.
+
+[[desc-item:triage]]
+Triage:: Check with the Maven committers if we could thin out the _reactor build_ and the overall <<box:maven-source>>.
+** [ ] [line-through]#Archive unnecessary components#.footnote:[Actual archiving is up to the Maven committers and out of scope for the Maven Support & Care team]
+** [x] Drop them from the Maven Source (or at least from the reactor build; https://github.com/apache/maven-sources/pull/13[Merged PR for both M3 and M4]).
+The reactor build would become easier if the following components would be dropped from the reactor build
+*** The so-called _Maven Studies_ (as they are causing trouble, cf. our forks) are moved to a Maven profile (`studies`),
+**** https://github.com/apache/maven-studies/tree/consumer-pom[Consumer POM] (SaC: https://github.com/support-and-care/maven-studies/tree/consumer-pom[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12733456692[Successful GH Action with M3]),
+**** https://github.com/apache/maven-studies/tree/maven-extension-demo[Extension Demo Study] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-extension-demo[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-add-maven-verify-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
+**** https://github.com/apache/maven-studies/tree/maven-eventsound-extension[Eventsound Extension Demo] (SaC: https://github.com/support-and-care/maven-studies/tree/maven-eventsound-extension[fork], https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-maven-extension-demo[bugfix], https://github.com/support-and-care/maven-studies/actions/runs/12734023531[Successful GH Action with M3]),
+*** The https://github.com/apache/maven-project-utils[Maven Project Utils] as they are soon to be archived,
+*** The https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer] as it is deprecated and should be archived soon, and
+*** The https://github.com/apache/maven-repository-tools[Maven Repository Tools] (aka.
+Maven _Meeper_) from the reactor build (https://github.com/apache/maven-sources/pull/13[Draft PR for M3] will be withdrawn) as
+**** It is archived (so no further development is expected),
+**** It has many non-straightforward problems (see below).
+
+[IMPORTANT]
+====
+For the next steps below we assume that the components mentioned above,
+will not survive the <<desc-item:triage,triage>> and concentrate on the remaining components.
+====
+
+Maven 3 (.9.9) Updates::
+To enable successful build with Maven 3 (.9.9) the following changes are necessary.
+
+* [x] https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
+** Update the Java version to at least Java 8, and
+** Drop duplicate license from https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29[`VerifierMojo.java`] as it leads to a checkstyle error due to splitting the import statements.
+* [x] https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]: Update the Java version to at least Java 8
+* [x] https://github.com/apache/maven-mapping[Maven Mapping]: Update the Java version to at least Java 8
+
+Maven 4 (.0.0-RC-2) updates::
+To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
+
+* [x] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
+** Fix parent,
+** and add Plexus-XML dependency (in test scope).
+* [x] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Merged PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+* [x] Maven Stage Plugin (https://github.com/apache/maven-stage-plugin/pull/15[Merged PR], https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925[Successful GH Action]):
+** Drop `parent.relativePath`.
+** Refactor `DefaultRepositoryCopier::copy` to use less than 150 lines of code.
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+* [x] Maven Mapping (https://github.com/apache/maven-mapping/pull/8[Merged PR], https://github.com/support-and-care/maven-mapping/actions/runs/12734150620[Successful GH Action]):
+** Drop `parent.relativePath`.
+** Upgrade to Parent version 43.
+** Apply Spotless to the codebase.
+
+In particular, the following problems were resolved
+
+==== Maven Wagon
 
 https://github.com/apache/maven-wagon[Maven Wagon] has Flaky (unit) tests (at least in the reactor builds).
 +
 We perform no action by now, perhaps test retries in the future?
 
-===== Maven Verifier Plugin
+==== Maven Verifier Plugin
 
 https://github.com/apache/maven-verifier-plugin[Maven Verifier Plugin]
 
@@ -262,7 +290,7 @@ Maven 4 (.0.0-RC-2)::
 +
 -> Apply Spotless to the codebase.
 
-===== Maven Stage Plugin
+==== Maven Stage Plugin
 
 https://github.com/apache/maven-stage-plugin[Maven Stage Plugin]
 
@@ -287,7 +315,7 @@ Maven 4 (.0.0-RC-2)::
 +
 -> Apply Spotless to the codebase.
 
-===== Maven Artifact Transfer (Deprecated)
+==== Maven Artifact Transfer (Deprecated)
 
 https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]: Wrong Java Version
 
@@ -298,7 +326,7 @@ https://github.com/apache/maven-artifact-transfer[Maven Artifact Transfer]: Wron
 +
 -> Change property `javaVersion` to `8` to resolve the problem.
 
-===== Maven Mapping
+==== Maven Mapping
 
 https://github.com/apache/maven-mapping[Maven Mapping]
 
@@ -321,7 +349,7 @@ Maven 4 (.0.0-RC-2)::
 +
 -> Apply Spotless to the codebase.
 
-===== Maven Project Utils (Deprecated)
+==== Maven Project Utils (Deprecated)
 
 https://github.com/apache/maven-project-utils[Maven Project Utils]
 
@@ -337,7 +365,7 @@ Maven 4 (.0.0-RC-2)::
 * Spotless error: `[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-project-utils: The following files had format violations:
 ...`
 
-===== Maven Studies
+==== Maven Studies
 
 https://github.com/apache/maven-studies[Maven Studies]:
 
@@ -358,7 +386,7 @@ Maven 3 (.9.9):: Wrong Java Version(s)
 
 Maven 4 (.0.0-RC-2):: Not investigated (we should drop them, at least from the reactor build).
 
-===== Maven Repository Tools
+==== Maven Repository Tools
 
 https://github.com/apache/maven-repository-tools[Maven Repository Tools]: Dependency problem + Wrong Java version
 
@@ -380,7 +408,7 @@ Use 8 or later.`
 
 CAUTION: This project has so many problems and seems completely unused -> We suggest dropping it from the reactor build.
 
-===== Maven Shared IO
+==== Maven Shared IO
 
 https://github.com/apache/maven-shared-io[Maven Shared IO]: Misc.{nbsp}errors
 
@@ -393,29 +421,3 @@ https://github.com/apache/maven-shared-io[Maven Shared IO]: Misc.{nbsp}errors
 [ERROR]   DefaultDownloadManagerTest.testShouldLookupInstanceDefaultRoleHint:77->PlexusTestCase.lookup:201->PlexusTestCase.getContainer:141->PlexusTestCase.setupContainer:98 » NoClassDefFound org/codehaus/plexus/util/xml/pull/XmlPullParserException`
 +
 -> Add the dependency `org.codehaus.plexus:plexus-xml` (with `test` scope) to resolve the problem.
-
-==== Other builds (not part of reactor)
-
-===== Plexus Swizzle
-
-https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
-
-* `The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT`
-
-[[sec:archived-components]]
-=== Archived Components
-
-Should they be dropped from Maven Source?
-
-* https://github.com/apache/maven-sandbox
-* https://github.com/apache/maven-repository-tools
-* https://github.com/apache/maven-doxia-ide
-* https://github.com/codehaus-plexus/plexus-components
-* https://github.com/codehaus-plexus/plexus-containers
-* https://github.com/codehaus-plexus/plexus-swizzle
-** uses `org.codehaus.plexus:plexus-components` in version 4.0.0-SNAPSHOT as parent which does not resolve.
-The parent is a SNAPSHOT, but the repository (version) needs to be identified.
-Version https://github.com/codehaus-plexus/plexus-components/releases/tag/plexus-components-4.0[4.0] is close, but the owner has archived the source code by Dec. 2023, and it contains many later versions.
-* https://github.com/codehaus-plexus/plexus-digest
-* https://github.com/codehaus-plexus/plexus-cli
-* https://github.com/codehaus-plexus/plexus-cipher
