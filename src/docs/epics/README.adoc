@@ -98,7 +98,7 @@ Keep discussions where they are and only set references where necessary
 === Finalize Work
 
 Whenever we finish the work on a particular epic/issue, the result may contain documentation as well.
-This final documentation might focus on the achieved  solution despite the way which led to it.
+This final documentation might focus on the achieved solution despite the way which led to it.
 For historical reasons (what work led to the respective result), we should keep this documentation here (but mark it as _done_, e.g., by the status).
 
 TIP: You may treat it as some kind of long ADR (architecture decision record).
