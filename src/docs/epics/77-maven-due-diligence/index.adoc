@@ -115,7 +115,7 @@ To enable successful build with Maven 3 (.9.9) the following changes are necessa
 Maven 4 (.0.0-RC-2) updates::
 To enable successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.
 
-* [ ] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
+* [x] https://github.com/apache/maven-shared-io[Maven Shared IO] (https://github.com/apache/maven-shared-io/pull/27[PR for M3], also works with M4; https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142[Successful GH Action]):
 ** Fix parent,
 ** and add Plexus-XML dependency (in test scope).
 * [x] Maven Verifier Plugin (https://github.com/apache/maven-verifier-plugin/pull/6[Merged PR], https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164[Successful GH Action]):
