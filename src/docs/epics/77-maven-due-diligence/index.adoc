@@ -55,6 +55,11 @@ The <<sec:detailed-build-investigation,detailed investigation>> (current state) 
 
 === Resulting tasks
 
+==== Reactor build still open
+
+Though applying <<sec:initial-quick-wins,initial quick-wins>>, improved the _reactor build_ already,
+we still experience build problems (also by ongoing development){nbsp}->{nbsp}<<sec:reactor-build-problems>>.
+
 
 ==== Further tasks
 
@@ -140,8 +145,18 @@ Could we drop them as this is somehow irritating to new users of the Maven Sourc
 
 === Build problems
 
+[[sec:reactor-build-problems]]
+==== Reactor Build problems
 
-==== Other builds (not part of reactor)
+A reactor build currently still reveals the following problems.
+
+core/mvnd::
+Failed to create context for skin: Cannot use skin: has [1.11.1,2.0.0-M1) Doxia Sitetools prerequisite)
+plexus/classworlds::
+Failed to obtain site model: Error parsing site descriptor: Unrecognised tag: 'name' (position: START_TAG seen ...<bannerLeft>\n    <name>... @24:11))
+
+
+==== Other build problems (not part of reactor)
 
 ===== Plexus Swizzle
 
@@ -152,7 +167,7 @@ https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
 [[sec:archived-components]]
 === Archived Components
 
-Should they be dropped from Maven Source?
+Should the Maven committers drop them from Maven Source?
 
 * https://github.com/apache/maven-sandbox
 * https://github.com/apache/maven-repository-tools
