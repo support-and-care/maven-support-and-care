@@ -1,0 +1,27 @@
+name: jQAssistant
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  run-jqa-scan:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_LOGIN: ${{ github.repository_owner }}
+      GITHUB_OAUTH: ${{ github.token }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run jQAssistant scan
+        run: ./run-jqa scan
+
+      - name: Upload jqassistant/store artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jqassistant-store
+          path: jqassistant/store
