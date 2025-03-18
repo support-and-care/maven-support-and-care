@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -euo pipefail
+
+# We currently use a private build
+jqa_image="ghcr.io/ascheman/jqa:2.6.0"
+
+exec "${DOCKER:-docker}" run \
+    --user "$(id -u):$(id -g)" \
+    $(test -t 0 && echo "-ti") --rm \
+    -v "${PWD}:${PWD}" \
+    -w "${PWD}" \
+    -e JQASSISTANT_OPTS="${JQASSISTANT_OPTS:-}" \
+    -e GITHUB_LOGIN="${GITHUB_LOGIN}" \
+    -e GITHUB_OAUTH="${GITHUB_OAUTH}" \
+    -p 7687:7687 \
+    -p 7474:7474 \
+    ${jqa_image} -- \
+    "${@}"
