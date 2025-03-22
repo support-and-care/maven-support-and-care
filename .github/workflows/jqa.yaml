@@ -18,10 +18,16 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run jQAssistant scan
-        run: ./run-jqa scan
+        run: mvn verify -fae -e -ntp
+
+      - name: Upload jqassistant/store artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-docs
+          path: target/generated-docs
 
       - name: Upload jqassistant/store artifact
         uses: actions/upload-artifact@v4
         with:
           name: jqassistant-store
-          path: jqassistant/store
+          path: target/jqassistant/store
