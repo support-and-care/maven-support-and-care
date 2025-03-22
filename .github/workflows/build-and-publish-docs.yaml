@@ -1,0 +1,71 @@
+name: Build and Publish Documentation
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      publish_docs:
+        description: Publish documents to GitHub Pages'
+        required: false
+        default: 'false'
+
+permissions:
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  build-docs:
+    runs-on: ubuntu-latest
+
+    env:
+      GITHUB_LOGIN: ${{ github.repository_owner }}
+      GITHUB_OAUTH: ${{ github.token }}
+
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run jQAssistant scan
+        run: mvn verify -fae -e -ntp
+
+      - name: Upload jqassistant/store artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-docs
+          path: target/generated-docs
+
+      - name: Upload jqassistant/store artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jqassistant-store
+          path: target/jqassistant/store
+          
+  publish-docs:
+    needs: build-docs
+    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Download generated-docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-docs
+          path: target/generated-docs
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/generated-docs
+      
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4

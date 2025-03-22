@@ -1,0 +1,16 @@
+= Maven&trade; Support & Care
+
+== Epics
+
+* xref:epics/index.adoc[Epics]
+
+== Monthly reports
+
+=== 2024
+
+* xref:reports/2024/12/index.adoc[2024-12]
+
+=== 2025
+
+* xref:reports/2025/01/index.adoc[2025-01]
+* xref:reports/2025/02/index.adoc[2025-02]
