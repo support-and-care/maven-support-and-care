@@ -1,19 +1,112 @@
 #!/bin/bash
 
-set -euo pipefail
+set -eu -o pipefail
 
-# We currently use a private build
-jqa_image="ghcr.io/ascheman/jqa:2.6.0"
+: "${JQA_VERSION:=2.6.0}"
 
-exec "${DOCKER:-docker}" run \
-    --user "$(id -u):$(id -g)" \
-    $(test -t 0 && echo "-ti") --rm \
-    -v "${PWD}:${PWD}" \
-    -w "${PWD}" \
-    -e JQASSISTANT_OPTS="${JQASSISTANT_OPTS:-}" \
-    -e GITHUB_LOGIN="${GITHUB_LOGIN}" \
-    -e GITHUB_OAUTH="${GITHUB_OAUTH}" \
-    -p 7687:7687 \
-    -p 7474:7474 \
-    ${jqa_image} -- \
-    "${@}"
+# run-jqa - Execute jQAssistant Maven Plugin commands with custom configurations and options.
+#
+# SYNOPSIS
+#     run-jqa [ jQAssistant goals ]
+#
+# DESCRIPTION
+#     The `run-jqa` script automates the execution of commands associated with the jQAssistant Maven Plugin (jQA).
+#     It defines and applies custom configurations to manage the jQAssistant store, plugins, rules, and projects.
+#     This script is intended to streamline jQA operations by offering pre-defined execution logic and configurable
+#     options.
+#
+#     By default, a local store URI is used (`file://${root}/jqassistant/store`). The `-r` option allows switching
+#     to a Neo4j Bolt store (`bolt://localhost:7687`).
+#
+#     This script supports various jQAssistant commands like `scan`, `analyze`, `list-rules`, and more. Additionally,
+#     it can process scan operations on multiple projects sequentially when `PROJECTS` is defined.
+#
+# OPTIONS
+#   -r      Switch the jQAssistant store URI to a Neo4j Bolt connection (default: `file://${root}/jqassistant/store`).
+#
+#   [jQAssistant goals/commands...]
+#           Specifies one or more jQAssistant commands to be executed. Supported commands include:
+#               - scan                  Scans the defined projects for dependencies and structural analysis.
+#               - reset                 Resets the existing jQAssistant store.
+#               - server                Starts a jQAssistant server instance.
+#               - analyze               Executes jQAssistant analysis based on configured rules.
+#               - list-plugins          Lists the available jQAssistant plugins.
+#               - list-rules            Lists available jQAssistant rules.
+#               - list-constraints      Lists jQAssistant constraints.
+#               - list-queries          Lists predefined queries.
+#               - report                Generates a jQAssistant report.
+#               - effective-configuration
+#                                       Displays the effective jQAssistant configuration.
+#               - effective-rules       Displays all effective jQAssistant rules.
+#
+# USAGE EXAMPLE
+#   To scan (all) projects using a local jQAssistant store:
+#       run-jqa scan
+#
+#   To reset the store and then scan (all) projects using a local jQAssistant store:
+#       run-jqa reset scan
+#
+#   To scan projects with a Neo4j Bolt store (start with `run-jqa server`):
+#       run-jqa -r scan
+#
+#   To analyze a project after scanning:
+#       run-jqa analyze
+#
+# ENVIRONMENT VARIABLES
+#   JQA_VERSION (optional)
+#     Specifies the version of the jQAssistant Maven Plugin to be used (default: see above).
+#
+# NOTES
+#   - The script uses the `opts` variable to define additional Maven options, such as the
+#     local repository directory.
+
+dir=$(dirname "${0}")
+root=$(readlink -f "${dir}")
+
+store_uri="file://${root}/jqassistant/store"
+
+# Use getopts for classic shell-style option parsing
+while getopts "r" opt; do
+  case ${opt} in
+  r)
+    store_uri="bolt://localhost:7687"
+    ;;
+  \?)
+    echo "Invalid option: -$OPTARG" >&2
+    exit 1
+    ;;
+  :)
+    echo "Option -$OPTARG requires an argument." >&2
+    exit 1
+    ;;
+  esac
+done
+
+# Shift to handle additional positional arguments after options
+shift $((OPTIND - 1))
+
+jqa_common_opts="
+  ${MVN_OPTS:-}
+  -Djqassistant.store.uri=${store_uri}
+  -Djqassistant.configuration.locations=${root}/.jqassistant.yml
+"
+jqa_scan_opts="
+  ${jqa_common_opts}
+  -Djqassistant.scan.reset=false
+"
+jqa="com.buschmais.jqassistant:jqassistant-maven-plugin:${JQA_VERSION}"
+for opt in "${@:=scan}"; do
+  case "${opt}" in
+  reset | server | analyze | list-plugins | list-rules | list-constraints | list-queries | report | effective-configuration | effective-rules)
+    # shellcheck disable=SC2086
+    mvn ${jqa_common_opts} "${jqa}:${opt}"
+    ;;
+  scan)
+    mvn ${jqa_scan_opts} "${jqa}:${opt}"
+    ;;
+  *)
+    echo "Unknown option: ${opt}" >&2
+    exit 1
+    ;;
+  esac
+done

@@ -2,6 +2,8 @@
 :icons: font
 :toc: left
 
+ifndef::epics[:epics: ./]
+
 :dev-mail-address: mailto:dev@maven.apache.org
 :dev-mail-subscribe-address: mailto:dev-subscribe@maven.apache.org
 
@@ -114,6 +116,6 @@ Note also that the index document may contain some https://docs.asciidoctor.org/
 .Front matter of Epic 44
 ----
 ---
-include::44-migrate-to-maven-di/index.adoc[lines=2..7]
+include::{epics}44-migrate-to-maven-di/index.adoc[lines=2..7]
 ---
 ----

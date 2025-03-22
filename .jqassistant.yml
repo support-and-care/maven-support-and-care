@@ -2,10 +2,10 @@ jqassistant:
   plugins:
     - group-id: de.kontext-e.jqassistant.plugin
       artifact-id: jqassistant.plugin.git
-      version: 2.3.0
+      version: 2.4.0
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-github-plugin
-      version: 1.1.0
+      version: 1.2.0-M1
   scan:
     continue-on-error: true
     include:
@@ -16,11 +16,12 @@ jqassistant:
         - src
         - README.adoc
     properties:
-      github.repository.branch: main
       directory.follow-symbolic-links: true
       maven3.dependencies.scan: true
   analyze:
     rule:
       directory: jqassistant/rules/
+    groups:
+      - Epics
     report:
       fail-on-severity: blocker

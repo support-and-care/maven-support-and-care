@@ -1,0 +1,76 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/snapshot/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="Epics">
+        <includeConcept refId="epics:group:documentation"/>
+        <includeConcept refId="epics:group:maintenance"/>
+        <includeConcept refId="epics:group:modernization"/>
+        <includeConcept refId="epics:group:security"/>
+    </group>
+
+    <concept id="epics:group:documentation">
+        <description>Documentation Epics</description>
+        <cypher><![CDATA[
+MATCH
+  (r:GitHub:Repository {name:"maven-support-and-care"})
+    -[:HAS_ISSUE]->(i:GitHub:Issue {state:"OPEN"})
+    -[:HAS_LABEL]->(g:GitHub:Label)
+  , (i)-[:HAS_LABEL]->(s:GitHub:Label)
+WHERE g.name = "Group: Documentation"
+  AND s.name =~ "Size:.*"
+RETURN
+  i.number AS Id, i.title AS Title, substring(s.name, 6) as Size, i.state as State
+  ORDER BY Id
+        ]]></cypher>
+    </concept>
+
+    <concept id="epics:group:maintenance">
+        <description>Maintenance Epics</description>
+        <cypher><![CDATA[
+MATCH
+  (r:GitHub:Repository {name:"maven-support-and-care"})
+    -[:HAS_ISSUE]->(i:GitHub:Issue {state:"OPEN"})
+    -[:HAS_LABEL]->(g:GitHub:Label)
+  , (i)-[:HAS_LABEL]->(s:GitHub:Label)
+WHERE g.name = "Group: Maintenance"
+  AND s.name =~ "Size:.*"
+RETURN
+  i.number AS Id, i.title AS Title, substring(s.name, 6) as Size, i.state as State
+  ORDER BY Id
+        ]]></cypher>
+    </concept>
+
+    <concept id="epics:group:modernization">
+        <description>Modernization Epics</description>
+        <cypher><![CDATA[
+MATCH
+  (r:GitHub:Repository {name:"maven-support-and-care"})
+    -[:HAS_ISSUE]->(i:GitHub:Issue {state:"OPEN"})
+    -[:HAS_LABEL]->(g:GitHub:Label)
+  , (i)-[:HAS_LABEL]->(s:GitHub:Label)
+WHERE g.name = "Group: Modernization"
+  AND s.name =~ "Size:.*"
+RETURN
+  i.number AS Id, i.title AS Title, substring(s.name, 6) as Size, i.state as State
+  ORDER BY Id
+        ]]></cypher>
+    </concept>
+
+    <concept id="epics:group:security">
+        <description>Security Epics</description>
+        <cypher><![CDATA[
+MATCH
+  (r:GitHub:Repository {name:"maven-support-and-care"})
+    -[:HAS_ISSUE]->(i:GitHub:Issue {state:"OPEN"})
+    -[:HAS_LABEL]->(g:GitHub:Label)
+  , (i)-[:HAS_LABEL]->(s:GitHub:Label)
+WHERE g.name = "Group: Supply Chain (Security)"
+  AND s.name =~ "Size:.*"
+RETURN
+  i.number AS Id, i.title AS Title, substring(s.name, 6) as Size, i.state as State
+  ORDER BY Id
+        ]]></cypher>
+    </concept>
+
+</jqassistant-rules>
