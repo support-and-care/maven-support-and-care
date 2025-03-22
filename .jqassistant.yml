@@ -16,7 +16,6 @@ jqassistant:
         - src
         - README.adoc
     properties:
-      github.repository.branch: main
       directory.follow-symbolic-links: true
       maven3.dependencies.scan: true
   analyze:
