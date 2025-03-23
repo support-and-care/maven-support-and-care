@@ -50,7 +50,7 @@ jobs:
           
   publish-docs:
     needs: build-docs
-    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
+#    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
