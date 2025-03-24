@@ -22,6 +22,7 @@ jqassistant:
     rule:
       directory: jqassistant/rules/
     groups:
+      - Team
       - Epics
     report:
       fail-on-severity: blocker
