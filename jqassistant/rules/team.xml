@@ -1,0 +1,34 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/snapshot/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="Team">
+        <includeConcept refId="team:add:members"/>
+    </group>
+
+    <concept id="team:add:members">
+        <description>Team members</description>
+        <cypher><![CDATA[
+MATCH (team:File {fileName:'/docs/team.yaml'})
+        -[:HAS_DOCUMENT]->(:Yaml:Document)
+        -[:HAS_MAP]->()
+        -[:HAS_KEY]->(:Yaml:Simple)
+        -[:HAS_VALUE]->(v)
+        -[:HAS_ITEM]->(m:Yaml:Map)
+        -[:HAS_KEY]->({name:'name'})-[:HAS_VALUE]->(name),
+      (m)-[:HAS_KEY]->({name:'mail'})
+        -[:HAS_VALUE]->(:Yaml:Sequence)
+        -[:HAS_ITEM]->(mail:Yaml:Scalar)
+CREATE (:Team:Member:Name {name:name.value})
+         -[:HAS_MAILADRESS]->(:Team:Member:MailAddress {address:mail.value})
+
+WITH name,
+     collect(mail.value) AS allMails
+RETURN name.value AS Name,
+       reduce(result = '', mail IN allMails | result + CASE WHEN result = '' THEN mail
+         ELSE ', ' + mail
+         END) AS MailAddresses
+  ORDER BY Name
+        ]]></cypher>
+    </concept>
+</jqassistant-rules>
