@@ -1,0 +1,5 @@
+= Team
+
+include::jQAssistant:Summary[concepts="team:*"]
+
+include::jQAssistant:Rules[leveloffset=+2,concepts="team:*"]
