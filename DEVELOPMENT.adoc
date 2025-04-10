@@ -1,0 +1,52 @@
+= Maven&trade; Support & Care Development
+:icons: font
+
+While working with this repository, you might perform the following tasks.
+
+== Reporting (with jQAssistant)
+
+https://jqassistant.org[jQAssistant] is a tool for analyzing software systems by scanning their structure and storing the extracted information in a Neo4j graph database.
+It enables developers to query and enforce rules about their project's architecture and quality attributes.
+
+NOTE: To be extended!
+
+. Add the following environment variables
++
+GITHUB_LOGIN:: Your GitHub username
+GITHUB_OAUTH:: A GitHub token with at least `repo:read` permissions
+
+. Scan the current directory and the associated GitHub repository:
++
+[source,shell]
+----
+./run-jqa scan
+----
++
+[WARNING]
+====
+Performing a repeated scan may lead to an exception like the following.
+
+[source]
+----
+ERROR JQAssistantGitRepository - Error while importing existing git branches
+java.lang.ClassCastException: class jdk.proxy3.$Proxy96 cannot be cast to class de.kontext_e.jqassistant.plugin.git.store.descriptor.GitBranchDescriptor (jdk.proxy3.$Proxy96 is in module jdk.proxy3 of loader com.buschmais.jqassistant.core.runtime.api.plugin.PluginClassLoader @2fb25f4c; de.kontext_e.jqassistant.plugin.git.store.descriptor.GitBranchDescriptor is in unnamed module of loader com.buschmais.jqassistant.core.runtime.api.plugin.PluginClassLoader @2fb25f4c)
+----
+
+This is subject to current investigation.
+
+You can either delete the `jqassistant/store` directory, or reset the store on the next scan:
+
+[source,shell]
+----
+./run-jqa reset scan
+----
+====
+
+. Serve the Neo4j data for local browsing
++
+[source,shell]
+----
+./jqa-run server
+----
++
+You can open the Neo4j browser then: http://localhost:7678[].

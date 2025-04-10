@@ -1,0 +1,10 @@
+= Maven Support & Care Epics
+
+The MS&C team has a back log of the following epics
+
+== Epics (Groups)
+
+include::jQAssistant:Summary[concepts="epics:group:*"]
+
+include::jQAssistant:Rules[leveloffset=+2,concepts="epics:group:*"]
+

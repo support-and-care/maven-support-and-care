@@ -1,0 +1,27 @@
+jqassistant:
+  plugins:
+    - group-id: de.kontext-e.jqassistant.plugin
+      artifact-id: jqassistant.plugin.git
+      version: 2.4.0
+    - group-id: org.jqassistant.plugin
+      artifact-id: jqassistant-github-plugin
+      version: 1.2.0-M1
+  scan:
+    continue-on-error: true
+    include:
+      urls:
+        - github:repository::https://github.com/support-and-care/maven-support-and-care
+      files:
+        - .git
+        - src
+        - README.adoc
+    properties:
+      directory.follow-symbolic-links: true
+      maven3.dependencies.scan: true
+  analyze:
+    rule:
+      directory: jqassistant/rules/
+    groups:
+      - Epics
+    report:
+      fail-on-severity: blocker
