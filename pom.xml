@@ -96,4 +96,13 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>use-localhost-bolt</id>
+            <properties>
+                <jqassistant.store.uri>bolt://localhost:7687</jqassistant.store.uri>
+            </properties>
+        </profile>
+    </profiles>
 </project>
