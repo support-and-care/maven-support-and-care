@@ -155,7 +155,6 @@ Failed to create context for skin: Cannot use skin: has [1.11.1,2.0.0-M1) Doxia 
 plexus/classworlds::
 Failed to obtain site model: Error parsing site descriptor: Unrecognised tag: 'name' (position: START_TAG seen ...<bannerLeft>\n    <name>... @24:11))
 
-
 ==== Other build problems (not part of reactor)
 
 ===== Plexus Swizzle
@@ -169,8 +168,10 @@ https://github.com/codehaus-plexus/plexus-swizzle.git[Plexus Swizzle]:
 
 Should the Maven committers drop them from Maven Source?
 
-* https://github.com/apache/maven-sandbox
+* https://github.com/apache/maven-artifact-transfer
+* https://github.com/apache/maven-project-utils
 * https://github.com/apache/maven-repository-tools
+* https://github.com/apache/maven-sandbox
 * https://github.com/apache/maven-doxia-ide
 * https://github.com/codehaus-plexus/plexus-components
 * https://github.com/codehaus-plexus/plexus-containers
