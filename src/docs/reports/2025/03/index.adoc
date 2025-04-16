@@ -7,10 +7,14 @@ We started analyzing how to set up a local K8s instance for ORT-server (https://
 
 == Work Package 2 — Maintenance
 
-We helped to migrate further Jira projects (MDEPLOY, MINSTALL, MPOM with component ASF).
+* We helped to migrate further Jira projects (MDEPLOY, MINSTALL, MPOM with component ASF).
 We had some learning and extended the migration tool based on that learning.
 
-We created first PRs for maven-dependency-plugin and maven-jlink-plugin.
+* We created first PRs for maven-dependency-plugin and maven-jlink-plugin.
+
+* The Maven project adopted the Codehaus Plexus project when Codehaus was retired years ago.
+We contributed to further alignment of Plexus to Maven best-practices, i.e.,
+to check for desired code formatting and license provisioning.
 
 == Work Package 3 — Modernisation of Core Feature
 
