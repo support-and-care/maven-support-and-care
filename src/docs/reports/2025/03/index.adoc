@@ -3,14 +3,14 @@
 
 == Work Package 1 — Security of the Supply Chain
 
-We started analyzing how to setup a local K8s instance for ort-server.
+We started analyzing how to set up a local K8s instance for ORT-server (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse OSS Review Toolkit]).
 
 == Work Package 2 — Maintenance
 
-We helped migrating the further Jira projects (MDEPLOY, MINSTALL, MPOM with component asf).
+We helped to migrate further Jira projects (MDEPLOY, MINSTALL, MPOM with component ASF).
 We had some learning and extended the migration tool based on that learning.
 
-We created first PR for maven-dependency-plugin and maven-jlink-plugin.
+We created first PRs for maven-dependency-plugin and maven-jlink-plugin.
 
 == Work Package 3 — Modernisation of Core Feature
 
