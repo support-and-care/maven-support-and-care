@@ -3,7 +3,9 @@
 
 == Work Package 1 — Security of the Supply Chain
 
-To create SBOMS for all Maven projects we work with the (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse ORT-Server]). That product needed some changes to work well with Maven. Next to that we needed to configure it for all Maven projects.
+To create SBOMS for all Maven projects we work with the (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse ORT-Server]).
+That product needed some changes to work well with Maven.
+Next to that we needed to configure it for all Maven projects.
 
 == Work Package 2 — Maintenance
 
