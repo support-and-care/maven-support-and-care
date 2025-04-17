@@ -1,0 +1,27 @@
+= March 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+
+To create SBOMS for all Maven projects we work with the (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse ORT-Server]).
+That product needed some changes to work well with Maven.
+Next to that we needed to configure it for all Maven projects.
+
+== Work Package 2 — Maintenance
+
+* We helped to migrate further Jira projects (MDEPLOY, MINSTALL, MPOM with component ASF).
+We had some learning and extended the migration tool based on that learning.
+
+* We created first PRs for maven-dependency-plugin and maven-jlink-plugin.
+
+* The Maven project adopted the Codehaus Plexus project when Codehaus was retired years ago.
+We contributed to further alignment of Plexus to Maven best-practices, i.e.,
+to check for desired code formatting and license provisioning.
+
+== Work Package 3 — Modernisation of Core Feature
+
+No work performed
+
+== Work Package 4 — Documentation
+
+No work performed
