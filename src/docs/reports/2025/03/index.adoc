@@ -3,7 +3,7 @@
 
 == Work Package 1 — Security of the Supply Chain
 
-We started analyzing how to set up a local K8s instance for ORT-server (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse OSS Review Toolkit]).
+To create SBOMS for all Maven projects we work with the (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse ORT-Server]). That product needed some changes to work well with Maven. Next to that we needed to configure it for all Maven projects.
 
 == Work Package 2 — Maintenance
 
