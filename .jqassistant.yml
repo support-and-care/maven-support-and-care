@@ -20,7 +20,7 @@ jqassistant:
     groups:
       - Team
       - Epics
-#      - Issues
+      - Issues
     report:
       fail-on-severity: blocker
   scan:

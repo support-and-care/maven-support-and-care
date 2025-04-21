@@ -1,0 +1,8 @@
+= Apache Maven Project
+
+== Jira Issues
+
+include::jQAssistant:Summary[concepts="jira:*"]
+
+include::jQAssistant:Rules[leveloffset=+2,concepts="jira:*"]
+
