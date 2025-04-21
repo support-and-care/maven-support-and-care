@@ -96,6 +96,7 @@
         <profile>
             <id>use-localhost-bolt</id>
             <properties>
+                <jqassistant.scan.reset>false</jqassistant.scan.reset>
                 <jqassistant.store.uri>bolt://localhost:7687</jqassistant.store.uri>
             </properties>
         </profile>
