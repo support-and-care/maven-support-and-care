@@ -37,11 +37,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <configuration>
-                    <configurationLocations>
-                        <configurationLocation>./.jqassistant.yml</configurationLocation>
-                    </configurationLocations>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.asciidoctor</groupId>

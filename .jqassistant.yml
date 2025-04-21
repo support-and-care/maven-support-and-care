@@ -2,18 +2,25 @@ jqassistant:
   repositories:
     local: ~/.jqassistant/repository
   plugins:
+#    - group-id: net.aschemann.jqassistant.plugins
+#      artifact-id: jqa-groovy-plugin
+#      version: 0.2.0-SNAPSHOT
     - group-id: de.kontext-e.jqassistant.plugin
       artifact-id: jqassistant.plugin.git
       version: 2.4.0
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-github-plugin
-      version: 1.2.0-SNAPSHOT
+      version: 1.2.0-M1
+    - group-id: org.jqassistant.plugin
+      artifact-id: jqassistant-jira-plugin
+      version: 1.0.0-M2
   analyze:
     rule:
       directory: jqassistant/rules/
     groups:
       - Team
       - Epics
+#      - Issues
     report:
       fail-on-severity: blocker
   scan:
@@ -21,6 +28,9 @@ jqassistant:
     properties:
       directory.follow-symbolic-links: true
       maven3.dependencies.scan: true
+#      jira.custom.issue.fields: <custom field name(s)
+      # KJARSIGNER -> MJARSIGNER
+      jira.projects: ARCHETYPE,DOXIA,DOXIASITETOOLS,DOXIATOOLS,JXR,MJARSIGNER,MACR,MANTRUN,MARCHETYPES,MARTIFACT,MASFRES,MASSEMBLY,MBUILDCACHE,MCHANGELOG,MCHANGES,MCHECKSTYLE,MCLEAN,MCOMPILER,MDEP,MDEPLOY,MDOAP,MEAR,MEJB,MENFORCER,MGPG,MINDEXER,MINSTALL,MINVOKER,MJAR,MJAVADOC,MJDEPRSCAN,MJDEPS,MJLINK,MJMOD,MLINKCHECK,MNG,MNGSITE,MPH,MPIR,MPLUGIN,MPLUGINTESTING,MPMD,MPOM,MRAR,MRELEASE,MRESOLVER,MRESOLVER,MRESOURCES,MRRESOURCES,MSCMPUB,MSCRIPTING,MSHADE,MSHARED,MSITE,MSKINS,MSOURCES,MSTAGE,MTOOLCHAINS,MVERIFIER,MWAR,MWRAPPER,SCM,SUREFIRE,WAGON
 
     include:
 #      files:
@@ -28,6 +38,8 @@ jqassistant:
 #        - src
 #        - README.adoc
       urls:
+        - jira:server::https://issues.apache.org/jira
+
         - github:repository::https://github.com/support-and-care/maven-support-and-care
 
         - github:repository::https://github.com/apache/maven-site
@@ -158,28 +170,28 @@ jqassistant:
 #
 #        - github:repository::https://github.com/eclipse-sisu/sisu-project
 
-  scan:
-    ...
-    include:
-      by-plugin:
-        github:repository:
-          defaults:
-            prs: false
-            issues: false
-            commits: false
-            branches: false
-            branchPattern: '(main|master|develop)'
-            tags: false
-            tagPattern: 'release/.*'
-          repositories:
-          - url: https://github.com/support-and-care/maven-support-and-care
-            prs: true
-            issues: true
-            tags: true
-            commits: true
-            branches: true
-          - url: https://github.com/apache/maven-site
-            prs: true
-            issues: false
-            commits: false
-
+#  scan:
+#    ...
+#    include:
+#      by-plugin:
+#        github:repository:
+#          defaults:
+#            prs: false
+#            issues: false
+#            commits: false
+#            branches: false
+#            branchPattern: '(main|master|develop)'
+#            tags: false
+#            tagPattern: 'release/.*'
+#          repositories:
+#          - url: https://github.com/support-and-care/maven-support-and-care
+#            prs: true
+#            issues: true
+#            tags: true
+#            commits: true
+#            branches: true
+#          - url: https://github.com/apache/maven-site
+#            prs: true
+#            issues: false
+#            commits: false
+#

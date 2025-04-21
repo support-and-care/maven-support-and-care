@@ -27,6 +27,12 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Configure jQA
+        env:
+          JIRA_TOKEN: ${{ secrets.JIRA_TOKEN }}
+        run: |
+          envsubst < .jqassistant/secrets.yml-tmpl > .jqassistant/secrets.yml
+
       - name: Run jQAssistant scan
         run: mvn verify -fae -e -ntp
 
