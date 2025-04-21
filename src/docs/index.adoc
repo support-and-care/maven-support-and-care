@@ -2,6 +2,10 @@
 
 include::team.ad[leveloffset=+1]
 
+== Issues
+
+* xref:issues/index.adoc[Issues]
+
 == Epics
 
 * xref:epics/index.adoc[Epics]

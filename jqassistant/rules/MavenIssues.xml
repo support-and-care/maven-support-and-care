@@ -1,0 +1,60 @@
+<jqassistant-rules xmlns="http://schema.jqassistant.org/rule/v2.2"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://schema.jqassistant.org/rule/v2.2 https://jqassistant.github.io/jqassistant/snapshot/schema/jqassistant-rule-v2.2.xsd">
+
+    <group id="Issues">
+        <includeConcept refId="jira:01-IssuesPerStatus"/>
+        <includeConcept refId="jira:02-IssuesPerProject"/>
+        <includeConcept refId="jira:03-OldOpenIssuesPerProject"/>
+    </group>
+
+    <concept id="jira:01-IssuesPerStatus">
+        <description>Count the number of issues per status.</description>
+        <cypher><![CDATA[
+            MATCH (i:Jira:Issue)-[:HAS_STATUS]->(s:Status)
+            RETURN s.name as Status, count(i) AS IssueCount
+            ORDER BY Status
+        ]]></cypher>
+    </concept>
+
+    <concept id="jira:02-IssuesPerProject">
+        <description>Count the number of issues (and types) per project.</description>
+        <cypher><![CDATA[
+            MATCH (p:Jira:Project)-[:CONTAINS]->(i:Jira:Issue)-[:HAS_STATUS]->(s:Status)
+            RETURN
+              p.key AS Key,
+              p.name AS Project,
+              count(i) AS TotalIssues,
+              count(CASE WHEN s.name = 'Open' THEN i END) AS Open,
+              count(CASE WHEN s.name = 'In Progress' THEN i END) AS InProgress,
+              count(CASE WHEN s.name = 'Reopened' THEN i END) AS ReOpened,
+              count(CASE WHEN s.name = 'Resolved' THEN i END) AS Resolved,
+              count(CASE WHEN s.name = 'Closed' THEN i END) AS Closed
+              ORDER BY Key
+        ]]></cypher>
+<!--        <report type="csv">-->
+<!--            <property name="filename">JiraIssuesPerProject.csv</property>-->
+<!--            <property name="separator">;</property>-->
+<!--            <property name="header">Key;Name;Count</property>-->
+<!--        </report>-->
+<!--        <report type="Groovy">-->
+<!--            <property name="scriptname">jqassistant/groovy/JiraIssuesPerProject.groovy</property>-->
+<!--        </report>-->
+    </concept>
+
+    
+    <concept id="jira:03-OldOpenIssuesPerProject">
+        <description>List projects with their total number of issues and count of open/reopened issues which have not been updated in the last 5 years.</description>
+        <cypher><![CDATA[
+            MATCH (p:Jira:Project)-[:CONTAINS]->(i:Jira:Issue)-[:HAS_STATUS]->(s:Jira:Status)
+            WHERE s.name IN [ 'Open', 'Reopened']
+            RETURN
+              p.key AS Key,
+              count(i) AS OpenIssues,
+              count(CASE
+                WHEN date(i.updateDate) > date() - duration('P5Y') THEN 1
+                END) AS OlderThan5Years
+            ORDER BY OlderThan5Years DESC, Key
+        ]]></cypher>
+    </concept>
+</jqassistant-rules>
