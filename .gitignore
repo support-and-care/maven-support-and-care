@@ -4,5 +4,7 @@
 .envrc
 *.log
 
+/.jqassistant/secrets.yml
+
 jqassistant/store/
 target/
