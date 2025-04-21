@@ -13,7 +13,7 @@ jqassistant:
       version: 1.2.0-M1
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-jira-plugin
-      version: 1.0.0-M2
+      version: GAsc-1.0.0-SNAPSHOT
   analyze:
     rule:
       directory: jqassistant/rules/
