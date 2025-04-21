@@ -36,7 +36,7 @@ jobs:
       - name: Run jQAssistant scan
         run: mvn verify -fae -e -ntp
 
-      - name: Upload jqassistant/store artifact
+      - name: Upload Generated Documentation
         uses: actions/upload-artifact@v4
         with:
           name: generated-docs
