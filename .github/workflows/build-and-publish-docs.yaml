@@ -28,7 +28,7 @@ permissions:
 
 jobs:
   jqa-scan:
-    if: inputs.run_scan == 'true' || github.event_name == 'workflow_run' && github.event.workflow_run.run_number == 1
+    if: ${{ inputs.run_scan }}
     runs-on: ubuntu-latest
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
@@ -47,7 +47,7 @@ jobs:
           path: target/jqassistant/store
 
   jqa-analyze:
-    if: inputs.run_analyze == 'true'
+    if: ${{ inputs.run_analyze }}
     needs: jqa-scan
     runs-on: ubuntu-latest
     env:
@@ -74,7 +74,7 @@ jobs:
 
   publish-docs:
     needs: jqa-analyze
-    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
+    if: ${{ inputs.publish_docs || github.ref_name == 'main' }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
