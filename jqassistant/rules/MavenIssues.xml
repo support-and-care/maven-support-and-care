@@ -54,7 +54,7 @@
               p.name AS Project,
               count(i) AS OpenIssues,
               count(CASE
-                WHEN date(i.updateDate) > date() - duration('P5Y') THEN 1
+                WHEN date(i.updateDate) < date() - duration('P5Y') THEN 1
                 END) AS OlderThan5Years
             ORDER BY OlderThan5Years DESC, Key
         ]]></cypher>
@@ -64,7 +64,8 @@
         <description>List issues which have not been updated in the last 5 years.</description>
         <cypher><![CDATA[
             MATCH (p:Jira:Project)-[:CONTAINS]->(i:Jira:Issue)-[:HAS_STATUS]->(s:Jira:Status),(i)-[:IS_OF_TYPE]->(t:Jira:IssueType)
-            WHERE s.name IN [ 'Open', 'Reopened'] AND date(i.updateDate) > date() - duration('P5Y')
+            WHERE s.name IN [ 'Open', 'Reopened']
+            AND date(i.updateDate) < date() - duration('P5Y')
             RETURN
               p.key AS Key,
               p.name AS Project,
