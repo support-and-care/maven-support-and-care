@@ -50,6 +50,7 @@
             WHERE s.name IN [ 'Open', 'Reopened']
             RETURN
               p.key AS Key,
+              p.name AS Project,
               count(i) AS OpenIssues,
               count(CASE
                 WHEN date(i.updateDate) > date() - duration('P5Y') THEN 1
