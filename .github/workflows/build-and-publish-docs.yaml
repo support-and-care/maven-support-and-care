@@ -5,10 +5,21 @@ on:
   pull_request:
   workflow_dispatch:
     inputs:
-      publish_docs:
-        description: Publish documents to GitHub Pages'
+      run_scan:
+        description: 'Run jQAssistant scan'
+        type: boolean
         required: false
-        default: 'false'
+        default: false
+      run_analyze:
+        description: 'Run jQAssistant analyze'
+        type: boolean
+        required: false
+        default: true
+      publish_docs:
+        description: 'Publish documents to GitHub Pages'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -16,35 +27,54 @@ permissions:
   pages: write
 
 jobs:
-  build-docs:
+  jqa-scan:
+    if: inputs.run_scan == 'true' || github.event_name == 'workflow_run' && github.event.workflow_run.run_number == 1
     runs-on: ubuntu-latest
-
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
       GITHUB_OAUTH: ${{ github.token }}
-
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
       - name: Run jQAssistant scan
-        run: mvn verify -fae -e -ntp -s .github/settings.xml
-
-      - name: Upload Generated Documentation
-        uses: actions/upload-artifact@v4
-        with:
-          name: generated-docs
-          path: target/generated-docs
+        run: mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
 
       - name: Upload jqassistant/store artifact
         uses: actions/upload-artifact@v4
         with:
           name: jqassistant-store
           path: target/jqassistant/store
-          
+  
+  jqa-analyze:
+    if: inputs.run_analyze == 'true'
+    needs: jqa-scan
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_LOGIN: ${{ github.repository_owner }}
+      GITHUB_OAUTH: ${{ github.token }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Download jqassistant/store artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: jqassistant-store
+          path: target/jqassistant/store
+
+      - name: Run jQAssistant analyze and generate docs
+        run: mvn jqassistant:analyze asciidoctor:process-asciidoc -fae -e -ntp -s .github/settings.xml
+
+      - name: Upload Generated Documentation
+        uses: actions/upload-artifact@v4
+        with:
+          name: generated-docs
+          path: target/generated-docs
+  
   publish-docs:
-    needs: build-docs
-#    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
+    needs: jqa-analyze
+    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
