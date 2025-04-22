@@ -6,6 +6,7 @@
         <includeConcept refId="jira:01-IssuesPerStatus"/>
         <includeConcept refId="jira:02-IssuesPerProject"/>
         <includeConcept refId="jira:03-OldOpenIssuesPerProject"/>
+        <includeConcept refId="jira:04-OldOpenIssues"/>
     </group>
 
     <concept id="jira:01-IssuesPerStatus">
@@ -57,5 +58,24 @@
                 END) AS OlderThan5Years
             ORDER BY OlderThan5Years DESC, Key
         ]]></cypher>
+    </concept>
+
+    <concept id="jira:04-OldOpenIssues">
+        <description>List issues which have not been updated in the last 5 years.</description>
+        <cypher><![CDATA[
+            MATCH (p:Jira:Project)-[:CONTAINS]->(i:Jira:Issue)-[:HAS_STATUS]->(s:Jira:Status),(i)-[:IS_OF_TYPE]->(t:Jira:IssueType)
+            WHERE s.name IN [ 'Open', 'Reopened'] AND date(i.updateDate) > date() - duration('P5Y')
+            RETURN
+              p.key AS Key,
+              p.name AS Project,
+              t.name AS Type,
+              s.name AS Status,
+              i.key AS IssueKey,
+              i.summary AS Summary
+            ORDER BY Key, Type, IssueKey
+        ]]></cypher>
+<!--        <report type="Groovy">-->
+<!--            <property name="scriptname">jqassistant/groovy/OldOpenJiraIssues.groovy</property>-->
+<!--        </report>-->
     </concept>
 </jqassistant-rules>
