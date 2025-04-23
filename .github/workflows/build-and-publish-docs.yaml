@@ -27,8 +27,20 @@ permissions:
   pages: write
 
 jobs:
+  check-artifact:
+    runs-on: ubuntu-latest
+    outputs:
+      should_scan: ${{ ! steps.check_artifact.outputs.exists }}
+    steps:
+      - name: Check Artifact
+        uses: softwareforgood/check-artifact-v4-existence@v0
+        id: check_artifact
+        with:
+          name: jqassistant-store
+
   jqa-scan:
-    if: ${{ inputs.run_scan }}
+    needs: check-artifact
+    if: ${{ inputs.run_scan || needs.check-artifact.outputs.should_scan }}
     runs-on: ubuntu-latest
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
