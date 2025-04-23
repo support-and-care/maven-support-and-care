@@ -60,7 +60,7 @@ These community members are experts in the field of Maven&trade; and contribute 
 == Contribute
 
 We invite developers and interested parties to participate in the initiative, provide feedback and become part of our community.
-Contact us at link:mailto:maven@open-elements.com[maven@open-elements.com] for more information and how you can contribute.
+Contact us at link:mailto:info@open-elements.com[info@open-elements.com] for more information and how you can contribute.
 
 == Trademark
 
