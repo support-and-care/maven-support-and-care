@@ -5,9 +5,8 @@ on:
   workflow_dispatch:
 
 permissions:
+  actions: write
   contents: read
-  id-token: write
-  pages: write
 
 jobs:
   jqa-analyze:
