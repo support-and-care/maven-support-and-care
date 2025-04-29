@@ -21,6 +21,7 @@ jobs:
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
       GITHUB_OAUTH: ${{ github.token }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
