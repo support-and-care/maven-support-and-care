@@ -1,0 +1,43 @@
+name: Scan with jQAssistant
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  jqa-scan:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_LOGIN: ${{ github.repository_owner }}
+      GITHUB_OAUTH: ${{ github.token }}
+    steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+
+      - name: Run jQAssistant scan
+        id: jqa_scan
+        run: mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
+
+      - name: Upload jqassistant/store artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jqassistant-store
+          path: target/jqassistant/store
+
+      - name: Trigger analysis workflow
+        uses: actions/github-script@v7
+        with:
+          script: |
+            await github.rest.actions.createWorkflowDispatch({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              workflow_id: 'jqa-analyze.yaml',
+              ref: context.ref
+            })
+          
+

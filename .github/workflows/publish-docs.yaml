@@ -1,0 +1,43 @@
+name: Publish Documentation
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_docs:
+        description: 'Publish documents to GitHub Pages (force)'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  pages: write
+  id-token: write
+
+jobs:
+  publish-docs:
+    if: ${{ inputs.publish_docs || github.ref_name == 'main' }}
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        
+      - name: Download generated-docs artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: generated-docs
+          path: target/generated-docs
+          
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+        
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: target/generated-docs
+      
+      - name: Deploy to GitHub Pages
+        id: deploy
+        uses: actions/deploy-pages@v4
