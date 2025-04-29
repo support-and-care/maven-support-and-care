@@ -41,6 +41,8 @@ jobs:
   jqa-scan:
     needs: check-artifact
     if: ${{ inputs.run_scan || needs.check-artifact.outputs.should_scan }}
+    outputs:
+      should_analyze: ${{ steps.jqa_scan.outputs.exists }}
     runs-on: ubuntu-latest
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
@@ -50,6 +52,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run jQAssistant scan
+        id: jqa_scan
         run: mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
 
       - name: Upload jqassistant/store artifact
@@ -59,8 +62,10 @@ jobs:
           path: target/jqassistant/store
 
   jqa-analyze:
-    if: ${{ inputs.run_analyze }}
     needs: jqa-scan
+    if: ${{ inputs.run_analyze || needs.jqa-scan.outputs.should_analyze }}
+    outputs:
+      should_publish: ${{ steps.jqa_analyze.outputs.exists }}
     runs-on: ubuntu-latest
     env:
       GITHUB_LOGIN: ${{ github.repository_owner }}
@@ -76,6 +81,7 @@ jobs:
           path: target/jqassistant/store
 
       - name: Run jQAssistant analyze and generate docs
+        id: jqa_analyze
         run: mvn jqassistant:analyze asciidoctor:process-asciidoc -fae -e -ntp -s .github/settings.xml
 
       - name: Upload Generated Documentation
@@ -86,7 +92,7 @@ jobs:
 
   publish-docs:
     needs: jqa-analyze
-    if: ${{ inputs.publish_docs || github.ref_name == 'main' }}
+    if: ${{  needs.jqa-analyze.outputs.should_publish && (inputs.publish_docs || github.ref_name == 'main') }}
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
