@@ -11,9 +11,21 @@ permissions:
 jobs:
   jqa-analyze:
     runs-on: ubuntu-latest
+    env:
+      GITHUB_LOGIN: ${{ github.repository_owner }}
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
+
+      - name: Check for jqassistant/store artifact
+        run: |
+          if .github/check-artifact "jqassistant-store"; then
+            echo "Artifact exists, proceeding with analysis."
+          else
+            echo "Artifact does not exist, you have to 'scan' first!" >&2
+            exit 1
+          fi
 
       - name: Download jqassistant/store artifact
         uses: actions/download-artifact@v4
