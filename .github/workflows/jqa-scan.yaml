@@ -9,7 +9,7 @@ on:
         description: 'Run jQAssistant scan (force)'
         type: boolean
         required: false
-        default: false
+        default: false        
 
 permissions:
   contents: read
@@ -54,7 +54,10 @@ jobs:
               owner: context.repo.owner,
               repo: context.repo.repo,
               workflow_id: 'jqa-analyze.yaml',
-              ref: context.ref
+              ref: context.ref,
+              inputs: {
+                run_id: context.runId.toString()
+              }
             })
           
 
