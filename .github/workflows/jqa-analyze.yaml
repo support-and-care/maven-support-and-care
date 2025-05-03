@@ -3,11 +3,6 @@ name: Analyze with jQAssistant
 on:
   push:
   workflow_dispatch:
-    inputs:
-      run_id:
-        description: 'Run ID of the upstream Scan workflow'
-        type: string
-        required: true
 
 permissions:
   actions: write
@@ -33,11 +28,8 @@ jobs:
           fi
 
       - name: Download jqassistant/store artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: jqassistant-store
-          run-id: '${{ inputs.run_id }}'
-          path: target/jqassistant/store
+        run: |
+          .github/download-artifact jqassistant-store target/jqassistant/store
 
       - name: Run jQAssistant analyze and generate docs
         id: jqa_analyze
