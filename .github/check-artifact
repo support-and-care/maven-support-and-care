@@ -4,19 +4,33 @@ set -euo pipefail
 
 : "${REPO_NAME=support-and-care/maven-support-and-care}"
 : "${GITHUB_TOKEN=you-need-to-set-this}"
+: "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}"
+: "${LATEST_COMMIT=$(git rev-parse HEAD)}"
 
-artifact_name="${1}"
+artifact_name="${1:-}"
+
+if [[ -z "${artifact_name}" ]]; then
+  echo "Error: Artifact name is required as a parameter." >&2
+  exit 1
+fi
+
+debug () {
+  if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
+    echo "$@" >&2
+  fi
+}
 
 # Fetch artifacts
-response=$(curl -s -H "Authorization: Bearer $GITHUB_TOKEN" \
+response=$(curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" \
   -H "Accept: application/vnd.github+json" \
-  "https://api.github.com/repos/$REPO_NAME/actions/artifacts")
+  "https://api.github.com/repos/${REPO_NAME}/actions/artifacts")
 
-# Check if the artifact exists
-if echo "$response" | jq -e --arg name "$artifact_name" '.artifacts[].name | select(. == $name)' > /dev/null; then
-  echo "Artifact '$artifact_name' exists."
+# Check if the artifact exists for this branch and latest commit
+if echo "${response}" | jq -e --arg name "${artifact_name}" --arg branch "${CURRENT_BRANCH}" --arg commit "${LATEST_COMMIT}" \
+  '.artifacts[] | select(.name == $name and .workflow_run.head_branch == $branch and .workflow_run.head_sha == $commit)' >/dev/null; then
+  debug "Artifact '${artifact_name}' exists on branch '${CURRENT_BRANCH}' with commit '${LATEST_COMMIT}'."
   exit 0
 else
-  echo "Artifact '$artifact_name' does not exist."
+  debug "Artifact '${artifact_name}' does not exist on branch '${CURRENT_BRANCH}' with commit '${LATEST_COMMIT}'."
   exit 1
 fi

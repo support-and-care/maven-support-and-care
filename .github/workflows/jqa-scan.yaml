@@ -56,7 +56,7 @@ jobs:
               workflow_id: 'jqa-analyze.yaml',
               ref: context.ref,
               inputs: {
-                run_id: context.runId.toString()
+                workflow_run_id: context.runId.toString()
               }
             })
           
