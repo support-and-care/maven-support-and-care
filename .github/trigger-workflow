@@ -1,0 +1,34 @@
+#!/bin/bash
+
+set -euo pipefail
+
+: "${REPO_NAME=support-and-care/maven-support-and-care}"
+: "${GITHUB_TOKEN=you-need-to-set-this}"
+: "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}}"
+
+workflow_name="${1:-}"
+
+if [[ -z "${workflow_name}" ]]; then
+  echo "Error: Workflow name is required as a parameter." >&2
+  exit 1
+fi
+
+debug () {
+  if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
+    echo "$@" >&2
+  fi
+}
+
+# Trigger the workflow
+response=$(curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  -d "{\"ref\":\"${CURRENT_BRANCH}\"}" \
+  "https://api.github.com/repos/${REPO_NAME}/actions/workflows/${workflow_name}/dispatches")
+
+if [[ $? -eq 0 ]]; then
+  debug "Successfully triggered workflow '${workflow_name}' on branch '${CURRENT_BRANCH}'."
+  echo "Workflow triggered successfully."
+else
+  echo "Failed to trigger workflow '${workflow_name}' on branch '${CURRENT_BRANCH}'." >&2
+  exit 1
+fi
