@@ -1,7 +1,7 @@
 name: Publish Documentation
 
 on:
-  workflow_dispatch:
+  workflow_call:
     inputs:
       publish_docs:
         description: 'Publish documents to GitHub Pages (force)'
@@ -25,15 +25,15 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Check for generated-docs artifact
         id: check_docs
         run: |
           if .github/check-artifact "generated-docs"; then
-            echo "Artifact exists, proceeding with analysis."
+            echo "Artifact exists, proceeding with publication."
             echo "docs_exist=true" >> $GITHUB_OUTPUT
           else
-            echo "Artifact does not exist, you have to 'scan' first!" >&2
+            echo "Artifact does not exist, you have to 'analyze' first!" >&2
             echo "::warning::Missing generated-docs artifact"
             echo "docs_exist=false" >> $GITHUB_OUTPUT
           fi
@@ -42,17 +42,17 @@ jobs:
         if: ${{ steps.check_docs.outputs.docs_exist == 'true' }}
         run: |
           .github/download-artifact generated-docs target/generated-docs
-          
+
       - name: Setup Pages
         if: ${{ steps.check_docs.outputs.docs_exist == 'true' }}
         uses: actions/configure-pages@v5
-        
+
       - name: Upload artifact
         if: ${{ steps.check_docs.outputs.docs_exist == 'true' }}
         uses: actions/upload-pages-artifact@v3
         with:
           path: target/generated-docs
-      
+
       - name: Deploy to GitHub Pages
         if: ${{ steps.check_docs.outputs.docs_exist == 'true' }}
         id: deploy

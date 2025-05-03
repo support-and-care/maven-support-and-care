@@ -1,0 +1,22 @@
+name: Publish GH Pages
+
+on:
+  workflow_dispatch:
+    inputs:
+      publish_docs:
+        description: 'Force publish'
+        type: boolean
+        required: false
+        default: false
+
+permissions:
+  actions: write
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  publish:
+    uses: ./.github/workflows/publish-docs.yaml
+    with:
+      publish_docs: ${{ github.event.inputs.publish_docs || false }}

@@ -1,0 +1,28 @@
+name: Scan, Analyze, and Publish
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  scan:
+    uses: ./.github/workflows/jqa-scan.yaml
+
+  analyze:
+    needs: scan
+    uses: ./.github/workflows/jqa-analyze.yaml
+
+  publish:
+    needs: analyze
+    uses: ./.github/workflows/publish-docs.yaml
+    with:
+      publish_docs: false
