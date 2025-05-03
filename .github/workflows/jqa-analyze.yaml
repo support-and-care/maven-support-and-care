@@ -1,8 +1,7 @@
 name: Analyze with jQAssistant
 
 on:
-  push:
-  workflow_dispatch:
+  workflow_call: {}
 
 permissions:
   actions: write
@@ -14,10 +13,8 @@ jobs:
     env:
       ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }}
       GITHUB_LOGIN: ${{ github.repository_owner }}
-      # We need both environment variables for the GitHub API and the jQA GitHub plugin
       GITHUB_OAUTH: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
-      WORKFLOW_TRIGGER_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
@@ -50,8 +47,3 @@ jobs:
         with:
           name: generated-docs
           path: target/generated-docs
-
-      - name: Trigger publication workflow
-        if: ${{ steps.check_store.outputs.store_exists == 'true' }}
-        run: |
-          .github/trigger-workflow publish-docs.yaml
