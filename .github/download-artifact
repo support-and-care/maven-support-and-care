@@ -1,0 +1,58 @@
+#!/bin/bash
+
+set -euo pipefail
+
+: "${REPO_NAME=support-and-care/maven-support-and-care}"
+: "${GITHUB_TOKEN=you-need-to-set-this}"
+: "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}"
+: "${LATEST_COMMIT=$(git rev-parse HEAD)}"
+
+artifact_name="${1:-}"
+target="${2:-}"
+
+if [[ -z "${artifact_name}" ]]; then
+  echo "Error: Artifact name is required as a parameter." >&2
+  exit 1
+fi
+
+if [[ -z "${target}" ]]; then
+  echo "Error: Target directory is required as a second parameter." >&2
+  exit 1
+fi
+
+# Fetch artifacts
+response=$(curl -s -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  "https://api.github.com/repos/${REPO_NAME}/actions/artifacts")
+
+# Extract artifact ID for the provided name, branch, and commit
+artifact_id=$(echo "${response}" | jq -r --arg name "${artifact_name}" --arg branch "${CURRENT_BRANCH}" --arg commit "${LATEST_COMMIT}" \
+  '.artifacts[] | select(.name == $name and .workflow_run.head_branch == $branch and .workflow_run.head_sha == $commit) | .id')
+
+if [[ -z "${artifact_id}" || "${artifact_id}" == "null" ]]; then
+  echo "Error: Artifact '${artifact_name}' does not exist on branch '${CURRENT_BRANCH}' with commit '${LATEST_COMMIT}'." >&2
+  exit 1
+fi
+
+debug () {
+  if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
+    echo "$@" >&2
+  fi
+}
+
+# Download the artifact as a zip file
+artifact_url="https://api.github.com/repos/${REPO_NAME}/actions/artifacts/${artifact_id}/zip"
+
+debug "Downloading artifact '${artifact_name}' (ID: ${artifact_id}) as a zip file..."
+
+mkdir -p "${target}"
+
+curl -s -L -o "${artifact_name}.zip" \
+  -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+  -H "Accept: application/vnd.github+json" \
+  "${artifact_url}"
+
+unzip -qo "${artifact_name}.zip" -d "${target}"
+rm "${artifact_name}.zip"
+
+debug "Artifact '${artifact_name}' has been downloaded and extracted to '${target}'."
