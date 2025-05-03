@@ -16,6 +16,7 @@ jobs:
       # We need both environment variables for the GitHub API and the jQA GitHub plugin
       GITHUB_OAUTH: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
+      WORKFLOW_TRIGGER_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
