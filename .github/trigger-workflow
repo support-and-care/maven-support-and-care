@@ -3,7 +3,7 @@
 set -euo pipefail
 
 : "${REPO_NAME=support-and-care/maven-support-and-care}"
-: "${GITHUB_TOKEN=you-need-to-set-this}"
+: "${WORKFLOW_TRIGGER_TOKEN=${GITHUB_TOKEN:-you-need-to-set-this}}"
 : "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}}"
 
 if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
@@ -24,7 +24,7 @@ debug () {
 }
 
 # Trigger the workflow
-response=$(curl -s -X POST -H "Authorization: Bearer ${GITHUB_TOKEN}" \
+response=$(curl -s -X POST -H "Authorization: Bearer ${WORKFLOW_TRIGGER_TOKEN}" \
   -H "Accept: application/vnd.github+json" \
   -d "{\"ref\":\"${CURRENT_BRANCH}\"}" \
   "https://api.github.com/repos/${REPO_NAME}/actions/workflows/${workflow_name}/dispatches")
