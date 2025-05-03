@@ -7,6 +7,10 @@ set -euo pipefail
 : "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}"
 : "${LATEST_COMMIT=$(git rev-parse HEAD)}"
 
+if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
+  set -vx
+fi
+
 artifact_name="${1:-}"
 target="${2:-}"
 

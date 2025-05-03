@@ -6,6 +6,10 @@ set -euo pipefail
 : "${GITHUB_TOKEN=you-need-to-set-this}"
 : "${CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)}}"
 
+if [[ "${ACTIONS_STEP_DEBUG:-}" == "true" ]]; then
+  set -vx
+fi
+
 workflow_name="${1:-}"
 
 if [[ -z "${workflow_name}" ]]; then
