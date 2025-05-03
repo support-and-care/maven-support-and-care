@@ -11,6 +11,7 @@ jobs:
   jqa-analyze:
     runs-on: ubuntu-latest
     env:
+      ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }}
       GITHUB_LOGIN: ${{ github.repository_owner }}
       # We need both environment variables for the GitHub API and the jQA GitHub plugin
       GITHUB_OAUTH: ${{ github.token }}
@@ -24,26 +25,31 @@ jobs:
         run: |
           if .github/check-artifact "jqassistant-store"; then
             echo "Artifact exists, proceeding with analysis."
+            echo "store_exists=true" >> $GITHUB_OUTPUT
           else
             echo "Artifact does not exist, you have to 'scan' first!" >&2
-            echo "::error::Missing jqassistant-store artifact"
-            exit 0
+            echo "::warning::jQAssistant store artifact is missing."
+            echo "store_exists=false" >> $GITHUB_OUTPUT
           fi
 
       - name: Download jqassistant/store artifact
+        if: ${{ steps.check_store.outputs.store_exists == 'true' }}
         run: |
           .github/download-artifact jqassistant-store target/jqassistant/store
 
       - name: Run jQAssistant analyze and generate docs
+        if: ${{ steps.check_store.outputs.store_exists == 'true' }}
         id: jqa_analyze
         run: mvn -U jqassistant:analyze asciidoctor:process-asciidoc -fae -e -ntp -s .github/settings.xml
 
       - name: Upload Generated Documentation
+        if: ${{ steps.check_store.outputs.store_exists == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: generated-docs
           path: target/generated-docs
 
       - name: Trigger publication workflow
+        if: ${{ steps.check_store.outputs.store_exists == 'true' }}
         run: |
-          .github/trigger-workflow 
+          .github/trigger-workflow publish-docs.yaml
