@@ -1,0 +1,20 @@
+name: Analyze and Publish
+
+on:
+  workflow_dispatch:
+
+permissions:
+  actions: write
+  contents: read
+  id-token: write
+  pages: write
+
+jobs:
+  analyze:
+    uses: ./.github/workflows/jqa-analyze.yaml
+
+  publish:
+    needs: analyze
+    uses: ./.github/workflows/publish-docs.yaml
+    with:
+      publish_docs: false

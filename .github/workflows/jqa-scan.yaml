@@ -1,15 +1,7 @@
 name: Scan with jQAssistant
 
 on:
-  push:
-  pull_request:
-  workflow_dispatch:
-    inputs:
-      run_scan:
-        description: 'Run jQAssistant scan (force)'
-        type: boolean
-        required: false
-        default: false        
+  workflow_call: {}
 
 permissions:
   contents: read
@@ -21,44 +13,18 @@ jobs:
     env:
       ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }}
       GITHUB_LOGIN: ${{ github.repository_owner }}
-      # We need both environment variables for the GitHub API and the jQA GitHub plugin
       GITHUB_OAUTH: ${{ github.token }}
       GITHUB_TOKEN: ${{ github.token }}
-      WORKFLOW_TRIGGER_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
       - name: Run jQAssistant scan
         id: jqa_scan
-        run: |
-          if [ "${{ github.event_name }}" == "workflow_dispatch" -a "${{ github.event.inputs.run_scan }}" == "true" ]; then
-            echo "Running jQAssistant scan as requested."
-            mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
-            echo "should_analyze=true" >> $GITHUB_OUTPUT
-          elif [ "${{ github.event_name }}" == "pull_request" ]; then
-            echo "Running jQAssistant scan for pull request."
-            mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
-            echo "should_analyze=true" >> $GITHUB_OUTPUT
-          elif .github/check-artifact "jqassistant-store"; then
-            echo "Artifact already exists, skipping scan."
-            echo "should_analyze=false" >> $GITHUB_OUTPUT
-          else
-            echo "Artifact does not exist, proceeding with scan."
-            mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
-            echo "should_analyze=true" >> $GITHUB_OUTPUT
-          fi
+        run: mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
 
       - name: Upload jqassistant/store artifact
-        if: ${{ steps.jqa_scan.outputs.should_analyze == 'true' }}
         uses: actions/upload-artifact@v4
         with:
           name: jqassistant-store
           path: target/jqassistant/store
-
-      - name: Trigger analysis workflow
-        if: ${{ steps.jqa_scan.outputs.should_analyze == 'true' }}
-        run: |
-          .github/trigger-workflow jqa-analyze.yaml
-          
-
