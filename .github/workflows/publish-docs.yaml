@@ -24,11 +24,19 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         
+      - name: Check for generated-docs artifact
+        run: |
+          if .github/check-artifact "generated-docs"; then
+            echo "Artifact exists, proceeding with analysis."
+          else
+            echo "Artifact does not exist, you have to 'scan' first!" >&2
+            echo "::error::Missing generated-docs artifact"
+            exit 0
+          fi
+
       - name: Download generated-docs artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: generated-docs
-          path: target/generated-docs
+        run: |
+          .github/download-artifact generated-docs target/generated-docs
           
       - name: Setup Pages
         uses: actions/configure-pages@v5
