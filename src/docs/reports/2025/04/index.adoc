@@ -11,6 +11,7 @@ We help fixing HelmCharts issues.
 * We helped to test further Jira projects migration (MBUILDCACHE, MEJB, MSOURCES, MCHANGELOG, MRAR, MVERIFIER, MJMOD, MACR, MSITE, MRESOURCES, MCOMPILER).
 We had some learning and extended the migration tool based on that learning.
 
+* We analyzed issues between MBUILDCACHE and protobuf-maven-plugin.
 
 == Work Package 3 — Modernisation of Core Feature
 
@@ -18,4 +19,8 @@ No work performed
 
 == Work Package 4 — Documentation
 
-No work performed
+* We provided support for MBUILDCACHE and solved questioning issues
+
+* We updated XML-Header descriptions in MBUILDCACHE
+
+
