@@ -13,14 +13,16 @@ We had some learning and extended the migration tool based on that learning.
 
 * We analyzed issues between MBUILDCACHE and protobuf-maven-plugin.
 
+* We fixed issues in MJLINK and MDEP.
+
 == Work Package 3 — Modernisation of Core Feature
 
 No work performed
 
 == Work Package 4 — Documentation
 
-* We provided support for MBUILDCACHE and solved questioning issues
+* We provided support for MBUILDCACHE and solved questioning issues.
 
-* We updated XML-Header descriptions in MBUILDCACHE
+* We updated XML-Header descriptions in MBUILDCACHE.
 
 
