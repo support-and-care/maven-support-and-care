@@ -3,7 +3,12 @@
           xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
     <servers>
         <server>
-            <id>github</id>
+            <id>github-ascheman-jqa-jira</id>
+            <username>${env.GITHUB_LOGIN}</username>
+            <password>${env.GITHUB_OAUTH}</password>
+        </server>
+        <server>
+            <id>github-ascheman-jqa-github</id>
             <username>${env.GITHUB_LOGIN}</username>
             <password>${env.GITHUB_OAUTH}</password>
         </server>

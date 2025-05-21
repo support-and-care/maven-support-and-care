@@ -10,7 +10,7 @@ jqassistant:
       version: 2.4.0
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-github-plugin
-      version: 1.2.0-M1
+      version: GAsc-1.2.0-SNAPSHOT
     - group-id: org.jqassistant.plugin
       artifact-id: jqassistant-jira-plugin
       version: GAsc-1.0.0-SNAPSHOT
