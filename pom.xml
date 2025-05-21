@@ -104,9 +104,15 @@
 
     <repositories>
         <repository>
-            <id>github</id>
-            <name>GitHub Packages</name>
+            <id>github-ascheman-jqa-jira</id>
+            <name>GitHub Packages jQA Jira Plugin / Aschemann</name>
             <url>https://maven.pkg.github.com/ascheman/jqassistant-jira-plugin</url>
+            <snapshots><enabled>true</enabled></snapshots>
+        </repository>
+        <repository>
+            <id>github-ascheman-jqa-github</id>
+            <name>GitHub Packages jQA GitHub Plugin / Aschemann</name>
+            <url>https://maven.pkg.github.com/ascheman/jqassistant-github-plugin</url>
             <snapshots><enabled>true</enabled></snapshots>
         </repository>
     </repositories>

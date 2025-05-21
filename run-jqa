@@ -89,6 +89,7 @@ jqa_common_opts="
   ${MVN_OPTS:-}
   -Djqassistant.store.uri=${store_uri}
   -Djqassistant.configuration.locations=${root}/.jqassistant.yml
+  -s ${root}/.github/settings.xml
 "
 jqa_scan_opts="
   ${jqa_common_opts}
