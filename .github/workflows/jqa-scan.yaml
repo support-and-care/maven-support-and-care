@@ -19,6 +19,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
+      - name: Set up Maven
+        uses: s4u/setup-maven-action@v1.18.0
+        with:
+          java-version: '21'
+          java-distribution: 'temurin'
+          maven-version: '3.9.9'
+
       - name: Run jQAssistant scan
         id: jqa_scan
         run: mvn jqassistant:scan -fae -e -ntp -s .github/settings.xml
