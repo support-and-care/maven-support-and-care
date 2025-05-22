@@ -16,7 +16,7 @@ permissions:
 jobs:
   publish-docs:
     if: ${{ inputs.publish_docs || github.ref_name == 'main' }}
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }}
     environment:
