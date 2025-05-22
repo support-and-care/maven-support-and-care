@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   jqa-scan:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     env:
       ACTIONS_STEP_DEBUG: ${{ secrets.ACTIONS_STEP_DEBUG }}
       GITHUB_LOGIN: ${{ github.repository_owner }}
