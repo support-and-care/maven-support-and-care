@@ -2,7 +2,7 @@
 
 set -eu -o pipefail
 
-: "${JQA_VERSION:=2.6.0}"
+: "${JQA_VERSION:=2.7.0}"
 
 # run-jqa - Execute jQAssistant Maven Plugin commands with custom configurations and options.
 #
