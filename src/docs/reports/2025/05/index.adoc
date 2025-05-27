@@ -1,4 +1,4 @@
-= Mai 2025
+= May 2025
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
