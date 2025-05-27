@@ -15,6 +15,4 @@ No work performed
 
 == Work Package 4 — Documentation
 
-No work performed
-
-
+Aligned site documentation with Maven source projects (removed outdated components, updated package diagrams, improved build processes).
