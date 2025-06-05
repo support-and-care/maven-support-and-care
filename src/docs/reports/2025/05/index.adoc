@@ -12,7 +12,7 @@
 * Further Jira projects were migrated to GitHub issues (MEJB, MACR, MJMOD)
 * We refactored parts of the Maven Dependency Plugin to improve the build process and code quality.
 * We upgraded dependencies in the Maven Build Cache Extension to improve security and compatibility.
-* We analyzed issues between MBUILDCACHE and protobuf-maven-plugin.
+* We analyzed and worked on issues between MBUILDCACHE and protobuf-maven-plugin.
 
 == Work Package 3 — Modernisation of Core Feature
 
