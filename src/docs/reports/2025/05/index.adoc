@@ -11,7 +11,7 @@
 * We find a solution how to migration big jira projects.
 * Further Jira projects were migrated to GitHub issues (MEJB, MACR, MJMOD)
 * We refactored parts of the Apache Maven Dependency Plugin to improve the build process and code quality.
-* Contributed to the Apache Maven Build Cache Extension by upgrading dependency version to enhance compatibility and performance.
+* We refactored the Apache Maven Build Cache Extension by upgrading dependency version to enhance compatibility and performance.
 
 == Work Package 3 — Modernisation of Core Feature
 
