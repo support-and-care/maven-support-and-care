@@ -10,6 +10,8 @@
 * We helped to test further Jira projects migration (MDOAP, MJDEPS, MLINKCHECK, MJDEPRSCAN, MSCMPUB,  MSCRIPTING, MJARSIGNER, SUREFIRE, MEAR, MINVOKER, MJAR).
 * We find a solution how to migration big jira projects.
 * Further Jira projects were migrated to GitHub issues (MEJB, MACR, MJMOD)
+* Contributed to the Apache Maven Dependency Plugin.
+* Contributed to the Apache Maven Build Cache Extension.
 
 == Work Package 3 — Modernisation of Core Feature
 
