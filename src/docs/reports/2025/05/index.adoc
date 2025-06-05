@@ -3,7 +3,7 @@
 
 == Work Package 1 — Security of the Supply Chain
 
-* We setup an instance of Dependencytrack to compare it to ORT
+* We setup an instance of Dependencytrack to store SBOMs of all Maven projects in future
 
 == Work Package 2 — Maintenance
 
