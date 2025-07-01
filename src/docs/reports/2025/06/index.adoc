@@ -3,11 +3,18 @@
 
 == Work Package 1 — Security of the Supply Chain
 
-No work performed
+* We created an automated process that creates and uploads SBOMs of nearly all Apache Maven projects to Dependencytrack
+
+* We implemented automatic backups of the Dependencytrack database
+
+* We performed some research on existing solutions for reproducible builds
+
 
 == Work Package 2 — Maintenance
 
 * Further Jira projects were migrated to GitHub issues. The progress of the migration is documented on the https://cwiki.apache.org/confluence/x/5YkgF[Apache wiki].
+
+* We fixed issues between MBUILDCACHE and protobuf-maven-plugin.
 
 
 == Work Package 3 — Modernisation of Core Feature
