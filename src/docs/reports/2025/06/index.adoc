@@ -7,7 +7,8 @@ No work performed
 
 == Work Package 2 — Maintenance
 
-No work performed
+* Further Jira projects were migrated to GitHub issues. The progress of the migration is documented on the https://cwiki.apache.org/confluence/x/5YkgF[Apache wiki].
+
 
 == Work Package 3 — Modernisation of Core Feature
 
@@ -15,6 +16,7 @@ No work performed
 
 == Work Package 4 — Documentation
 
-No work performed
+* Improve the Navigation Structure for Plugin Developer Center and User Center.
+
 
 
