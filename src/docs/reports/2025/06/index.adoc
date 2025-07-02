@@ -9,12 +9,16 @@
 
 * We performed some research on existing solutions for reproducible builds
 
+* We developed an implementation to integrate Maven projects with OpenSSF Scorecards, enabling automated security analysis and score generation.
+
 
 == Work Package 2 — Maintenance
 
 * Further Jira projects were migrated to GitHub issues. The progress of the migration is documented on the https://cwiki.apache.org/confluence/x/5YkgF[Apache wiki].
 
 * We fixed issues in MBUILDCACHE (interaction with protobuf-maven-plugin, other issues) and improved documentation to make a new release in July.
+
+* We resolved issues in the Maven Dependency Plugin (MDEP) and enhanced its documentation for improved clarity and usability.
 
 * Maintenance of MJAVADOC. some cleanup to prepare for a new release in July.
 
