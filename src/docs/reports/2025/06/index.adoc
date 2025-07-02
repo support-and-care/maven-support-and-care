@@ -14,8 +14,11 @@
 
 * Further Jira projects were migrated to GitHub issues. The progress of the migration is documented on the https://cwiki.apache.org/confluence/x/5YkgF[Apache wiki].
 
-* We fixed issues between MBUILDCACHE and protobuf-maven-plugin.
+* We fixed issues in MBUILDCACHE (interaction with protobuf-maven-plugin, other issues) and improved documentation to make a new release in July.
 
+* Maintenance of MJAVADOC. some cleanup to prepare for a new release in July.
+
+* With migration to GitHub issues, some workflows (GitHub actions and general process) had to be discussed and refreshed.
 
 == Work Package 3 — Modernisation of Core Feature
 
@@ -24,6 +27,5 @@ No work performed
 == Work Package 4 — Documentation
 
 * Improve the Navigation Structure for Plugin Developer Center and User Center.
-
 
 
