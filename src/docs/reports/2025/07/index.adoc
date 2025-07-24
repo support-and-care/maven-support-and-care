@@ -2,6 +2,9 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
+- We analyzed potential use-case gaps between reproducible-central Github Repository and the Artifact-Maven-Plugin
+
+- We worked on a blog post regarding reproducible-central and the Artifact-Maven-Plugin
 
 == Work Package 2 — Maintenance
 
