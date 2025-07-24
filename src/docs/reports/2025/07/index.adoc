@@ -1,0 +1,14 @@
+= July 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+
+== Work Package 2 — Maintenance
+
+== Work Package 3 — Modernisation of Core Feature
+
+== Work Package 4 — Documentation
+
+
+
+
