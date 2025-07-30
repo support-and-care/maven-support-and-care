@@ -6,9 +6,17 @@
 
 - We worked on a blog post regarding reproducible-central and the Artifact-Maven-Plugin
 
+- Ensure all repositories are up to date with the latest security patches with enforcing usage of dependabot for all Github repositories
+
 == Work Package 2 — Maintenance
+- Work on some reproducible build issues with Maven Javadoc plugin and Maven Archiver
+
+- Issues with Maven Surefire and start investigation on refactoring the Maven Surefire plugin
+
 
 == Work Package 3 — Modernisation of Core Feature
+
+- Ensure all repositories have been migrated to JSR-330
 
 == Work Package 4 — Documentation
 
