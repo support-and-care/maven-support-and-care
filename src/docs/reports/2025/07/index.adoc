@@ -1,0 +1,28 @@
+= July 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+- We analyzed potential use-case gaps between reproducible-central GitHub Repository and the Artifact-Maven-Plugin
+- We worked on a blog post regarding reproducible-central and the Artifact-Maven-Plugin
+- Ensure all repositories are up to date with the latest security patches with enforcing usage of dependabot for all GitHub repositories.
+- We have started analyzing which OpenSSF scorecards best-practises still need to be implemented.
+- We have started a proposal for introducing branch protection.
+- We improved OpenSSF scorecards for multiple repositories.
+- We improved sbom validation for multiple repositories.
+- We have started a proposal to make improvements to workflow security by enforcing token permission controls and pinned dependencies for shared GitHub Actions.
+
+== Work Package 2 — Maintenance
+- We finished the migration from Jira issues to GitHub issues.
+- Work on some reproducible build issues with Maven Javadoc plugin and Maven Archiver
+- Issues with Maven Surefire and start investigation on refactoring the Maven Surefire plugin
+
+== Work Package 3 — Modernisation of Core Feature
+- Ensure all repositories have been migrated to JSR-330
+
+== Work Package 4 — Documentation
+
+No work performed
+
+
+
+
