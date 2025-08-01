@@ -16,11 +16,12 @@
 - Work on some reproducible build issues with Maven Javadoc plugin and Maven Archiver
 - Issues with Maven Surefire and start investigation on refactoring the Maven Surefire plugin
 
-
 == Work Package 3 — Modernisation of Core Feature
 - Ensure all repositories have been migrated to JSR-330
 
 == Work Package 4 — Documentation
+
+No work performed
 
 
 
