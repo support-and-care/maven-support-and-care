@@ -2,10 +2,10 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
-No work performed
+- Start roll out of the first branch protection rules (https://cwiki.apache.org/confluence/x/pQmPFg[Status of progress])
 
 == Work Package 2 — Maintenance
-No work performed
+- Recap Jira to GH Migration in a https://open-elements.com/posts/2025/08/08/jira-issue-to-github-issue-migration-in-apache-maven/[blog post]
 
 == Work Package 3 — Modernisation of Core Feature
 No work performed
