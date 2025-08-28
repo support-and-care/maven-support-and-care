@@ -6,8 +6,11 @@
 
 == Work Package 2 — Maintenance
 - Recap Jira to GH Migration in a https://open-elements.com/posts/2025/08/08/jira-issue-to-github-issue-migration-in-apache-maven/[blog post]
+- Improve support of reproducible build with Maven Archiver and Maven Javadoc plugin
+- Continue maintenance and investigation on refactoring the Maven Surefire plugin
 
 == Work Package 3 — Modernisation of Core Feature
+
 No work performed
 
 == Work Package 4 — Documentation
