@@ -41,12 +41,14 @@ Plexus Container now is in deprecated state and has moved to https://eclipse.dev
 ====
 As of 2025-01-04,
 the contained Eclipse Sisu project seems outdated on its https://projects.eclipse.org/projects/technology.sisu[Eclipse project page].
+
+According to the dev mailing list, both are used, maven-api-di/maven/di and JSR330/Sisu.
 ====
 
 === Target: Use Maven Dependency Injection
 
 For misc.{nbsp}reasons (TBD:
-which reasons), Maven 4 developed its own https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI container].
+which reasons), Maven 4 developed its own https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI API] and https://maven.apache.org/ref/4.0.0-alpha-13/api/maven-api-di/[DI container].
 Now, all (core) components should switch to the new DI framework,
 resulting in complete independence of Eclipse Sisu (and any other intermediate DI framework,
 e.g., https://github.com/google/guice[Google Guice]).
@@ -68,6 +70,7 @@ Getting rid of more Plexus dependencies is subject to other activities and beyon
 * [ ] Document <<sec:current-state,current state>>
 ** [ ] Check current documentation
 ** [ ] Evaluate dependencies, e.g., with https://jqassistant.org[jQAssistant]{nbsp}->{nbsp}This might also help for other Epics
+* [x] Situation JSR330/sisu vs maven-api-di/maven-di
 * [ ] Document new DI framework (https://github.com/apache/maven/tree/master/api/maven-api-di[Code] seems to have not even Javadocs)
 * [ ] Propose a migration path
 * [ ] Add automation where possible, e.g., via https://docs.openrewrite.org/[OpenRewrite]
@@ -75,18 +78,37 @@ Getting rid of more Plexus dependencies is subject to other activities and beyon
 [[sec:current-state]]
 == Current state of DI migration
 
-TBD
+Maven 4 plugins should be migrated to maven-api-di.
+
+Maven 3 plugins should be migrated to JSR330/Sisu. (Stricly speaking it is Maven 3.1 and higher)
+Maven 4 can use Maven 3 compatible plugins that have JSR330 and Sisu.
+
+Consequence is, if you want to have Maven 3 **and** Maven4 compatible plugins, these plugins have to stay at JSR330 and Sisu (see also question about it in ASF slack).
 
 === Current documentation
+
+* Found in Confluence
+** https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=181305684#MavenEcosystemCleanup-DropPlexusContainerforJSR-330+SisuGuiceextension[Maven Ecosystem Cleanup Tasks - Drop Plexus Container] -> JSR330 is mention. CHECK if this is correct
+** https://cwiki.apache.org/confluence/display/MAVEN/Maven+4.0.0[Maven 4 Roadmap] -> In section __Removal__ Plexus is mentioned and it should be replaced by JSR330
+** https://cwiki.apache.org/confluence/display/MAVEN/Plexus+dependencies[Plexus dependecies]
+** https://cwiki.apache.org/confluence/pages/viewpage.action?pageId=155749857[Plugin migration to Maven 3.1+ dependencies] -> JSR330 is mention
+** https://cwiki.apache.org/confluence/display/MAVEN/Towards+Doxia+2.0.0+Stack[Doxia Stack] -> JSR 330 is mention
+** https://maven.apache.org/maven-jsr330.html[Maven & JSR330]
 
 * Check the link:++https://lists.apache.org/list?dev@maven.apache.org:2021-2:Dependency%20Injection++[dev mailing list]
 * Check Confluence, e.g.,
 ** for https://cwiki.apache.org/confluence/dosearchsite.action?queryString=dependency+injection&where=MAVEN&additional=page+excerpt&labels=&contentType=[Dependency Injection],
 ** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22plexus%22+and+space+%3D+%22MAVEN%22&queryString=plexus[Plexus], or
-** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22guice%22+and+space+%3D+%22MAVEN%22&queryString=guice[Guice]
+** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22guice%22+and+space+%3D+%22MAVEN%22&queryString=guice[Guice], or
+** https://cwiki.apache.org/confluence/dosearchsite.action?cql=siteSearch+~+%22JSR330%22+and+space+%3D+%22MAVEN%22&queryString=JSR330[JSR330]
 * Check https://issues.apache.org/jira/[Jira], e.g.,
 ** https://issues.apache.org/jira/browse/MNG-7954[MNG-7954]: Provide a cleaner DI api
 ** Note that searching Jira is hard in this case, as many issues contain the terms `dependency` or `Plexus`
+
+==== Further Helpful Documentation
+
+* https://eclipse.dev/sisu/[Eclipse Sisu]
+* https://github.com/google/guice[Google Guice]
 
 === Current DI dependencies
 
