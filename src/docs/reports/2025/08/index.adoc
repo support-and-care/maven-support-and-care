@@ -3,16 +3,16 @@
 
 == Work Package 1 — Security of the Supply Chain
 - Start roll out of the first branch protection rules (https://cwiki.apache.org/confluence/x/pQmPFg[Status of progress])
-- We worked on a blog post regarding reproducible-central and the Maven Artifact Plugin (https://open-elements.com/posts/2025/09/12/reproducible-builds/)
-- We received feedback from the Maven community regarding Dependencytrack and worked on issues mentioned
+- We worked on a blog post regarding reproducible-central and the Maven Artifact Plugin
 
 == Work Package 2 — Maintenance
 - Recap Jira to GH Migration in a https://open-elements.com/posts/2025/08/08/jira-issue-to-github-issue-migration-in-apache-maven/[blog post]
 - Improve support of reproducible build with Maven Archiver and Maven Javadoc plugin
+- Continue maintenance and investigation on refactoring the Maven Surefire plugin
 
 == Work Package 3 — Modernisation of Core Feature
 
-- We have started refactoring of the Maven Surefire plugin
+No work performed
 
 == Work Package 4 — Documentation
 
