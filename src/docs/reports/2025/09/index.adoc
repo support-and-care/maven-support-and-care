@@ -7,11 +7,16 @@
 - We published a blog post about reproducible-builds (https://open-elements.com/posts/2025/09/12/reproducible-builds/)
 
 == Work Package 2 — Maintenance
-TBD
+
+- release of Compiler plugin to support Java 25
+- release of Shade plugin to support Java 25
+- release of Javadoc plugin to support Java 25
+- release of Surefire plugin to fix issues related to parallel build and integration with test frameworks such Cucumber, archunit
 
 == Work Package 3 — Modernisation of Core Feature
 
-- We have started refactoring of the Maven Surefire plugin
+- We have started refactoring of the Maven Surefire plugin to use only junit-platform-engine to run tests.
+    This will allow better integration with different test frameworks and better support for parallel test execution.
 
 == Work Package 4 — Documentation
 
