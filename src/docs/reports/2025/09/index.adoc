@@ -2,14 +2,16 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
-TBD
+
+- We received feedback from the Maven community regarding Dependencytrack and worked on issues mentioned
+- We published a blog post about reproducible-builds (https://open-elements.com/posts/2025/09/12/reproducible-builds/)
 
 == Work Package 2 — Maintenance
 TBD
 
 == Work Package 3 — Modernisation of Core Feature
 
-No work performed
+- We have started refactoring of the Maven Surefire plugin
 
 == Work Package 4 — Documentation
 
