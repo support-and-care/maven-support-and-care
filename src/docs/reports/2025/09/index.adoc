@@ -1,0 +1,27 @@
+= September 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+
+- We received feedback from the Maven community regarding Dependencytrack and worked on issues mentioned.
+- We published a blog post about reproducible-builds (https://open-elements.com/posts/2025/09/12/reproducible-builds/).
+- We have started to review the current technical release process and how we can improve the automation of it.
+
+== Work Package 2 — Maintenance
+
+- release of Compiler plugin to support Java 25.
+- release of Shade plugin to support Java 25.
+- release of Javadoc plugin to support Java 25.
+- release of Surefire plugin to fix issues related to parallel build and integration with test frameworks such Cucumber, archunit.
+
+== Work Package 3 — Modernisation of Core Feature
+
+- We have started refactoring of the Maven Surefire plugin to use only junit-platform-engine to run tests.
+    This will allow better integration with different test frameworks and better support for parallel test execution.
+
+== Work Package 4 — Documentation
+
+- We have started working on a website to improve the user experience when starting a new Maven project ("Maven Initializer").
+
+
+
