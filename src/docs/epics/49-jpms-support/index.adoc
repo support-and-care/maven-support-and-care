@@ -1,0 +1,116 @@
+---
+# Do not change this
+issue: 49
+# This might change in the course of the work
+title: Java Module path support
+# This might be one of TBD
+status: Draft
+---
+= Java Module Path Support
+:icons: font
+:toc: left
+
+[.lead]
+.https://github.com/support-and-care/maven-support-and-care/issues/49[Epic 49]
+****
+The major task of this epic is to extend Maven (4) towards support for the https://openjdk.org/projects/jigsaw/spec/[Java Platform Module System] (JPMS), based on two discussions
+
+https://github.com/support-and-care/maven-support-and-care/discussions/11[11] (Better Java Module System support for Maven 4)::
+Requires (better) general support for JPMS in Maven 4, e.g., for Module generation, packaging, linking, testing, etc.
+
+https://github.com/support-and-care/maven-support-and-care/discussions/35[35] (Maven supports compilation and execution on the classpath or module path)::
+More specifically requires JPMS support wrt. Compilation and Execution.
+
+[NOTE]
+.Focus on Maven 4
+====
+Though this epic should mostly address Maven 4 support, the Maven Support & Care team has decided to at least try to fix major JPMS problems in Maven 3.
+Additionally, it should not only cover Maven Core and its plugins, but also relevant third party plugins and extensions, e.g., https://www.mojohaus.org/[MojoHaus] plugins.
+====
+****
+
+== Relevant components
+
+The following components (currently) relate to JPMSfootnote:[Incomplete list, for sure.].
+
+Maven::
+* https://maven.apache.org/plugins/maven-compiler-plugin/[`maven-compiler-plugin`], and its https://github.com/Geomatys/maven-compiler-plugin[Geomatys' fork], containing POCs and PRs for Maven 4 (and in particular, its https://github.com/Geomatys/maven-compiler-plugin/wiki/[Wiki])
+* https://maven.apache.org/plugins/maven-jmod-plugin/[`maven-jmod-plugin`]
+* https://maven.apache.org/plugins/maven-jlink-plugin/[`maven-jlink-plugin`]
+MojoHaus::
+* https://www.mojohaus.org/exec-maven-plugin/[`exec-maven-plugin`]
+
+== Related (Maven Developer) Discussions
+
+=== Users Mailing List Discussions
+
+As of 2025-10-08, there were no discussions so far about link:++https://lists.apache.org/list?users@maven.apache.org:lte=1M:jpms++[JPMS on the Users List]
+
+=== Dev Mailing List Discussions
+
+TBD: filter out from link:++https://lists.apache.org/list?dev@maven.apache.org:lte=1M:jpms++[Dev List JPMS Search]
+
+=== Slack Discussions
+
+TBD
+
+
+== Known (unresolved) bugs
+
+* MojoHaus Exec Plugin:
+** Issue https://github.com/mojohaus/exec-maven-plugin/issues/426[426] addresses a JPMS https://github.com/siddhsql/maven-exec-jpms-bug[sample application] which does not work (the exec plugin cannot load a service provider).
++
+NOTE: Tried the sample with Maven 3.9.11 and JDK 25 as of 2025-10-08 and confirm the bug.
+
+== Potential Use-/Showcases
+
+* https://github.com/apache/maven-jmod-plugin/issues/67[] (targeting https://sourceforge.net/projects/yad2xx/[Yet Another JNI-D2XX Interface Project], USB-Drivers)
+* Complex (integration) testing
+** Issue https://github.com/mojohaus/flatten-maven-plugin/issues/372[372] for the MojoHaus https://github.com/mojohaus/flatten-maven-plugin[Maven Flatten Plugin] proposes an extension to provide a starting point for a respective (flattened) test POM to run JPMS based integration tests.
+Note that the Flatten Plugin is more relevant to Maven 3, but this is nevertheless an interesting use case for JPMS.
+
+== JPMS Samples and other information
+
+* Apache Confluence https://cwiki.apache.org/confluence/dosearchsite.action?queryString=jpms&where=MAVEN&additional=page+excerpt&labels=&contentType=[Search of JPMS in Maven space]
+* https://github.com/ojitha/JPMSExample[Example] of https://ojitha.github.io/java/2021/03/27/Understand-JPMS.html[Understand JPMS]
+* https://www.baeldung.com/java-modularity[]
+
+== Specifications
+
+* https://openjdk.org/projects/jigsaw/spec/[]
+* https://openjdk.org/jeps/261[]
+
+== Glossary
+
+Aggregator Project::
+A Maven project whose sole purpose is to group and build multiple modules or subprojects.
+
+JPMS Module::
+A module defined by the Java Platform Module System introduced in Java 9.
+It specifies encapsulation and dependencies for Java code at runtime and compile time.
+
+Maven Module::
+A term used prior to Maven 4 to denote subprojects in a multi-module build.
+Each module is a separate Maven project with its own POM, built under a parent aggregator.
+
+(Maven) Multi-Release::
+A JAR format supporting multiple versions of class files targeting different Java runtime versions.
+Allows a single artifact to provide specialized code for multiple JVM versions.
+
+Multi-Module Setup::
+A Maven project structure that contains multiple Maven modules built together.
+It uses a parent POM to aggregate and manage the build of all contained components.
+Maven (4) Multi-Projects replace Multi-Modules, so that it's deprecated (for future implementation).
+
+Multi-Project Setup::
+A Maven build unit containing one or more subprojects, typically managed under a parent aggregator project.
+
+Project::
+A Maven build unit defined by a POM file, representing either a single project or a parent of (Maven) modules or subprojects.
+
+Single-Project Setup::
+A Maven build containing only one project without any subprojects nor modules.
+
+Subproject::
+The preferred Maven 4 term, replacing _module_ to denote a nested Maven project within a multi-project setup.
+Each subproject has its own POM and is referenced in the parent's `<subprojects>` element.
