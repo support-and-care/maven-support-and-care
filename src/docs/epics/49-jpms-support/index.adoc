@@ -34,11 +34,22 @@ Additionally, it should not only cover Maven Core and its plugins, but also rele
 The following components (currently) relate to JPMSfootnote:[Incomplete list, for sure.].
 
 Maven::
-* https://maven.apache.org/plugins/maven-compiler-plugin/[`maven-compiler-plugin`], and its https://github.com/Geomatys/maven-compiler-plugin[Geomatys' fork], containing POCs and PRs for Maven 4 (and in particular, its https://github.com/Geomatys/maven-compiler-plugin/wiki/[Wiki])
-* https://maven.apache.org/plugins/maven-jmod-plugin/[`maven-jmod-plugin`]
-* https://maven.apache.org/plugins/maven-jlink-plugin/[`maven-jlink-plugin`]
+https://maven.apache.org/plugins/maven-compiler-plugin/[`maven-compiler-plugin`]::::
+Compiles Java source code with support for module-path and module descriptors.
++
+[NOTE]
+====
+https://github.com/Geomatys/maven-compiler-plugin[Geomatys' fork] contains POCs and PRs for Maven 4 (see its https://github.com/Geomatys/maven-compiler-plugin/wiki/[Wiki]).
+Two major pull requests (https://github.com/apache/maven-compiler-plugin/pull/959[#959] for multi-module and multi-release builds, https://github.com/apache/maven-compiler-plugin/pull/963[#963] for `module-info-patch.maven` files) are awaiting approval.
+These changes may be introduced behind a feature flag to enable preview functionality.
+====
+https://maven.apache.org/plugins/maven-jmod-plugin/[`maven-jmod-plugin`]::::
+Creates JMOD files for packaging native code and other resources alongside Java modules.
+https://maven.apache.org/plugins/maven-jlink-plugin/[`maven-jlink-plugin`]::::
+Creates custom runtime images using the jlink tool for modular applications.
 MojoHaus::
-* https://www.mojohaus.org/exec-maven-plugin/[`exec-maven-plugin`]
+https://www.mojohaus.org/exec-maven-plugin/[`exec-maven-plugin`]::::
+Executes Java programs and applications with support for both classpath and module-path execution.
 
 == Related (Maven Developer) Discussions
 
