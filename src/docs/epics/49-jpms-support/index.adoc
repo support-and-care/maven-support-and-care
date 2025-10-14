@@ -31,7 +31,7 @@ Additionally, it should not only cover Maven Core and its plugins, but also rele
 
 == Relevant components
 
-The following components (currently) relate to JPMSfootnote:[Incomplete list, for sure.].
+The following components (currently) relate to JPMS.footnote:[Incomplete list, for sure.]
 
 Maven::
 https://maven.apache.org/plugins/maven-compiler-plugin/[`maven-compiler-plugin`]::::
@@ -55,7 +55,7 @@ Executes Java programs and applications with support for both classpath and modu
 
 === Users Mailing List Discussions
 
-As of 2025-10-08, there were no discussions so far about link:++https://lists.apache.org/list?users@maven.apache.org:lte=1M:jpms++[JPMS on the Users List]
+As of 2025-10-08, there were no discussions so far about link:++https://lists.apache.org/list?users@maven.apache.org:lte=1M:jpms++[JPMS on the Users List].
 
 === Dev Mailing List Discussions
 
