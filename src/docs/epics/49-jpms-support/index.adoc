@@ -60,11 +60,11 @@ TBD
 * MojoHaus Exec Plugin:
 ** Issue https://github.com/mojohaus/exec-maven-plugin/issues/426[426] addresses a JPMS https://github.com/siddhsql/maven-exec-jpms-bug[sample application] which does not work (the exec plugin cannot load a service provider).
 +
-NOTE: Tried the sample with Maven 3.9.11 and JDK 25 as of 2025-10-08 and confirm the bug.
+NOTE: Tried the sample with Maven 3.9.11 and JDK 25 as of 2025-10-08 and confirmed the bug.
 
 == Potential Use-/Showcases
 
-* https://github.com/apache/maven-jmod-plugin/issues/67[] (targeting https://sourceforge.net/projects/yad2xx/[Yet Another JNI-D2XX Interface Project], USB-Drivers)
+* https://github.com/apache/maven-jmod-plugin/issues/67[Issue 67 of m-JMOD-p] (targeting https://sourceforge.net/projects/yad2xx/[Yet Another JNI-D2XX Interface Project], USB-Drivers)
 * Complex (integration) testing
 ** Issue https://github.com/mojohaus/flatten-maven-plugin/issues/372[372] for the MojoHaus https://github.com/mojohaus/flatten-maven-plugin[Maven Flatten Plugin] proposes an extension to provide a starting point for a respective (flattened) test POM to run JPMS based integration tests.
 Note that the Flatten Plugin is more relevant to Maven 3, but this is nevertheless an interesting use case for JPMS.
@@ -73,14 +73,20 @@ Note that the Flatten Plugin is more relevant to Maven 3, but this is neverthele
 
 * Apache Confluence https://cwiki.apache.org/confluence/dosearchsite.action?queryString=jpms&where=MAVEN&additional=page+excerpt&labels=&contentType=[Search of JPMS in Maven space]
 * https://github.com/ojitha/JPMSExample[Example] of https://ojitha.github.io/java/2021/03/27/Understand-JPMS.html[Understand JPMS]
-* https://www.baeldung.com/java-modularity[]
+* https://www.baeldung.com/java-modularity[Guide to Java Modularity (Baeldung)]
 
 == Specifications
 
-* https://openjdk.org/projects/jigsaw/spec/[]
-* https://openjdk.org/jeps/261[]
+* https://openjdk.org/projects/jigsaw/spec/[Project Jigsaw: Module System Specification]
+* https://openjdk.org/jeps/261[JEP 261: Module System]
 
 == Glossary
+
+[CAUTION]
+====
+The terminology presented here is a first proposal for clarification purposes within this Epic.
+Whether these terms will be adopted long-term and receive broader support from the Maven community remains to be seen.
+====
 
 Aggregator Project::
 A Maven project whose sole purpose is to group and build multiple modules or subprojects.
@@ -97,10 +103,14 @@ Each module is a separate Maven project with its own POM, built under a parent a
 A JAR format supporting multiple versions of class files targeting different Java runtime versions.
 Allows a single artifact to provide specialized code for multiple JVM versions.
 
+Multi-JPMS-Module-Project::
+A project (or subproject) providing multiple JPMS modules, in contrast to classic Maven (3) Multi-Module setups.
+
 Multi-Module Setup::
-A Maven project structure that contains multiple Maven modules built together.
-It uses a parent POM to aggregate and manage the build of all contained components.
-Maven (4) Multi-Projects replace Multi-Modules, so that it's deprecated (for future implementation).
+A _classic_ Maven project structure (prior to Maven 4) that contains multiple Maven modules built together.
+It uses an aggregator POM to aggregate and manage the build of all contained components.
+In Maven 4, this term should be avoided to prevent confusion with Java modules organized in a https://docs.oracle.com/en/java/javase/25/docs/specs/man/javac.html#directory-hierarchies[module source hierarchy].
+Preferred terms are "multi-project setup" (for Maven subprojects) or "Multi-JPMS-Module-Project" (for projects providing multiple JPMS modules).
 
 Multi-Project Setup::
 A Maven build unit containing one or more subprojects, typically managed under a parent aggregator project.
