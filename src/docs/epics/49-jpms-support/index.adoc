@@ -33,6 +33,13 @@ Additionally, it should not only cover Maven Core and its plugins, but also rele
 
 The following components (currently) relate to JPMS.footnote:[Incomplete list, for sure.]
 
+[NOTE]
+.ASF Maven Confluence Page on JPMS support
+====
+We maintain a current list of Maven components and their support status wrt.
+JPMS in the  ASF Confluence: https://cwiki.apache.org/confluence/x/rwp3Fw[Full JPMS Support — Current State]
+====
+
 Maven::
 https://maven.apache.org/plugins/maven-compiler-plugin/[`maven-compiler-plugin`]::::
 Compiles Java source code with support for module-path and module descriptors.
