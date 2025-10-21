@@ -40,8 +40,6 @@ Compiles Java source code with support for module-path and module descriptors.
 [NOTE]
 ====
 https://github.com/Geomatys/maven-compiler-plugin[Geomatys' fork] contains POCs and PRs for Maven 4 (see its https://github.com/Geomatys/maven-compiler-plugin/wiki/[Wiki]).
-Two major pull requests (https://github.com/apache/maven-compiler-plugin/pull/959[#959] for multi-module and multi-release builds, https://github.com/apache/maven-compiler-plugin/pull/963[#963] for `module-info-patch.maven` files) are awaiting approval.
-These changes may be introduced behind a feature flag to enable preview functionality.
 ====
 https://maven.apache.org/plugins/maven-jmod-plugin/[`maven-jmod-plugin`]::::
 Creates JMOD files for packaging native code and other resources alongside Java modules.
@@ -66,12 +64,20 @@ TBD: filter out from link:++https://lists.apache.org/list?dev@maven.apache.org:l
 TBD
 
 
-== Known (unresolved) bugs
+== Known issues
+
+In the course of working on this epic, we detected or further investigated (and partly resolved) the following issues.
+
+=== Unresolved Issues
+
+TBD
+
+=== Resolved Issues
 
 * MojoHaus Exec Plugin:
 ** Issue https://github.com/mojohaus/exec-maven-plugin/issues/426[426] addresses a JPMS https://github.com/siddhsql/maven-exec-jpms-bug[sample application] which does not work (the exec plugin cannot load a service provider).
-+
-NOTE: Tried the sample with Maven 3.9.11 and JDK 25 as of 2025-10-08 and confirmed the bug.
+_We resolved_ this by PR https://github.com/mojohaus/exec-maven-plugin/pull/500[500],
+introducing a Multi-Release JAR to add proper module loading (for JDKs >= 9).
 
 == Potential Use-/Showcases
 
