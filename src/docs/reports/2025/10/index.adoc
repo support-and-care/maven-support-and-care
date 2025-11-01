@@ -21,3 +21,4 @@
 
 * Improve and expand documentation on the Apache Maven Testing Plugins site.
 * Publish the documentation site with examples for Plexus Testing.
+* Continued development and refinement of the Maven Initializer to improve project generation workflows and dependency management(https://maven-initializer.open-elements.cloud/).
