@@ -4,22 +4,16 @@
 == Work Package 1 — Security of the Supply Chain
 
 
-
 == Work Package 2 — Maintenance
 
-.
 
-== Work Package 3 — Modernisation of Core Feature
-- Starting migration of JUnit3 based test to JUnit5.
-- Prepare rewrite receipes that support the migration from JUnit3 to JUnit5 for Maven-specific tests (tests that are based on `AbstractMojoTestCase` and `PlexusTestCase`)
-- Enhance JUnit 5 support in the testing libraries maven-plugin-testing and plexus-testing, and and publish updated releases.
+== Work Package 3 — Modernization of Core Feature
 
-
+* Starting migration of JUnit3 based test to JUnit5.
+* Prepare rewrite recipes that support the migration from JUnit3 to JUnit5 for Maven-specific tests (i.e., tests that are based on `AbstractMojoTestCase` and `PlexusTestCase`)
+* Enhance JUnit 5 support in the testing libraries maven-plugin-testing and plexus-testing, and publish updated releases.
 
 == Work Package 4 — Documentation
-- Improve and expand documentation on the Apache Maven Testing Plugins site.
-- Publish documentation site with examples for Plexus Testing.
 
-
-
-
+* Improve and expand documentation on the Apache Maven Testing Plugins site.
+* Publish the documentation site with examples for Plexus Testing.
