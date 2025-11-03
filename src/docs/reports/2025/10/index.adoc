@@ -16,6 +16,7 @@
 ** Analyzing the current situation of JPMS wrt. Maven https://github.com/support-and-care/maven-support-and-care/issues/134[#134])
 ** Fixing issue in (MojoHaus) Maven Exec Plugin (https://github.com/support-and-care/maven-support-and-care/issues/138[#138])
 ** Create Showcases for JPMS (https://github.com/support-and-care/maven-support-and-care/issues/137[#137])
+* We continued refactoring of the Maven Surefire plugin to use only junit-platform-engine to run tests. (https://github.com/support-and-care/maven-support-and-care/issues/51[#51])
 
 == Work Package 4 — Documentation
 
