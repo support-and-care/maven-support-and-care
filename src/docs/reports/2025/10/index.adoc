@@ -1,0 +1,25 @@
+= October 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+
+
+== Work Package 2 — Maintenance
+
+
+== Work Package 3 — Modernization of Core Feature
+
+* Starting migration of JUnit3 based test to JUnit5.
+* Prepare rewrite recipes that support the migration from JUnit3 to JUnit5 for Maven-specific tests (i.e., tests that are based on `AbstractMojoTestCase` and `PlexusTestCase`)
+* Enhance JUnit 5 support in the testing libraries maven-plugin-testing and plexus-testing, and publish updated releases.
+* Start working on JPMS support (https://github.com/support-and-care/maven-support-and-care/issues/49[#49]):
+** Analyzing the current situation of JPMS wrt. Maven https://github.com/support-and-care/maven-support-and-care/issues/134[#134])
+** Fixing issue in (MojoHaus) Maven Exec Plugin (https://github.com/support-and-care/maven-support-and-care/issues/138[#138])
+** Create Showcases for JPMS (https://github.com/support-and-care/maven-support-and-care/issues/137[#137])
+* We continued refactoring of the Maven Surefire plugin to use only junit-platform-engine to run tests. (https://github.com/support-and-care/maven-support-and-care/issues/51[#51])
+
+== Work Package 4 — Documentation
+
+* Improve and expand documentation on the Apache Maven Testing Plugins site.
+* Publish the documentation site with examples for Plexus Testing.
+* Continued development and refinement of the Maven Initializer to improve project generation workflows and dependency management(https://maven-initializer.open-elements.cloud/).
