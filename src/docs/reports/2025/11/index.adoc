@@ -9,6 +9,9 @@
 
 == Work Package 3 — Modernization of Core Feature
 
+Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
+Good progress. Get down to 20 IT test failures. Once done, documentation will have to be updated.
+
 
 == Work Package 4 — Documentation
 
