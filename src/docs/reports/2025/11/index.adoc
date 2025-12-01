@@ -13,7 +13,8 @@
 Good progress.
 Get down to 20 IT test failures.
 Once done, documentation will have to be updated.
-
+* Finished migration of plain JUnit3 based tests to JUnit5.
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5.
 * Java Modules (aka JPMS):
 ** Extended the so-called https://support-and-care.github.io/java9-jigsaw-examples/[Java 9 Jigsaw Examples] wrt.
 *** JAR plugin usage (https://github.com/support-and-care/java9-jigsaw-examples/pull/6[PR #6])
