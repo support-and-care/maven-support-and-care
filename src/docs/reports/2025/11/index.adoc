@@ -9,9 +9,17 @@
 
 == Work Package 3 — Modernization of Core Feature
 
-Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
-Good progress. Get down to 20 IT test failures. Once done, documentation will have to be updated.
+* Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
+Good progress.
+Get down to 20 IT test failures.
+Once done, documentation will have to be updated.
 
+* Java Modules (aka JPMS):
+** Extended the so-called https://support-and-care.github.io/java9-jigsaw-examples/[Java 9 Jigsaw Examples] wrt.
+*** JAR plugin usage (https://github.com/support-and-care/java9-jigsaw-examples/pull/6[PR #6])
+*** Enabled Community contribution (https://github.com/support-and-care/java9-jigsaw-examples/pull/7[PR #7] to resolve https://github.com/support-and-care/java9-jigsaw-examples/issues/3[Migration to Java 25]) during https://switzerland2025.hack-commit-pu.sh/[Hack Commit Push 2025 Switzerland].
+** https://lists.apache.org/thread/blsg4q490dk03qdmol2y5rrckw64lwqm[Deep analysis] of the current state of Java Modules support in Maven Core wrt. source hierarchy handling.
+** Raised a https://github.com/apache/maven/pull/11505[first PR (#11505)] to properly handle resources of modular projects in the Maven Core.
 
 == Work Package 4 — Documentation
 
