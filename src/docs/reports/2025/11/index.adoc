@@ -6,6 +6,9 @@
 
 == Work Package 2 — Maintenance
 
+* Automatic milestone management during Maven component releases – eliminates an error-prone manual step.
+* Preparation of the Maven 3.9.12 release
+** Allow a Maven plugin to require a specific Java version – backport of a feature from 4.x.
 
 == Work Package 3 — Modernization of Core Feature
 
