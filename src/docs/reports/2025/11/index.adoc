@@ -26,4 +26,5 @@ Once done, documentation will have to be updated.
 ** Raised a https://github.com/apache/maven/pull/11505[first PR (#11505)] to properly handle resources of modular projects in the Maven Core.
 
 == Work Package 4 — Documentation
+* Continued feauture development and refinement of the Maven Initializer to improve project generation workflows (https://maven-initializer.open-elements.cloud/).
 
