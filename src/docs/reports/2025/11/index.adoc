@@ -1,0 +1,30 @@
+= November 2025
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+
+
+== Work Package 2 — Maintenance
+
+* Automatic milestone management during Maven component releases – eliminates an error-prone manual step.
+* Preparation of the Maven 3.9.12 release
+** Allow a Maven plugin to require a specific Java version – backport of a feature from 4.x.
+
+== Work Package 3 — Modernization of Core Feature
+
+* Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
+Good progress.
+Get down to 20 IT test failures.
+Once done, documentation will have to be updated.
+* Finished migration of plain JUnit3 based tests to JUnit5.
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5.
+* Java Modules (aka JPMS):
+** Extended the so-called https://support-and-care.github.io/java9-jigsaw-examples/[Java 9 Jigsaw Examples] wrt.
+*** JAR plugin usage (https://github.com/support-and-care/java9-jigsaw-examples/pull/6[PR #6])
+*** Enabled Community contribution (https://github.com/support-and-care/java9-jigsaw-examples/pull/7[PR #7] to resolve https://github.com/support-and-care/java9-jigsaw-examples/issues/3[Migration to Java 25]) during https://switzerland2025.hack-commit-pu.sh/[Hack Commit Push 2025 Switzerland].
+** https://lists.apache.org/thread/blsg4q490dk03qdmol2y5rrckw64lwqm[Deep analysis] of the current state of Java Modules support in Maven Core wrt. source hierarchy handling.
+** Raised a https://github.com/apache/maven/pull/11505[first PR (#11505)] to properly handle resources of modular projects in the Maven Core.
+
+== Work Package 4 — Documentation
+* Continued feauture development and refinement of the Maven Initializer to improve project generation workflows (https://maven-initializer.open-elements.cloud/).
+
