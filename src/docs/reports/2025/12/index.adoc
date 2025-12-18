@@ -10,6 +10,8 @@
 
 == Work Package 3 — Modernization of Core Feature
 
+* Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
+
 
 == Work Package 4 — Documentation
 
