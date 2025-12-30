@@ -11,7 +11,14 @@
 == Work Package 3 — Modernization of Core Feature
 
 * Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
-
+* Java Modules (aka JPMS):
+** Merged outstanding https://github.com/apache/maven/pull/11505[PR #11505] to Apache Maven Core (cf. xref:../11/index.adoc[November 2025 report]):
+** Continued collaboration with Martin Desruisseaux (Geomatys) on JPMS support:
+*** Contributed https://github.com/Geomatys/maven-compiler-plugin/pull/1[refactoring PR] for the maven-compiler-plugin (merged Dec 21).
+*** Supporting https://github.com/apache/maven-jar-plugin/pull/508[maven-jar-plugin PR #508] (migration from Maven Archiver to standard `jar` tool).
+** Started a new https://github.com/support-and-care/maven-modular-sources-showcases-private[Maven Modular Sources Showcases] repository:
+*** Blog series in preparation demonstrating Maven 4 + JPMS usage.
+*** Practical examples with Maven 4.0.0-rc-5 and modular source hierarchy.
 
 == Work Package 4 — Documentation
 
