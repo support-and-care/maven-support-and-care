@@ -24,4 +24,5 @@
 
 == Work Package 4 — Documentation
 
+* Kickoff meeting about documentation improvements for the Maven core internals, plugins and extensions
 
