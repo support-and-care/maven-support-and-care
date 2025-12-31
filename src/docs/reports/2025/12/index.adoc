@@ -6,11 +6,13 @@
 
 == Work Package 2 — Maintenance
 
+* Release of the Maven 3.9.12
 
 
 == Work Package 3 — Modernization of Core Feature
 
 * Refactoring of surefire plugin to use only the Junit Platform to run test for junit3,4,5,6 and testng.
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
 * Java Modules (aka JPMS):
 ** Merged outstanding https://github.com/apache/maven/pull/11505[PR #11505] to Apache Maven Core (cf. xref:../11/index.adoc[November 2025 report]):
 ** Continued collaboration with Martin Desruisseaux (Geomatys) on JPMS support:
