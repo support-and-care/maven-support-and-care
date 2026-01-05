@@ -25,4 +25,5 @@
 == Work Package 4 — Documentation
 
 * Kickoff meeting about documentation improvements for the Maven core internals, plugins and extensions
+* Finalize the first version of Maven Initializer. Live Go during January 2026
 
