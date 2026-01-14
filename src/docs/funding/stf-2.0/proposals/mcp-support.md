@@ -5,6 +5,8 @@ Category: Modernization
 
 # MCP Support for Apache Maven
 
+**Original Item:** "MCP Support (Gerd)"
+
 ## Problem Statement
 
 Modern AI-assisted development tools (like Claude Code, GitHub Copilot, Cursor) are becoming essential for developers. These tools use the Model Context Protocol (MCP) to access external data sources and tools. Currently, there is no standardized way for AI assistants to access Maven-specific information such as:
@@ -25,6 +27,8 @@ The **maven-mcps** project ([maven-mcps.netlify.app](https://maven-mcps.netlify.
 - **Atlassian MCP**: Connection to Apache Jira (legacy issues) and Confluence (wiki documentation)
 
 This is not a complete list; additional MCP servers are available and more can be developed.
+
+**Note (Green):** "Extend current MCP solution by Gerd make information more accessible"
 
 ## Expected Outcomes / Benefits
 

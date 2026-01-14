@@ -5,6 +5,8 @@ Category: Maintenance
 
 # Logging and Tracing Policy for Maven
 
+**Original Item:** "Logging, Tracing Policy (Gerd)"
+
 ## Problem Statement
 
 Maven's current logging output is often too verbose at INFO level for typical builds, yet lacks sufficient detail for troubleshooting complex issues. There is no consistent policy defining which events should be logged at which level. While the underlying logger supports trace logging, there is no CLI switch to easily enable it. Developers struggling with build issues have limited visibility into Maven's internal operations.
