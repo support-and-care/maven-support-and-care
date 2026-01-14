@@ -1,9 +1,13 @@
 <!--
-Original Authors: Olivier, Hendrik
+Original Authors: Olivier, Gerd
 Category: Modernization
 -->
 
 # Build Observability and Reporting
+
+**Original Items:**
+- "Reporting / Observability (Olivier)"
+- "Metrics (Goal Execution Timing, ...) (Gerd)"
 
 ## Problem Statement
 
