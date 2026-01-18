@@ -22,5 +22,5 @@ This would make it possible to verify the dependency at build time to ensure tha
 ## Expected Outcomes / Benefits
 
 Maven can verify the integrity of dependencies at build time.
-Todo so it must be possible to specify the hash of a dependency (or plugin) in the POM.
+To do so it must be possible to specify the hash of a dependency (or plugin) in the POM.
 
