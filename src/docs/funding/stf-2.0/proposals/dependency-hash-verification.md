@@ -9,7 +9,7 @@ Category: Security
 
 ## Problem Statement
 
-A company could have an internal repository that contains / cashes dependencies.
+A company could have an internal repository that contains / caches dependencies.
 This repository could be used by multiple projects and multiple teams have write access to it.
 Somebody could inject a malicious dependency into the repository.
 This dependency would be available for all projects that depend on it.
