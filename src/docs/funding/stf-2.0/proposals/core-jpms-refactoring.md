@@ -9,7 +9,7 @@ Category: Maintenance
 
 ## Problem Statement
 
-While we add more and more support for JPMS and module based projects to the functionallity of maven, the project itself stays a non JPMS project.
+While we add more and more support for JPMS and module based projects to the functionality of maven, the project itself stays a non JPMS project.
 
 ## Current State / Starting Point
 
