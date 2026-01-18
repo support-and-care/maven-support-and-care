@@ -9,12 +9,15 @@ Category: Maintenance
 
 ## Problem Statement
 
-TODO
+Maven 4 provides a new plugin API.
+While Maven 4 is upward compatible to Maven 3 plugins, we should move all Apache maintained plugins to the new APIs and standards to be able to move forward with new features and improvements.
 
 ## Current State / Starting Point
 
-TODO
+Most plugins are still using Maven 3 APIs.
 
 ## Expected Outcomes / Benefits
 
-TODO
+All plugins are using Maven 4 APIs.
+A v3 version of the plugins can be maintained in LTS support as part of the funding round.
+The LTS support must be included in the calculation of the funding for this epic.

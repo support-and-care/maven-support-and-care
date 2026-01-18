@@ -11,12 +11,15 @@ Category: Documentation
 
 ## Problem Statement
 
-TODO
+There are several well known plugins for Maven (surefire, jacoco, spotbugs, ...) that provide reports.
+While those reports are all machine-readable, there is not always a well designed human-readable report.
 
 ## Current State / Starting Point
 
-TODO
+The different plugins provide different levels of reporting for humans.
+Some plugins provide HTML reports but those are often not very nice to read.
 
 ## Expected Outcomes / Benefits
 
-TODO
+Provide rich reporting for important plugins.
+In best case we provide a generic reporting framework that can be used by all plugins.

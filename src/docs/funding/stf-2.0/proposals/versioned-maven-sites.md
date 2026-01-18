@@ -11,12 +11,13 @@ Category: Documentation
 
 ## Problem Statement
 
-TODO
+Maven plugins evolve over time and so does the documentation.
+When you depend on a specific version of a plugin, you should be able to access the documentation of that version.
 
 ## Current State / Starting Point
 
-TODO
+Today the maven site plugin only supports one version of the documentation.
 
 ## Expected Outcomes / Benefits
 
-TODO
+Provide a way to host multiple versions of the documentation.
