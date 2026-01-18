@@ -1,7 +1,7 @@
 <!--
 Original Author: Hendrik
 Category: Modernization
--->[
+-->
 
 # Global Dependency Replacements
 
