@@ -9,12 +9,17 @@ Category: Documentation
 
 ## Problem Statement
 
-TODO
+The output of the Maven Site Plugin is not very appealing.
+It should be updated to look more modern.
 
 ## Current State / Starting Point
 
-TODO
+The output of the Maven Site Plugin is not very appealing.
+It should be updated to look more modern.
 
 ## Expected Outcomes / Benefits
 
-TODO
+We need to update the Maven Site Plugin to look more modern.
+Here a well-known CSS framework can be used.
+
+

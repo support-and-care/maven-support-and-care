@@ -11,12 +11,18 @@ Category: Security
 
 ## Problem Statement
 
-TODO
+With new regulations like the Cyber Resilience Act (CRA) every project must be way more aware of the security and quality of its dependencies.
+It is important to not create vulnerabilities in the future.
 
 ## Current State / Starting Point
 
-TODO
+Today maven does not check any project dependency or used plugins for security issues.
 
 ## Expected Outcomes / Benefits
 
-TODO
+It would be great to have a maven plugin that checks all dependencies and plugins for security issues.
+Here several checks could be applied like:
+- SBOM is published publicly
+- OpenSSF Scorecard is published publicly and show warnings / throw errors if not applied
+
+The plugin should be highly configurable to allow different levels of strictness / reporting.
