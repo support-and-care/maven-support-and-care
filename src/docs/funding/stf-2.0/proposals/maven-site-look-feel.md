@@ -14,8 +14,8 @@ It should be updated to look more modern.
 
 ## Current State / Starting Point
 
-The output of the Maven Site Plugin is not very appealing.
-It should be updated to look more modern.
+The Maven Site Plugin currently generates sites using the default skin and basic CSS styling.
+The resulting pages are functional but look dated, with a simple layout and limited responsiveness or branding.
 
 ## Expected Outcomes / Benefits
 
