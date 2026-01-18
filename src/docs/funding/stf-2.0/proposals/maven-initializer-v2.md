@@ -23,7 +23,7 @@ Several improvements to the Maven Initializer, including:
 - JPMS support
 - Add at least all metadata (author, ...) is needed for publishing to Maven Central
 - Provide ready to use tooling for Maven Central publishing
-- GitHub (+ Codeberg) itegration to directly create the project on GitHub/Codeberg
+- GitHub (+ Codeberg) integration to directly create the project on GitHub/Codeberg
 - Configuration and tooling for CI/CD pipelines (GitHub Actions, ...)
 - Setup for JMH benchmarks
 - ...
