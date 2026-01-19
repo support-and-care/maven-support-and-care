@@ -16,7 +16,7 @@ When you depend on a specific version of a plugin, you should be able to access 
 
 ## Current State / Starting Point
 
-Today the maven site plugin only supports one version of the documentation.
+Today the Maven site plugin only supports one version of the documentation.
 
 ## Expected Outcomes / Benefits
 

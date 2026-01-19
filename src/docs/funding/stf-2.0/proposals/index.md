@@ -4,7 +4,7 @@
 
 | File                                                                   | Title                                          | Author  |
 |------------------------------------------------------------------------|------------------------------------------------|---------|
-| [open-feature-requests.md](open-feature-requests.md)                   | Open Feature Requests from First Funding Round | Hendrik |
+| [open-feature-requests.md](open-feature-requests.md)                   | Open Feature Requests from the First Funding Round | Hendrik |
 | [lifecycle-replacement.md](lifecycle-replacement.md)                   | Lifecycle Replacement                          | Hendrik |
 | [global-dependency-replacements.md](global-dependency-replacements.md) | Global Dependency Replacements                 | Hendrik |
 | [duplicate-lifecycle-warnings.md](duplicate-lifecycle-warnings.md)     | Warning/Errors on Duplicate Lifecycle Phases   | Hendrik |
@@ -20,11 +20,11 @@
 
 | File                                                       | Title                                         | Author  |
 |------------------------------------------------------------|-----------------------------------------------|---------|
-| [junit-migration.md](junit-migration.md)                   | Migration of JUnit 4 Based Tests to JUnit 5/6 | Sandra  |
+| [junit-migration.md](junit-migration.md)                   | Migration of JUnit 4/5 Based Tests to JUnit 6 | Sandra  |
 | [plugins-maven4-migration.md](plugins-maven4-migration.md) | Migrate All Apache Plugins to Maven 4 APIs    | Hendrik |
 | [surefire-junit-platform.md](surefire-junit-platform.md)   | Surefire JUnit Platform Migration             | Olivier |
-| [core-jpms-refactoring.md](core-jpms-refactoring.md)       | Refactor Maven Core to Full JPMS Modules      | Hendrik |
-| [maven4-multi-jpms.md](maven4-multi-jpms.md)               | Maven 4 Module with Multiple JPMS Modules     | Hendrik |
+| [core-jpms-refactoring.md](core-jpms-refactoring.md)       | Refactor Maven Core to Full Java Modules      | Hendrik |
+| [maven4-multi-jpms.md](maven4-multi-jpms.md)               | Maven 4 Module with Multiple Java Modules     | Hendrik |
 
 ## Modernization
 

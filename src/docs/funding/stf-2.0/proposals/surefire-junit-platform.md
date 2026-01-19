@@ -26,7 +26,7 @@ The major refactoring work in PR #3179 (https://github.com/apache/maven-surefire
 ## Expected Outcomes / Benefits
 
  - Single Implementation: Reduced the maintenance burden from 5 test providers down to 1 JUnit Platform-based runner, making feature additions and bug fixes significantly easier
- - Better JPMS Support: Unified platform approach enables proper Java Module System support for testing, including integration testing scenarios
+ - Better Java Module Support: Unified platform approach enables proper Java Module System support for testing, including integration testing scenarios
  - Framework Flexibility: Built-in support for future testing frameworks through JUnit Platform's extensible engine architecture (Cucumber, Spock, etc.)
  - Simplified Configuration: Consolidated test configuration approach instead of framework-specific settings, reducing user complexity
  - Modern Foundation: Current, actively maintained testing infrastructure foundation that aligns with industry standards and ensures long-term viability

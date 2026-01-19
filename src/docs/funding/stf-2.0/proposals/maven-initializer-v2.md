@@ -20,7 +20,7 @@ We have a basic version of the Maven Initializer that can create simple Maven pr
 
 Several improvements to the Maven Initializer, including:
 - Make the API usable from other tools
-- JPMS support
+- Java Module support
 - Add at least all metadata (author, ...) is needed for publishing to Maven Central
 - Provide ready-to-use tooling for Maven Central publishing
 - GitHub (+ Codeberg) integration to directly create the project on GitHub/Codeberg
