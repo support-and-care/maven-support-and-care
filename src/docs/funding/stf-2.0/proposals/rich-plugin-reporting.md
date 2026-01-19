@@ -7,7 +7,7 @@ Category: Documentation
 
 **Original Item:** "Provide rich (HTML, nice print/pdf support, including graphs, …) reporting for important plugins like surefire, jacoco, spotbugs, ... (Hendrik)"
 
-**Note (Green):** "Report Output in general independent of the maven site plugin"
+**Note (Green):** "Report Output in general independent of the Maven site plugin"
 
 ## Problem Statement
 

@@ -16,11 +16,11 @@ It is important to not create vulnerabilities in the future.
 
 ## Current State / Starting Point
 
-Today maven does not check any project dependency or use plugins for security issues.
+Today Maven does not check any project dependency or use plugins for security issues.
 
 ## Expected Outcomes / Benefits
 
-It would be great to have a maven plugin that checks all dependencies and plugins for security issues.
+It would be great to have a Maven plugin that checks all dependencies and plugins for security issues.
 Here several checks could be applied like:
 - SBOM is published publicly
 - OpenSSF Scorecard is published publicly and shows warnings / throw errors if not applied

@@ -5,9 +5,9 @@ Category: Documentation
 
 # Maven Homepage as Project Documentation Benefit
 
-**Original Item:** "Maven homepage should be a benefit for every project that is built by maven to host an easy documentation page of the project (Hendrik)"
+**Original Item:** "Maven homepage should be a benefit for every project that is built by Maven to host an easy documentation page of the project (Hendrik)"
 
-**Note (Green):** "one entry point for all apache plugin"
+**Note (Green):** "one entry point for all Apache plugin"
 
 ## Problem Statement
 

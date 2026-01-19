@@ -3,7 +3,7 @@ Original Author: Hendrik
 Category: Modernization
 -->
 
-# Maven 4 Module with Multiple JPMS Modules
+# Maven 4 Module with Multiple Java Modules
 
 **Original Item:** "A good way to define a Maven 4 module that contains multiple JPMS modules without the need to configure each JPMS module individually (Hendrik)"
 

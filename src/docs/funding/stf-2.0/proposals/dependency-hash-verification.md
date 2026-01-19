@@ -16,7 +16,7 @@ This dependency would be available for all projects that depend on it.
 
 ## Current State / Starting Point
 
-While Maven central and maven in general are already aware of hashes, it is not possible to define a hash for a dependency in the POM itself.
+While Maven central and Maven in general are already aware of hashes, it is not possible to define a hash for a dependency in the POM itself.
 This would make it possible to verify the dependency at build time to ensure that the dependency is not manipulated.
 
 ## Expected Outcomes / Benefits
