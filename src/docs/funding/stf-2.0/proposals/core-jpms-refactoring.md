@@ -14,7 +14,7 @@ While we add more and more support for Java modules to the functionality of Mave
 ## Current State / Starting Point
 
 Maven Core is not itself based on Java modules (modular-sources).
-Some dependencies might be Java modules, some might be automatic modules, and some are not Java-module aware.
+Some dependencies are explicit Java modules, some work as automatic modules, and some cannot be used on the module path at all due to Java module violations, e.g., split packages.
 
 ## Expected Outcomes / Benefits
 
