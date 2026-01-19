@@ -3,9 +3,9 @@ Original Author: Hendrik
 Category: Maintenance
 -->
 
-# Open Feature Requests from First Funding Round
+# Open Feature Requests from the First Funding Round
 
-**Original Item:** "Some feature requests of first funding still open. We should do them in the 2nd round (Hendrik)"
+**Original Item:** "Some feature requests of first funding are still open. We should do them in the 2nd round (Hendrik)"
 
 ## Problem Statement
 

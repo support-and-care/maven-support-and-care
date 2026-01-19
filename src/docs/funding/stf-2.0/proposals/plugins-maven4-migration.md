@@ -10,7 +10,7 @@ Category: Maintenance
 ## Problem Statement
 
 Maven 4 provides a new plugin API.
-While Maven 4 is upward compatible to Maven 3 plugins, we should move all Apache maintained plugins to the new APIs and standards to be able to move forward with new features and improvements.
+While Maven 4 is upward compatible to Maven 3 plugins, we should move all Apache-maintained plugins to the new APIs and standards to be able to move forward with new features and improvements.
 
 ## Current State / Starting Point
 
