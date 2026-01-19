@@ -15,7 +15,7 @@ It must be easy to handle such transitive dependencies in a global way.
 
 ## Current State / Starting Point
 
-Today the transitive dependencies of a dependency are only handled in a per module basis.
+Today the transitive dependencies of a dependency are only handled in a per-module basis.
 Even if the dependency itself is `dependencyManagement` of the parent pom.
 
 ## Expected Outcomes / Benefits

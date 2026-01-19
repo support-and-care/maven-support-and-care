@@ -10,7 +10,7 @@ Category: Modernization
 ## Problem Statement
 
 With projects getting more complex and modular, it is important to have a good way to test the integration of those modules.
-Especially with JPMS and access restrictions tests of those modules can become more complex.
+Especially with JPMS and access restrictions, tests of those modules can become more complex.
 
 ## Current State / Starting Point
 

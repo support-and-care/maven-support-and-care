@@ -16,9 +16,9 @@ Modern software development requires insight into build performance, test result
 ## Current State / Starting Point
 
 - Maven provides basic console output and XML reports from plugins
-- Surefire/Failsafe generate XML reports, but no aggregated dashboards
+- Surefire/Failsafe generate XML reports but no aggregated dashboards
 - No built-in build performance tracking or trend analysis
-- Quality plugins (JaCoCo, SpotBugs) produce separate reports without unified presentation
+- Quality plugins (JaCoCo, SpotBugs) produce separate reports without a unified presentation
 - No standardized way to collect and visualize build metrics over time
 - Commercial solutions (Develocity) exist but are not accessible to all projects
 
@@ -30,7 +30,7 @@ Modern software development requires insight into build performance, test result
    - Build cache hit/miss statistics
    - Goal execution timing breakdown
 
-2. **Rich Plugin Reporting**: Enhanced reporting for key plugins with unified presentation:
+2. **Rich Plugin Reporting**: Enhanced reporting for key plugins with a unified presentation:
    - HTML/PDF report generation
    - Graphical visualizations
    - Support for Surefire, JaCoCo, SpotBugs, and other quality plugins
