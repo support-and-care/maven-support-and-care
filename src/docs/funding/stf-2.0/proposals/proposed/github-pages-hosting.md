@@ -5,6 +5,8 @@ Category: Documentation
 
 # GitHub/Codeberg Pages Hosting for Maven Sites
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/171
+
 **Original Item:** "Make it easy (documentation?) to automatically create a Maven site for a GitHub-hosted project as a GitHub page, same for Codeberg/ Forgejo (Hendrik)"
 
 ## Problem Statement

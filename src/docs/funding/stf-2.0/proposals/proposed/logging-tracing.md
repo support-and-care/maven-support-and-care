@@ -5,6 +5,8 @@ Category: Maintenance
 
 # Logging and Tracing Policy for Maven
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/174
+
 **Original Item:** "Logging, Tracing Policy (Gerd)"
 
 ## Problem Statement

@@ -5,6 +5,8 @@ Category: Modernization
 
 # Maven Initializer V2
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/175
+
 **Original Item:** "Maven Initializer V2 (Hendrik)"
 
 ## Problem Statement

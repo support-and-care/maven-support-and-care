@@ -5,6 +5,8 @@ Category: Modernization
 
 # MCP Support for Apache Maven
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/177
+
 **Original Item:** "MCP Support (Gerd)"
 
 ## Problem Statement

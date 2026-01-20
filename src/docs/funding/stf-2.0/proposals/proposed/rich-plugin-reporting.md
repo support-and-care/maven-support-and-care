@@ -5,6 +5,8 @@ Category: Documentation
 
 # Rich Reporting for Important Plugins
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/180
+
 **Original Item:** "Provide rich (HTML, nice print/pdf support, including graphs, …) reporting for important plugins like surefire, jacoco, spotbugs, ... (Hendrik)"
 
 **Note (Green):** "Report Output in general independent of the Maven site plugin"

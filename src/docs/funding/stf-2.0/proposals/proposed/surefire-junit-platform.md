@@ -5,6 +5,8 @@ Category: Maintenance
 
 # Surefire JUnit Platform Migration
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/182
+
 ## Problem Statement
 
 The current Maven Surefire/Failsafe plugin architecture maintains separate test providers for JUnit 3, JUnit 4, JUnit 5/Jupiter, and TestNG, creating a maintenance complexity with 5 different

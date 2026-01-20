@@ -5,6 +5,8 @@ Category: Security
 
 # New Frontend for Dependency-Track
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/170
+
 **Original Item:** "New Frontend (or refactoring the current one) for Dependency-Track that does not need any login to search and find results for libs (Hendrik)"
 
 ## Problem Statement

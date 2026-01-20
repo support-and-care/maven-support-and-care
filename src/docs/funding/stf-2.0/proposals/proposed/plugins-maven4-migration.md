@@ -5,6 +5,8 @@ Category: Maintenance
 
 # Migrate All Apache Plugins to Maven 4 APIs
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/179
+
 **Original Item:** "Migrate all Apache Plugins to Maven 4 APIs and standards to move forward (Hendrik)"
 
 ## Problem Statement
