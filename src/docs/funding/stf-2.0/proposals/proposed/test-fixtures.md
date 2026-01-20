@@ -17,6 +17,8 @@ Especially with Java modules and access restrictions, tests of those modules can
 ## Current State / Starting Point
 
 While Gradle has the concept of [test fixtures](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures), Maven does not have a similar concept.
+A (bad) workaround for such situations is a test-jar or a maven submodule that contains shareable test logic.
+But the test fixtures concept is way more elegant and especially for JPMS based projects it has a lot of benefits.
 
 ## Expected Outcomes / Benefits
 
