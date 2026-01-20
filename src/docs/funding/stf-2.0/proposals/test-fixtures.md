@@ -16,6 +16,8 @@ Especially with JPMS and access restrictions tests of those modules can become m
 
 While Gradle has the concept of [test fixtures](https://docs.gradle.org/current/userguide/java_testing.html#sec:java_test_fixtures), Maven does not have a similar concept.
 
+new link to the cronn blog post: https://blog.cronn.de/en/testing/java/gradle/2023/04/20/gradle-testfixtures.html
+
 ## Expected Outcomes / Benefits
 
 We need something similar to Gradle test fixtures in Maven.
