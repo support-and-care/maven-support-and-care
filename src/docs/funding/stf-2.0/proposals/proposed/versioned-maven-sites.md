@@ -5,6 +5,8 @@ Category: Documentation
 
 # Support Versions in Hosted Maven Sites
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/184
+
 **Original Item:** "Support Versions in hosted Maven Sites (Hendrik)"
 
 **Note (Green):** "Mainly for examples"

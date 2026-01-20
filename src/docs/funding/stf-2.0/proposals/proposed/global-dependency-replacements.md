@@ -5,6 +5,8 @@ Category: Modernization
 
 # Global Dependency Replacements
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/172
+
 **Original Item:** "Global Replacements for dependencies (Hendrik)"
 
 ## Problem Statement

@@ -5,6 +5,8 @@ Category: Modernization
 
 # Build Observability and Reporting
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/168
+
 **Original Items:**
 - "Reporting / Observability (Olivier)"
 - "Metrics (Goal Execution Timing, ...) (Gerd)"

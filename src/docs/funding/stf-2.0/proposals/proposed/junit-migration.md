@@ -5,6 +5,8 @@ Category: Maintenance
 
 # Migration of JUnit 4/5 Based Tests to JUnit 6
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/173
+
 **Original Item:** "Migration of JUnit 4-based tests to JUnit 5/6 (JUnit 4 EOL) (Sandra)"
 
 ## Problem Statement

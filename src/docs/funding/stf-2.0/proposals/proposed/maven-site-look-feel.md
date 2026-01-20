@@ -5,6 +5,8 @@ Category: Documentation
 
 # Update Look and Feel of Generated Maven Sites
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/176
+
 **Original Item:** "Update Look and Feel of generated Maven sites (Hendrik)"
 
 ## Problem Statement

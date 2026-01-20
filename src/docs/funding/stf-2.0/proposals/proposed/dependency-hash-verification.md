@@ -5,6 +5,8 @@ Category: Security
 
 # Dependency Hash Verification
 
+**Discussion:** https://github.com/support-and-care/maven-support-and-care/discussions/169
+
 **Original Item:** "Extension for dependency definition in POM to add hash to a dependency that will be checked at build time to make bad dependency injection not possible (Hendrik)"
 
 ## Problem Statement
