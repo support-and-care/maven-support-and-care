@@ -2,14 +2,15 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
-
+- Helping add support for GitHub Ruleset into PyGitHub. It is a base library that is used for enforce branch protection rules in Apache projects - https://github.com/support-and-care/maven-support-and-care/issues/121
 
 == Work Package 2 — Maintenance
 
 
 == Work Package 3 — Modernization of Core Feature
-
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
 
 == Work Package 4 — Documentation
-
+* Kick off Meeting for "Getting started" documentation.
+* Announce the first release of Apache Maven Initializer: https://maven-starter.io
 
