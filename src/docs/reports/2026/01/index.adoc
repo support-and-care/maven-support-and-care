@@ -2,7 +2,7 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
-- Helping add support for GitHub Ruleset into PyGitHub. It is a base library that is used for enforce branch protection rules in Apache projects - https://github.com/support-and-care/maven-support-and-care/issues/121
+- Helping add support for GitHub Ruleset into PyGitHub. It is a base library used to enforce branch protection rules in Apache projects – https://github.com/support-and-care/maven-support-and-care/issues/121
 
 == Work Package 2 — Maintenance
 
