@@ -9,6 +9,9 @@
 
 == Work Package 3 — Modernization of Core Feature
 * Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
+* Java Module support with Maven 4
+** Start writing Blog articles
+** Start to create architecture documentation
 
 == Work Package 4 — Documentation
 * Kick off Meeting for "Getting started" documentation.
