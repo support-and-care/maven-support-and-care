@@ -16,4 +16,4 @@
 == Work Package 4 — Documentation
 * Kick off Meeting for "Getting started" documentation.
 * Announce the first release of Apache Maven Initializer: https://maven-starter.io
-
+* Add new features to the Maven Initializer.
