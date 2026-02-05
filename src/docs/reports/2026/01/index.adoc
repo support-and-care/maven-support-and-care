@@ -15,5 +15,9 @@
 
 == Work Package 4 — Documentation
 * Kick off Meeting for "Getting started" documentation.
+* Next goal is to create a small proof of concept to achieve two goals:
+** Compare different technical solutions and approaches to improve navigation for users.
+For this a small set of content pages (focused on "Getting started with Maven" as Maven Initializer was released in January) should be created/reworked.
+** Requirements for an improved documentation shall be collected and then be the base to search for technical solutions fitting these requirements.
 * Announce the first release of Apache Maven Initializer: https://maven-starter.io
 * Add new features to the Maven Initializer.
