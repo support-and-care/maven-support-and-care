@@ -9,6 +9,9 @@
 
 == Work Package 3 — Modernization of Core Feature
 * Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
+* Finalising Refactoring of surefire plugin to use only the Junit Platform to run tests for junit3,4,5,6 and TestNG.
+** All tests passing now
+** communication with the community for next steps (release etc..)
 * Java Module support with Maven 4
 ** Start writing Blog articles
 ** Start to create architecture documentation
