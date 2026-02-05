@@ -1,0 +1,26 @@
+= January 2026
+:icons: font
+
+== Work Package 1 — Security of the Supply Chain
+- Helping add support for GitHub Ruleset into PyGitHub. It is a base library used to enforce branch protection rules in Apache projects – https://github.com/support-and-care/maven-support-and-care/issues/121
+
+== Work Package 2 — Maintenance
+
+
+== Work Package 3 — Modernization of Core Feature
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
+* Finalising Refactoring of surefire plugin to use only the Junit Platform to run tests for junit3,4,5,6 and TestNG.
+** All tests passing now
+** communication with the community for next steps (release etc..)
+* Java Module support with Maven 4
+** Start writing Blog articles
+** Start to create architecture documentation
+
+== Work Package 4 — Documentation
+* Kick off Meeting for "Getting started" documentation.
+* Next goal is to create a small proof of concept to achieve two goals:
+** Compare different technical solutions and approaches to improve navigation for users.
+For this a small set of content pages (focused on "Getting started with Maven" as Maven Initializer was released in January) should be created/reworked.
+** Requirements for an improved documentation shall be collected and then be the base to search for technical solutions fitting these requirements.
+* Announce the first release of Apache Maven Initializer: https://maven-starter.io
+* Add new features to the Maven Initializer.

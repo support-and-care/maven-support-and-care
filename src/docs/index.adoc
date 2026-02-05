@@ -24,3 +24,4 @@
 * xref:reports/2025/10/index.adoc[2025-10]
 * xref:reports/2025/11/index.adoc[2025-11]
 * xref:reports/2025/12/index.adoc[2025-12]
+* xref:reports/2026/01/index.adoc[2026-01]
