@@ -94,6 +94,26 @@
                     </dependency>
                 </dependencies>
             </plugin>
+            <plugin>
+                <groupId>com.ruleoftech</groupId>
+                <artifactId>markdown-page-generator-plugin</artifactId>
+                <version>2.4.2</version>
+                <executions>
+                    <execution>
+                        <id>generate-markdown-html</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <inputDirectory>${project.basedir}/src/docs/funding</inputDirectory>
+                    <outputDirectory>${project.build.directory}/generated-docs/funding</outputDirectory>
+                    <recursiveInput>true</recursiveInput>
+                    <transformRelativeMarkdownLinks>true</transformRelativeMarkdownLinks>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 </project>
