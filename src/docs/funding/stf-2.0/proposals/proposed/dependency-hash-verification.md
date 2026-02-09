@@ -26,3 +26,10 @@ This would make it possible to verify the dependency at build time to ensure tha
 Maven can verify the integrity of dependencies at build time.
 To do so, it must be possible to specify the hash of a dependency (or plugin) in the POM.
 
+## Discussion Summary
+
+Community feedback revealed that Maven [already provides integrity verification mechanisms](https://github.com/support-and-care/maven-support-and-care/discussions/169#discussioncomment-15614559): the `--strict-checksums` flag, three kinds of checksums (external, included in artifact, and provided separately), and lockfile support.
+A working example of a fully locked-down build is demonstrated in [java-ipfs-http-client](https://github.com/support-and-care/maven-support-and-care/discussions/169#discussioncomment-15614559).
+Additionally, a [blog post on lockfiles](https://maveniverse.eu/blog/2025/12/06/lockfiles/) describes the current state of the art.
+The scope of this proposal should be reevaluated against existing capabilities to identify what is genuinely missing vs. what needs better documentation.
+

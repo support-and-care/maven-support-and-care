@@ -23,6 +23,9 @@
 | [junit-migration.md](proposed/junit-migration.md) | Migration of JUnit 4/5 Based Tests to JUnit 6 | Sandra | [#173](https://github.com/support-and-care/maven-support-and-care/discussions/173) |
 | [plugins-maven4-migration.md](proposed/plugins-maven4-migration.md) | Migrate All Apache Plugins to Maven 4 APIs | Hendrik | [#179](https://github.com/support-and-care/maven-support-and-care/discussions/179) |
 | [surefire-junit-platform.md](proposed/surefire-junit-platform.md) | Surefire JUnit Platform Migration | Olivier | [#182](https://github.com/support-and-care/maven-support-and-care/discussions/182) |
+| [plugin-bug-fixing.md](proposed/plugin-bug-fixing.md) | Bug Fixing / Issues and PR Review in Maven Plugins | Slawek | [#190](https://github.com/support-and-care/maven-support-and-care/discussions/190) |
+| [archetype-modernization.md](proposed/archetype-modernization.md) | Modernization of Maven Archetypes | Slawek | [#191](https://github.com/support-and-care/maven-support-and-care/discussions/191) |
+| [build-cache-maintenance.md](proposed/build-cache-maintenance.md) | Build Cache Extension Project Maintenance | Sebastian | [#196](https://github.com/support-and-care/maven-support-and-care/discussions/196) |
 | [core-jpms-refactoring.md](open/core-jpms-refactoring.md) | Refactor Maven Core to Full Java Modules | Hendrik | - |
 | [maven4-multi-jpms.md](open/maven4-multi-jpms.md) | Maven 4 Module with Multiple Java Modules | Hendrik | - |
 
@@ -37,6 +40,8 @@
 | [temurin-auto-download.md](open/temurin-auto-download.md) | Automatic Eclipse Temurin Download | Hendrik | - |
 | [test-fixtures.md](proposed/test-fixtures.md) | Test Fixtures Best Practice for Maven 4 | Hendrik | [#183](https://github.com/support-and-care/maven-support-and-care/discussions/183) |
 | [maven-initializer-v2.md](proposed/maven-initializer-v2.md) | Maven Initializer V2 | Hendrik | [#175](https://github.com/support-and-care/maven-support-and-care/discussions/175) |
+| [purl-dependencies.md](proposed/purl-dependencies.md) | Define Maven Dependencies by Using purl-spec | Hendrik | [#197](https://github.com/support-and-care/maven-support-and-care/discussions/197) |
+| [maven-telemetry-service.md](proposed/maven-telemetry-service.md) | Maven Telemetry Service | Tamás | [#199](https://github.com/support-and-care/maven-support-and-care/discussions/199) |
 
 ## Documentation
 
@@ -48,3 +53,4 @@
 | [modern-landing-page.md](proposed/modern-landing-page.md) | Modern Landing Page for Maven Homepage | Hendrik | [#178](https://github.com/support-and-care/maven-support-and-care/discussions/178) |
 | [versioned-maven-sites.md](proposed/versioned-maven-sites.md) | Support Versions in Hosted Maven Sites | Hendrik | [#184](https://github.com/support-and-care/maven-support-and-care/discussions/184) |
 | [rich-plugin-reporting.md](proposed/rich-plugin-reporting.md) | Rich Reporting for Important Plugins | Hendrik | [#180](https://github.com/support-and-care/maven-support-and-care/discussions/180) |
+| [build-cache-docs.md](proposed/build-cache-docs.md) | Leverage the Maven Build Cache Extension | Benjamin | [#149](https://github.com/support-and-care/maven-support-and-care/discussions/149) |

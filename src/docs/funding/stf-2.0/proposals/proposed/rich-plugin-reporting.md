@@ -25,3 +25,8 @@ Some plugins provide HTML reports, but those are often not very nice to read.
 
 Provide rich reporting for important plugins.
 In the best case we provide a generic reporting framework that can be used by all plugins.
+
+## Discussion Summary
+
+There was [skepticism about creating a generic reporting framework](https://github.com/support-and-care/maven-support-and-care/discussions/180#discussioncomment-15548857) (cf. [xkcd #927](https://xkcd.com/927/)), with a suggestion to improve existing reports individually rather than building a new abstraction.
+The question was also raised whether the [reports are produced by the plugins or the underlying tools themselves](https://github.com/support-and-care/maven-support-and-care/discussions/180#discussioncomment-15591111), which affects the scope of what Maven can improve.

@@ -43,3 +43,9 @@ Modern software development requires insight into build performance, test result
    - Team dashboards (e.g., Grafana integration)
 
 4. **Open Source Alternative**: Provide the Maven community with an open-source alternative to commercial build insight tools
+
+## Discussion Summary
+
+The community suggested [splitting this into separate concerns](https://github.com/support-and-care/maven-support-and-care/discussions/168#discussioncomment-15548479): test flakiness (user code quality) vs. build performance and cache effectiveness (Maven internals), as they serve very different audiences.
+There were concerns that some aspects (especially performance) may [require deep Maven changes beyond a single funding round](https://github.com/support-and-care/maven-support-and-care/discussions/168#discussioncomment-15591076).
+Several existing tools were noted: [takari/maven-timeline, takari/maven-profiler, and the OpenTelemetry Java contrib maven-extension](https://github.com/support-and-care/maven-support-and-care/discussions/168#discussioncomment-15614757), which should be evaluated before building new solutions.

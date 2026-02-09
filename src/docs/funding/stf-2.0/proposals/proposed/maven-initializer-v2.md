@@ -29,3 +29,10 @@ Several improvements to the Maven Initializer, including:
 - Configuration and tooling for CI/CD pipelines (GitHub Actions, ...)
 - Setup for JMH benchmarks
 - ...
+
+## Discussion Summary
+
+There was initial [confusion about what the Maven Initializer is vs. archetypes](https://github.com/support-and-care/maven-support-and-care/discussions/175#discussioncomment-15548710), and the relationship between the two should be clarified in the proposal.
+Concerns were raised about [hardcoded dependency choices](https://github.com/support-and-care/maven-support-and-care/discussions/175#discussioncomment-15548800) (e.g., AssertJ) in generated projects.
+The web UI concept was [well received](https://github.com/support-and-care/maven-support-and-care/discussions/175#discussioncomment-15548988) once understood.
+See also the related [Modernization of Maven Archetypes](archetype-modernization.md) proposal.

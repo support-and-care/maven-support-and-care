@@ -29,3 +29,10 @@ Maven's current logging output is often too verbose at the INFO level for typica
 3. **CLI Trace Switch**: Add a proper CLI option (e.g., `-X` enhancement or new flag) to enable trace-level logging for deep problem analysis
 
 **Note**: A metrics collection for goal execution timing and performance analysis is covered by [Build Observability and Reporting](build-observability.md).
+
+## Discussion Summary
+
+The community broadly agreed on [reducing INFO-level verbosity](https://github.com/support-and-care/maven-support-and-care/discussions/174#discussioncomment-15548519).
+Maven 4 already adds [per-plugin debug logging](https://github.com/support-and-care/maven-support-and-care/discussions/174#discussioncomment-15564189), which partially addresses the need.
+Challenges were raised around [logging in parallel and forked execution](https://github.com/support-and-care/maven-support-and-care/discussions/174#discussioncomment-15591087) scenarios where output interleaving can make logs hard to read.
+It was noted that [Maven 4 may already address some of these concerns](https://github.com/support-and-care/maven-support-and-care/discussions/174#discussioncomment-15570160), so the scope should be validated against the current Maven 4 state.
