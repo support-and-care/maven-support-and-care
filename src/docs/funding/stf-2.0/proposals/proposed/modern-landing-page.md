@@ -25,3 +25,8 @@ We should find a better way for the landing page to create an excellent user exp
 ## Expected Outcomes / Benefits
 
 A new and modern landing page for Maven.
+
+## Discussion Summary
+
+The feedback suggested the [real issue is content, not technology](https://github.com/support-and-care/maven-support-and-care/discussions/178#discussioncomment-15548847) — the site plugin is not the problem, but rather what information is presented and how it is organized.
+The proposal should focus on content strategy and information architecture rather than just a visual refresh.

@@ -24,3 +24,9 @@ Creating projects with existing Maven Archetypes yields outdated project structu
 2. **Archetype Audit**: Evaluation of existing archetypes - identify which are still necessary, remove redundant or outdated ones
 3. **Streamlined CLI**: Simplified execution methods, potentially including new goals for rapid project initialization
 4. **Better Onboarding**: Improved first-time user experience with Maven
+
+## Discussion Summary
+
+A key pain point raised is that [generated projects are "detached" from their archetype](https://github.com/support-and-care/maven-support-and-care/discussions/191#discussioncomment-15694519) — when a new archetype version is released with updated plugins or dependencies, existing projects cannot be updated.
+This relates to the idea of tracking the source archetype and enabling updates via tools like OpenRewrite.
+The [domtrip](https://github.com/maveniverse/domtrip) library was mentioned as a foundation for lossless programmatic editing of Maven-related files, which could support archetype-based project upgrades.

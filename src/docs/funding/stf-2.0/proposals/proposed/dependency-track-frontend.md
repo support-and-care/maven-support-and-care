@@ -23,3 +23,9 @@ Next to that, the general Dependency-Track frontend is not that intuitive to fin
 ## Expected Outcomes / Benefits
 
 A simple-to-use frontend that does not require a login and provides security relevant information.
+
+## Discussion Summary
+
+Community feedback [questioned whether this is within scope for the Maven project](https://github.com/support-and-care/maven-support-and-care/discussions/170#discussioncomment-15548555).
+Existing alternatives like `mvn dependency:tree`, mvnrepository.com, and modern IDEs [already provide vulnerability information](https://github.com/support-and-care/maven-support-and-care/discussions/170#discussioncomment-15591102).
+The value proposition of this proposal needs to be clarified against these existing capabilities.

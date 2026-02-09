@@ -42,3 +42,9 @@ The following questions from the community need to be addressed in the documenta
 - Can it be combined with caching of `~/.m2/repository` and/or mimir for even better performance?
 - How to handle SNAPSHOT dependencies? From Maven's perspective SNAPSHOTs are not advised, but practical guidance and clarification are needed
 - How to use a shared remote cache as "cache repo" to pre-fetch existing caches for given hashes, avoiding a full cacheless first build? This could save hours per build/pipeline per feature branch in large projects
+
+## Discussion Summary
+
+Community feedback confirmed the importance of this proposal.
+Most developers and enterprises are [unaware of the extension or afraid to use it](https://github.com/support-and-care/maven-support-and-care/discussions/149#discussioncomment-11308627), reinforcing the need for better documentation.
+Specific requests include documentation for SNAPSHOT caching behavior and guidance on [shared remote cache usage to avoid full cacheless first builds on CI](https://github.com/support-and-care/maven-support-and-care/discussions/149#discussioncomment-15609741).

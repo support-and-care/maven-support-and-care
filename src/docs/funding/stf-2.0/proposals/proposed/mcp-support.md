@@ -44,3 +44,8 @@ This is not a complete list; additional MCP servers are available and more can b
    - Build success/failure trends
 
 3. **Extension of Existing MCPs**: Enhance capabilities of existing MCP servers (e.g., Maven Tools MCP for Maven Central integration) with additional features such as security/vulnerability data, transitive dependency analysis, license compliance, and Maven plugin intelligence
+
+## Discussion Summary
+
+There was a concern that [general-purpose AI tools may supersede Maven-specific MCP servers](https://github.com/support-and-care/maven-support-and-care/discussions/177#discussioncomment-15548831) over time.
+The proposal should emphasize the value of domain-specific context (mailing list archives, Jira history, Maven-specific conventions) that general-purpose tools cannot provide.

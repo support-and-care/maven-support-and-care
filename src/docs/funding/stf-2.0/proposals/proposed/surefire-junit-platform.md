@@ -33,3 +33,9 @@ The major refactoring work in PR #3179 (https://github.com/apache/maven-surefire
  - Simplified Configuration: Consolidated test configuration approach instead of framework-specific settings, reducing user complexity
  - Modern Foundation: Current, actively maintained testing infrastructure foundation that aligns with industry standards and ensures long-term viability
  - Contributor Friendly: Simplified codebase encourages new contributors by eliminating the need to understand multiple testing provider implementations
+
+## Discussion Summary
+
+The migration approach was well received.
+JUnit 4 [is actively supported and should not be removed](https://github.com/support-and-care/maven-support-and-care/discussions/182#discussioncomment-15548633), but running it via JUnit Platform + Vintage is the correct path.
+Contributors confirmed that the [current complexity makes contributions very time-consuming](https://github.com/support-and-care/maven-support-and-care/discussions/182#discussioncomment-15607697), validating the need for this consolidation effort.

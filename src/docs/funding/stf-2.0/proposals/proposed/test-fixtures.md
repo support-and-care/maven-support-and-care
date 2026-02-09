@@ -23,3 +23,8 @@ But the test fixtures concept is way more elegant and especially for JPMS based 
 ## Expected Outcomes / Benefits
 
 We need something similar to Gradle test fixtures in Maven.
+
+## Discussion Summary
+
+The community questioned whether this is [similar to the existing `jar:test-jar` functionality](https://github.com/support-and-care/maven-support-and-care/discussions/183#discussioncomment-15575091), suggesting a preference for improving existing Maven features rather than adding new ones.
+The proposal should clarify what test fixtures provide beyond test-jar, particularly for JPMS-based projects.
