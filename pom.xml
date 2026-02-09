@@ -66,6 +66,7 @@
                         <kroki-server-url>https://kroki.io</kroki-server-url>
                         <kroki-default-format>svg</kroki-default-format>
                         <epics>epics/</epics>
+                        <md-ext>html</md-ext>
                     </attributes>
                     <requires>
                         <require>asciidoctor-diagram</require>
