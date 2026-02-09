@@ -6,3 +6,6 @@
 
 jqassistant/store/
 target/
+
+# Local Netlify folder
+.netlify
