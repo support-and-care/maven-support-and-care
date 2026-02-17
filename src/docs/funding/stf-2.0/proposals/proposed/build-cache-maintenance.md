@@ -26,3 +26,9 @@ The Maven Build Cache Extension project suffers from a significant maintenance b
 3. **Dependency Updates**: Process pending library update PRs to keep the project current
 4. **Feature Clarity**: Clarify the relevance and priority of proposed new features
 5. **Restored Momentum**: Re-establish active maintenance to attract contributors
+
+## Final Decision (2026-02-17)
+
+- Could become a default in future Maven versions
+- There is a large user demand for this (kind of) optimization by Enterprise user
+- Decision: Request Funding
