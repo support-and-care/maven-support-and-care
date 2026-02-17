@@ -30,3 +30,8 @@ Creating projects with existing Maven Archetypes yields outdated project structu
 A key pain point raised is that [generated projects are "detached" from their archetype](https://github.com/support-and-care/maven-support-and-care/discussions/191#discussioncomment-15694519) — when a new archetype version is released with updated plugins or dependencies, existing projects cannot be updated.
 This relates to the idea of tracking the source archetype and enabling updates via tools like OpenRewrite.
 The [domtrip](https://github.com/maveniverse/domtrip) library was mentioned as a foundation for lossless programmatic editing of Maven-related files, which could support archetype-based project upgrades.
+
+## Final Discussion (2026-02-17)
+
+- Perhaps refactor / re-use Maven ToolBox library
+- Decision: Request Funding
