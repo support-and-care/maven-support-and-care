@@ -34,3 +34,8 @@ This proposal generated significant discussion. Key concerns include:
 - **JUnit 6 and Vintage**: JUnit 6 has [deprecated the JUnit Vintage engine](https://github.com/support-and-care/maven-support-and-care/discussions/173#discussioncomment-15607553), which means JUnit 4 tests would need actual migration rather than running via compatibility layers
 - **Community help available**: OpenRewrite maintainers [offered to assist](https://github.com/support-and-care/maven-support-and-care/discussions/173#discussioncomment-15548204) with automated migration recipes
 
+## Final Discussion (2026-02-17)
+
+- Reduce expected outcome: Migrate to JUnit 5 (minimum) + JUnit 6 (in particular for Maven 4)
+- There should be no tests left with JUnit 4
+- Decision: Request Funding
