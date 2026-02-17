@@ -4,7 +4,6 @@
 
 | File | Title | Author | Discussion |
 |------|-------|--------|------------|
-| [open-feature-requests.md](open/open-feature-requests.md) | Open Feature Requests from the First Funding Round | Hendrik | - |
 | [lifecycle-replacement.md](open/lifecycle-replacement.md) | Lifecycle Replacement | Hendrik | - |
 | [global-dependency-replacements.md](proposed/global-dependency-replacements.md) | Global Dependency Replacements | Hendrik | [#172](https://github.com/support-and-care/maven-support-and-care/discussions/172) |
 | [duplicate-lifecycle-warnings.md](open/duplicate-lifecycle-warnings.md) | Warning/Errors on Duplicate Lifecycle Phases | Hendrik | - |
