@@ -39,3 +39,8 @@ The major refactoring work in PR #3179 (https://github.com/apache/maven-surefire
 The migration approach was well received.
 JUnit 4 [is actively supported and should not be removed](https://github.com/support-and-care/maven-support-and-care/discussions/182#discussioncomment-15548633), but running it via JUnit Platform + Vintage is the correct path.
 Contributors confirmed that the [current complexity makes contributions very time-consuming](https://github.com/support-and-care/maven-support-and-care/discussions/182#discussioncomment-15607697), validating the need for this consolidation effort.
+
+## Final Discussion (2026-02-17)
+
+- Adjust title: Maintenance/Bugfixing of Surefire Migration
+- Decision: Request Funding
