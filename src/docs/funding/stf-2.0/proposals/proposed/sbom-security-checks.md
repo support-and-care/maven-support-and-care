@@ -33,3 +33,11 @@ The plugin should be highly configurable to allow different levels of strictness
 
 Community feedback pointed out that [such tools already exist](https://github.com/support-and-care/maven-support-and-care/discussions/181#discussioncomment-15574953): [OWASP DependencyCheck](https://dependency-check.github.io/DependencyCheck/dependency-check-maven/index.html) and [Sonatype OSS Index Maven Plugin](https://sonatype.github.io/ossindex-maven/maven-plugin/).
 The proposal should clarify its unique value compared to existing solutions — whether this is about checking Maven itself, integrating SBOM/scorecard verification at a deeper level, or improving the CRA compliance story specifically.
+
+
+## Final discussion (2026-02-17)
+
+- Request funding for a new Maven Plugin.
+- Retrieve security data (e.g., from CVE database) about deps/plugins, and report about their state.
+- Start with SBOM and OpenSSF Scorecard. 
+- Make the plugin open for additional checks.
