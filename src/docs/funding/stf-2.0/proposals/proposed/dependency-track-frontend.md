@@ -29,3 +29,8 @@ A simple-to-use frontend that does not require a login and provides security rel
 Community feedback [questioned whether this is within scope for the Maven project](https://github.com/support-and-care/maven-support-and-care/discussions/170#discussioncomment-15548555).
 Existing alternatives like `mvn dependency:tree`, mvnrepository.com, and modern IDEs [already provide vulnerability information](https://github.com/support-and-care/maven-support-and-care/discussions/170#discussioncomment-15591102).
 The value proposition of this proposal needs to be clarified against these existing capabilities.
+
+## Final Discussion (2026-02-17)
+
+- Implement (new) dashboard for Dependency Track (which is not Maven specific in general)
+- Decision: Request Funding
