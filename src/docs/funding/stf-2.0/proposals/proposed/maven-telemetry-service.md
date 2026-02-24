@@ -46,3 +46,11 @@ Previous attempts at collecting IDE usage telemetry (e.g., Eclipse M2E) faced co
    - Full anonymization of collected data
    - Transparent data collection scope and retention policies
    - Open-source telemetry infrastructure
+
+## Final Discussion (2026-02-24)
+
+- Discussion:
+  - Use telemetry standards as far as possible (e.g., [OpenTelemetry](https://github.com/open-telemetry/opentelemetry-java-contrib/tree/main/maven-extension), Prometheus)
+  - Propose telemetry infrastructure
+  - Provide documentation about good practices for telemetry (e.g. with Grafana etc.)
+- Decision: Request Funding

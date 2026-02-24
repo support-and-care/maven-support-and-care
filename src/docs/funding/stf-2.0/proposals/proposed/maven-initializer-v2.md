@@ -36,3 +36,8 @@ There was initial [confusion about what the Maven Initializer is vs. archetypes]
 Concerns were raised about [hardcoded dependency choices](https://github.com/support-and-care/maven-support-and-care/discussions/175#discussioncomment-15548800) (e.g., AssertJ) in generated projects.
 The web UI concept was [well received](https://github.com/support-and-care/maven-support-and-care/discussions/175#discussioncomment-15548988) once understood.
 See also the related [Modernization of Maven Archetypes](archetype-modernization.md) proposal.
+
+## Final Discussion (2026-02-24)
+
+- Discussion: Incorporate feedback and improve
+- Decision: Request Funding

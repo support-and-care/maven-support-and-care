@@ -35,3 +35,8 @@ Strong community opposition to using PURL in POM files.
 Using PURL in the POM [goes against Maven 4 design choices](https://github.com/support-and-care/maven-support-and-care/discussions/197#discussioncomment-15658764) and should stay decoupled for evolvability.
 The [current PURL specification is lossy](https://github.com/support-and-care/maven-support-and-care/discussions/197#discussioncomment-15694227) — it does not support snapshots, repository IDs, and other Maven-specific concepts, which would break routing (RRF).
 The proposal should be refocused on read-only PURL generation for interoperability with security tooling, not on using PURL as input in POM files.
+
+## Final Discussion (2026-02-24)
+
+- Discussion: Strong objection by community by now
+- Decision: Set on hold and consider later if necessary

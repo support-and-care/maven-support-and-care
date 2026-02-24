@@ -33,3 +33,7 @@ A working example of a fully locked-down build is demonstrated in [java-ipfs-htt
 Additionally, a [blog post on lockfiles](https://maveniverse.eu/blog/2025/12/06/lockfiles/) describes the current state of the art.
 The scope of this proposal should be reevaluated against existing capabilities to identify what is genuinely missing vs. what needs better documentation.
 
+## Final Discussion (2026-02-24)
+
+- Discussion: Extend/improve Maven lockfile usage documentation (together with Tamas)
+- Decision: Request Funding

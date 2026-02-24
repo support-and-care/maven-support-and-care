@@ -49,3 +49,9 @@ This is not a complete list; additional MCP servers are available and more can b
 
 There was a concern that [general-purpose AI tools may supersede Maven-specific MCP servers](https://github.com/support-and-care/maven-support-and-care/discussions/177#discussioncomment-15548831) over time.
 The proposal should emphasize the value of domain-specific context (mailing list archives, Jira history, Maven-specific conventions) that general-purpose tools cannot provide.
+
+## Final Discussion (2026-02-24)
+
+- Discussion: Implement whatever is necessary at the time (in terms of missing MCP services)
+- Decision: Request Funding
+

@@ -26,3 +26,12 @@ Super easy and intuitive support (documentation) to host the generated site on G
 The community confirmed interest but noted this [may primarily be a documentation task](https://github.com/support-and-care/maven-support-and-care/discussions/171#discussioncomment-15564220) rather than new plugin development.
 The existing [`maven-scm-publish-plugin`](https://github.com/support-and-care/maven-support-and-care/discussions/171#discussioncomment-15564220) already supports GitHub Pages and could be better integrated into `maven-site-plugin`.
 Supporting [hosting beyond GitHub](https://github.com/support-and-care/maven-support-and-care/discussions/171#discussioncomment-15609764) (e.g., Codeberg) was seen as important for resilience.
+
+## Final Discussion (2026-02-24)
+
+- Discussion:
+  - Given the existing solution
+  - Investigate the current state and how to improve _better Maven site integration_
+  - If necessary, implement improvements
+  - Document how to use it on Codeberg/self-hosted ([Git pages](https://git-pages.org/))
+- Decision: Request Funding
