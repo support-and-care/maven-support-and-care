@@ -30,3 +30,10 @@ In the best case we provide a generic reporting framework that can be used by al
 
 There was [skepticism about creating a generic reporting framework](https://github.com/support-and-care/maven-support-and-care/discussions/180#discussioncomment-15548857) (cf. [xkcd #927](https://xkcd.com/927/)), with a suggestion to improve existing reports individually rather than building a new abstraction.
 The question was also raised whether the [reports are produced by the plugins or the underlying tools themselves](https://github.com/support-and-care/maven-support-and-care/discussions/180#discussioncomment-15591111), which affects the scope of what Maven can improve.
+
+## Final Discussion (2026-03-03)
+
+- Discussion:
+  - Reports are rather build related (interesting to the developer of the respective component, not the consumer of it)
+  - Extend perhaps to GitHub actions output/reporting (or other build process)
+- Decision: Request Funding

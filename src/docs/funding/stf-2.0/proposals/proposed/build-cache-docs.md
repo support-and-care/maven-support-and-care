@@ -48,3 +48,10 @@ The following questions from the community need to be addressed in the documenta
 Community feedback confirmed the importance of this proposal.
 Most developers and enterprises are [unaware of the extension or afraid to use it](https://github.com/support-and-care/maven-support-and-care/discussions/149#discussioncomment-11308627), reinforcing the need for better documentation.
 Specific requests include documentation for SNAPSHOT caching behavior and guidance on [shared remote cache usage to avoid full cacheless first builds on CI](https://github.com/support-and-care/maven-support-and-care/discussions/149#discussioncomment-15609741).
+
+## Final Discussion (2026-03-03)
+
+- Discussion:
+  - We do not merge this ticket with other [efforts about Build Cache Extension](build-cache-maintenance.md)
+  - Ask Benjamin for a better title as it is mostly about documentation/marketing of BCE
+- Decision: Request Funding
