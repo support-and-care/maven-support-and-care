@@ -21,3 +21,10 @@ Some dependencies are explicit Java modules, some work as automatic modules, and
 We should move Maven forward and refactor it to become based on Java modules that can use respective benefits (like access restrictions).
 This will end in a better modularization of Maven and better support for JPMS-based projects.
 All dependencies should be Java modules. Here we will contribute to those dependencies that are not yet Java modules.
+
+## Final Discussion (2026-02-24)
+
+- Discussion:
+  - Must not start before Maven 4 GA
+  - Step-by-step implementation in close coordination with the Maven community
+- Decision: Request Funding
