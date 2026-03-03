@@ -7,6 +7,10 @@
 
 
 == Work Package 3 — Modernization of Core Feature
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 - https://github.com/support-and-care/maven-support-and-care/issues/136
+** one project is left - blocking by next Maven 4 release
+
+* Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 in 3.x branches - https://github.com/support-and-care/maven-support-and-care/issues/201
 
 
 == Work Package 4 — Documentation
