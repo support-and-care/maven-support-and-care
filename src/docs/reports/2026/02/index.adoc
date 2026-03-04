@@ -13,6 +13,9 @@
 * Make progress in migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 in 3.x branches - https://github.com/support-and-care/maven-support-and-care/issues/201
 
 
+* Finalizing first milestone of Refactoring of surefire plugin to use only the Junit Platform to run tests for junit3,4,5,6 and TestNG. The biggest changes has been merged.
+
+
 == Work Package 4 — Documentation
 * Maven Initializer:
 ** Bug fixing
