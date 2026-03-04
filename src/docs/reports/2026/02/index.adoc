@@ -14,4 +14,8 @@
 
 
 == Work Package 4 — Documentation
+* Maven Initializer:
+** Bug fixing
+** Create documentation about architecture
+
 
