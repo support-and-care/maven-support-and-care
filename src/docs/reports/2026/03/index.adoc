@@ -2,6 +2,7 @@
 :icons: font
 
 == Work Package 1 — Security of the Supply Chain
+- Validate and improve the Java core library for the CycloneDX 1.7 specification (https://github.com/CycloneDX/cyclonedx-core-java/pull/786)
 
 == Work Package 2 — Maintenance
 
