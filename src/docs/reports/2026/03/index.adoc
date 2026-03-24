@@ -7,6 +7,7 @@
 == Work Package 2 — Maintenance
 
 == Work Package 3 — Modernization of Core Feature
+- Update architecture documentation for Surefire 3.6: add information about the new unified testing provider
 
 == Work Package 4 — Documentation
 
