@@ -1,4 +1,9 @@
+:md-ext: md
 = Maven&trade; Support & Care
+
+== Funding Requests
+
+* xref:funding/stf-2.0/proposals/index.{md-ext}[Funding Proposals STF 2026]
 
 == Epics
 
