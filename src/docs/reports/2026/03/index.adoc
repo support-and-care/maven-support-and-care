@@ -3,11 +3,14 @@
 
 == Work Package 1 — Security of the Supply Chain
 - Validate and improve the Java core library for the CycloneDX 1.7 specification (https://github.com/CycloneDX/cyclonedx-core-java/pull/786)
+- Better reproducible builds, detect version range usage in Maven Artifact Plugin (https://github.com/apache/maven-artifact-plugin/pull/206)
 
 == Work Package 2 — Maintenance
+- Prepare for Maven 3.10.0 Release (https://github.com/support-and-care/maven-support-and-care/issues/211)
 
 == Work Package 3 — Modernization of Core Feature
 - Update architecture documentation for Surefire 3.6: add information about the new unified testing provider
+- Finish migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 in 3.x branches (https://github.com/support-and-care/maven-support-and-care/issues/201)
 
 == Work Package 4 — Documentation
 
