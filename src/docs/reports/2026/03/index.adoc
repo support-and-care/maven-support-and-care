@@ -13,5 +13,6 @@
 - Finish migration of JUnit3 based tests that using `AbstractMojoTestCase` to JUnit 5 in 3.x branches (https://github.com/support-and-care/maven-support-and-care/issues/201)
 
 == Work Package 4 — Documentation
+- Researched and evaluated documentation platforms/tools
 
 
