@@ -1,6 +1,6 @@
 # ADR 001 — Documentation Site Generator
 
-**Status:** pending
+**Status:** accepted
 
 **Decision makers:** Support and Care Dev Team
 
