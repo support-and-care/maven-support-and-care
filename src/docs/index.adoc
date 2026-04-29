@@ -35,3 +35,4 @@
 * xref:reports/2026/01/index.adoc[2026-01]
 * xref:reports/2026/02/index.adoc[2026-02]
 * xref:reports/2026/03/index.adoc[2026-03]
+* xref:reports/2026/04/index.adoc[2026-04]
