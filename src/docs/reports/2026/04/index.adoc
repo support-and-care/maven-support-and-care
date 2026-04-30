@@ -9,6 +9,9 @@
 
 == Work Package 3 — Modernization of Core Feature
 
+- Starting some tool to automate partially release process/steps
+- Update documentation for Surefire 3.6
+
 == Work Package 4 — Documentation
 
 
