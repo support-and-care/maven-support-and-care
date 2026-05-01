@@ -6,6 +6,8 @@
 - Improve on cyclonedx 1.7 ECMA specification inconsistencies with OWASP
 
 == Work Package 2 — Maintenance
+- Release of the Maven 3.9.15 - due to a security vulnerability in plexus-utils (CVE-2025-67030)
+- Prepare for Maven 3.10.0 Release (https://github.com/support-and-care/maven-support-and-care/issues/211)
 
 == Work Package 3 — Modernization of Core Feature
 
