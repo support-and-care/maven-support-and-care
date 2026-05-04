@@ -4,17 +4,19 @@
 == Work Package 1 — Security of the Supply Chain
 - Improve buildinfo-file handling for multimodule projects (https://github.com/apache/maven-artifact-plugin/issues/93)
 - Improve on cyclonedx 1.7 ECMA specification inconsistencies with OWASP
+- Continue Helping add support for GitHub Ruleset into PyGitHub.
 
 == Work Package 2 — Maintenance
 - Release of the Maven 3.9.15 - due to a security vulnerability in plexus-utils (CVE-2025-67030)
 - Prepare for Maven 3.10.0 Release (https://github.com/support-and-care/maven-support-and-care/issues/211)
 
 == Work Package 3 — Modernization of Core Feature
-
-- Starting some tool to automate partially release process/steps
+- Starting a tool to automate partially release process/steps
 - Update documentation for Surefire 3.6
 
 == Work Package 4 — Documentation
+- Finalize Maven Initializer for Apache Maven.
+- Initialize the documentation tooling for "Getting Started" Documentation
 
 
 
