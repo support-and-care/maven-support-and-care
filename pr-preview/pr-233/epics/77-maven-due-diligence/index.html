@@ -1,0 +1,4590 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Public workspace tracking the work of the Support & Care for Apache Maven initiative.">
+      
+      
+        <meta name="author" content="Support & Care for Apache Maven">
+      
+      
+        <link rel="canonical" href="https://support-and-care.openelements.com/epics/77-maven-due-diligence/">
+      
+      
+        <link rel="prev" href="../49-jpms-support/">
+      
+      
+        <link rel="next" href="../../funding/stf-2.0/proposals/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="zensical-0.0.41">
+    
+    
+      
+        <title>Maven Due Dilligence - Support & Care for Apache Maven</title>
+      
+    
+    
+      
+        
+      
+      <link rel="stylesheet" href="../../assets/stylesheets/modern/main.fba56155.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,500,500i,700,700i%7CJetBrains+Mono:400,400i,700,700i&amp;display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../..",location),__md_scope.pathname.endsWith("/")||(__md_scope=new URL(__md_scope.pathname+"/",location)),__md_hash=e=>[...e].reduce(((e,t)=>(e<<5)-e+t.charCodeAt(0)),0),__md_get=(e,t=localStorage,_=__md_scope)=>JSON.parse(t.getItem(_.pathname+"."+e)),__md_set=(e,t,_=localStorage,a=__md_scope)=>{try{_.setItem(a.pathname+"."+e,JSON.stringify(t))}catch(e){}},document.documentElement.setAttribute("data-platform",navigator.platform)</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer" aria-label="Navigation"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#summary-and-resulting-tasks" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="Support &amp; Care for Apache Maven" class="md-header__button md-logo" aria-label="Support & Care for Apache Maven" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer" aria-label="Navigation">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-menu" viewBox="0 0 24 24"><path d="M4 5h16M4 12h16M4 19h16"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Support & Care for Apache Maven
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Maven Due Dilligence
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search" aria-label="Search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog" aria-label="Search">
+  <button type="button" class="md-search__button">
+    Search
+  </button>
+</div>
+      
+    
+    <div class="md-header__source">
+      
+    </div>
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Support &amp; Care for Apache Maven" class="md-nav__button md-logo" aria-label="Support & Care for Apache Maven" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="lucide lucide-book-open" viewBox="0 0 24 24"><path d="M12 7v14M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"/></svg>
+
+    </a>
+    Support & Care for Apache Maven
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven&trade; Support &amp; Care
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ADRs
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  ADRs
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ADRs/ADR-001-documentation-site-generator/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  ADR 001 — Documentation Site Generator
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Epics
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Epics
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven Support &amp; Care Epics
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../conventions/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Epic documentation
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  44 migrate to maven di
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  44 migrate to maven di
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../44-migrate-to-maven-di/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrate to Maven Dependency Injection
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--Draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  49 jpms support
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  49 jpms support
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../49-jpms-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Java Module path support
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--Draft"></span>
+  
+
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  77 maven due diligence
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  77 maven due diligence
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven Due Dilligence
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--Draft"></span>
+  
+
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="././" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven Due Dilligence
+
+    
+  </span>
+  
+  
+    
+  
+  
+    <span class="md-status md-status--Draft"></span>
+  
+
+  
+
+      </a>
+      
+        
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-and-resulting-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Summary and resulting tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary and resulting tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Current state
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resulting-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Resulting tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resulting tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build-still-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor build still open
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#further-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Further tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Further tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Component design
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Branches
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Integration Tests
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor build
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-build-investigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Detailed Build investigation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Build investigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preconditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Preconditions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-maven-projects-and-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Build Maven projects and reactor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        General questions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maven-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Studies
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-4-00-rc-2-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven 4 (.0.0-RC-2) branches
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Build problems
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor Build problems
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-build-problems-not-part-of-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Other build problems (not part of reactor)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other build problems (not part of reactor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plexus-swizzle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Plexus Swizzle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archived-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Archived Components
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Resolved issues
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resolved issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-quick-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Initial Quick wins
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Quick wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maven-wagon" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Wagon
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-verifier-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Verifier Plugin
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-stage-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Stage Plugin
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-artifact-transfer-deprecated" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Artifact Transfer (Deprecated)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Mapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-project-utils-deprecated" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Project Utils (Deprecated)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-studies_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Studies
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-repository-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Repository Tools
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-shared-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Shared IO
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Funding
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Funding
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1" id="__nav_4_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Stf 2.0
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Stf 2.0
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_1" id="__nav_4_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Proposals
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_4_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Proposals
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  STF 2.0 Proposals Index
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_1_2" id="__nav_4_1_1_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Open
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_1_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Open
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/open/core-jpms-refactoring/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Refactor Maven Core to Full Java Modules
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/open/duplicate-lifecycle-warnings/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Warning/Errors on Duplicate Lifecycle Phases
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/open/lifecycle-replacement/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Lifecycle Replacement
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/open/open-feature-requests/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Open Feature Requests from the First Funding Round
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_1_1_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_1_1_3" id="__nav_4_1_1_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Proposed
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="4" aria-labelledby="__nav_4_1_1_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_1_1_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Proposed
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/archetype-modernization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Modernization of Maven Archetypes
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/build-cache-docs/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Leverage the Maven Build Cache Extension
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/build-cache-maintenance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Build Cache Extension Project Maintenance
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/build-observability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Build Observability and Reporting
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/dependency-hash-verification/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Dependency Hash Verification
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/dependency-track-frontend/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  New Frontend for Dependency-Track
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/github-pages-hosting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  GitHub/Codeberg Pages Hosting for Maven Sites
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/global-dependency-replacements/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Global Dependency Replacements
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/junit-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migration of JUnit 4/5 Based Tests to JUnit 6
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/logging-tracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Logging and Tracing Policy for Maven
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/maven-initializer-v2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven Initializer V2
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/maven-site-look-feel/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Update Look and Feel of Generated Maven Sites
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/maven-telemetry-service/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Maven Telemetry Service
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/mcp-support/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  MCP Support for Apache Maven
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/modern-landing-page/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Modern Landing Page for Maven Homepage
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/plugin-bug-fixing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Bug Fixing / Issues and PR Review in Maven Plugins
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/plugins-maven4-migration/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Migrate All Apache Plugins to Maven 4 APIs
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/purl-dependencies/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Define Maven Dependencies by Using purl-spec
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/rich-plugin-reporting/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Rich Reporting for Important Plugins
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/sbom-security-checks/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  SBOM and Security Scorecard Verification
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/surefire-junit-platform/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Surefire JUnit Platform Migration
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/test-fixtures/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Test Fixtures Best Practice for Maven 4
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../funding/stf-2.0/proposals/proposed/versioned-maven-sites/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Support Versions in Hosted Maven Sites
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  Reports
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  Reports
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1" id="__nav_5_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  2024
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  2024
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_1_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_1_1" id="__nav_5_1_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  12
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_1_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_1_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  12
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2024/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  December 2024
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2" id="__nav_5_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  2025
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  2025
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_1" id="__nav_5_2_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  01
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  01
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  January 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_2" id="__nav_5_2_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  02
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  02
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  February 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_3" id="__nav_5_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  03
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  03
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  March 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_4" id="__nav_5_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  04
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  04
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  April 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_5" id="__nav_5_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  05
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  05
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/05/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  May 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_6" id="__nav_5_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  06
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  06
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/06/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  June 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_7" id="__nav_5_2_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  07
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  07
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/07/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  July 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_8" id="__nav_5_2_8_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  08
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  08
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/08/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  August 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_9" id="__nav_5_2_9_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  09
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  09
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/09/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  September 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_10" id="__nav_5_2_10_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  10
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  10
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  October 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_11" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_11" id="__nav_5_2_11_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  11
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_11">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  11
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/11/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  November 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_2_12" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_2_12" id="__nav_5_2_12_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  12
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_2_12_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_2_12">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  12
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2025/12/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  December 2025
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3" id="__nav_5_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  2026
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_5_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  2026
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_1" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_1" id="__nav_5_3_1_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  01
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_1_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_1">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  01
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2026/01/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  January 2026
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_2" id="__nav_5_3_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  02
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  02
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2026/02/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  February 2026
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_3" id="__nav_5_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  03
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  03
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2026/03/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  March 2026
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_5_3_4" id="__nav_5_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  04
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="3" aria-labelledby="__nav_5_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+  04
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reports/2026/04/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+  April 2026
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  
+                    
+                    
+                    
+                    
+                      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+                      <div class="md-sidebar-button__wrapper">
+                        <label class="md-sidebar-button" for="__toc"></label>
+                      </div>
+                    
+                  
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#summary-and-resulting-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Summary and resulting tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Summary and resulting tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#current-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Current state
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#resulting-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Resulting tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resulting tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build-still-open" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor build still open
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#further-tasks" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Further tasks
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Further tasks">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#component-design" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Component design
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Branches
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Documentation
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#integration-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Integration Tests
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor build
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#detailed-build-investigation" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Detailed Build investigation
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detailed Build investigation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#preconditions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Preconditions
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-maven-projects-and-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Build Maven projects and reactor
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#general-questions" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        General questions
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="General questions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maven-studies" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Studies
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-4-00-rc-2-branches" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven 4 (.0.0-RC-2) branches
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Build problems
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Build problems">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reactor-build-problems" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Reactor Build problems
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-build-problems-not-part-of-reactor" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Other build problems (not part of reactor)
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Other build problems (not part of reactor)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#plexus-swizzle" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Plexus Swizzle
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#archived-components" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Archived Components
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#resolved-issues" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Resolved issues
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Resolved issues">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#initial-quick-wins" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Initial Quick wins
+      </span>
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Initial Quick wins">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#maven-wagon" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Wagon
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-verifier-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Verifier Plugin
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-stage-plugin" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Stage Plugin
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-artifact-transfer-deprecated" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Artifact Transfer (Deprecated)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Mapping
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-project-utils-deprecated" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Project Utils (Deprecated)
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-studies_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Studies
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-repository-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Repository Tools
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#maven-shared-io" class="md-nav__link">
+    <span class="md-ellipsis">
+      <span class="md-typeset">
+        Maven Shared IO
+      </span>
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+  <h1 id="__skip">Maven Due Dilligence</h1>
+
+<p><strong><a href="https://github.com/support-and-care/maven-support-and-care/issues/77">Epic 77</a></strong></p>
+<p>The major task of this epic is to <em>investigate the current state of the Maven build</em> and to ensure that we can build all projects with the required JDK and Maven versions.
+We want to use tools like <a href="https://jqassistant.org">jQAssistant</a> to analyze the quality of Maven and perform further analysis like overall dependency checks.
+A precondition for successful analysis is that we can build all projects with the respective JDK and Maven versions.</p>
+<dl><dt><strong><a name="box:maven-source"></a>❗ IMPORTANT: Maven Source and Reactor Build</strong></dt><dd>
+
+* **Maven Source**\
+Most of the content in this document refers to the so-called _Maven Source_ (cf. [SCM section](https://maven.apache.org/scm.html) of the Maven documentation).
+Whenever we use this term, we refer to the collection of Maven components provided with the described SCM structure.
+* **Reactor Build**\
+Note that the Maven Source also contains a Maven [_reactor build_](https://github.com/apache/maven-sources/blob/master/aggregator/pom.xml)
+which builds most of the Maven components in a single run (in the checked-out state of the source, you can find the reactor in `sources/aggregator`).
+</dd></dl>
+
+<h2 id="summary-and-resulting-tasks">Summary and resulting tasks</h2>
+<p>We would like to ensure that we can build all Maven projects with the required JDK and Maven versions</p>
+<ul>
+<li>As <em>reactor build</em> (cf. <a href="https://maven.apache.org/guides/development/guide-building-maven.html">Building Maven</a>), but also</li>
+<li>As <em>individual</em> projects (e.g., to check for outdated dependencies).</li>
+</ul>
+<h3 id="current-state">Current state</h3>
+<p>The Maven build is in a rather good state, taking into account that there are 133 subprojects developed and maintained since about 20 years by only a small number of committers.
+The build is well-structured and uses a reactor build to build most projects in a single run.
+However, there are some problems with the build, mainly due to outdated Java versions and dependencies.
+The <a href="#detailed-build-investigation">detailed investigation</a> (current state) shows the problems which prohibit a successful build of the Maven projects.</p>
+<h3 id="resulting-tasks">Resulting tasks</h3>
+<h4 id="reactor-build-still-open">Reactor build still open</h4>
+<p>Though applying <a href="#initial-quick-wins">initial quick-wins</a>, improved the <em>reactor build</em> already,
+we still experience build problems (also by ongoing development)&#160;-&gt;&#160;<a href="#reactor-build-problems">Reactor Build problems</a>.</p>
+<h4 id="further-tasks">Further tasks</h4>
+<p>The following tasks are just ideas and have no particular order!</p>
+<h5 id="component-design">Component design</h5>
+<ul>
+<li>[ ] Check for some components whether the Maven committers should keep them in the current form, or whether some rework is necessary.
+For example, the Doxia tools (<code>linkcheck</code>, <code>book-renderer</code>, <code>book-maven-plugin</code>) are based on Doxia 1.3, which is outdated.
+In particular, it contains some <a href="https://maven.apache.org/doxia/references/index.html">deprecated</a> formats (e.g., iText).</li>
+</ul>
+<h5 id="branches">Branches</h5>
+<ul>
+<li>[ ] Check the setup of the <code>maven-studies</code> repository (cf. <a href="#maven-studies">Maven Studies</a>).
+Either merge them into a single branch or drop them from the overall structure.</li>
+<li>[ ] Check the purpose of the open branches and in particular if they are still necessary.
+Perhaps we can close some of them as they are already merged?</li>
+<li>[ ] Should there be a branch naming policy in the long run?</li>
+</ul>
+<h5 id="documentation">Documentation</h5>
+<ul>
+<li>[ ] Almost all components have a <code>README.md</code> file which contains some generic text how to contribute to the project.
+It would be nice to have a more detailed description of the component itself in the <code>README.md</code> file (or at least some link to further documentation).</li>
+<li>[ ] Make all sections in the Maven site referable (e.g., by using anchors).</li>
+<li>[ ] Test/ensure referential integrity of docs and code, i.e.,</li>
+<li>Ensure all <a href="https://github.com/apache/maven-site/blob/master/content/markdown/scm.md">SCM</a> projects correspond to the actual projects in the <a href="https://github.com/apache/maven-sources/blob/master/default.xml">Google repo configuration</a> (aka. <a href="#box:maven-source">box:maven-source</a>).</li>
+<li>Ensure they correspond to the component graphics in the <a href="https://maven.apache.org/scm.html">SCM</a> page.</li>
+</ul>
+<h5 id="integration-tests">Integration Tests</h5>
+<ul>
+<li>[ ] Run integration tests (profile <code>run-its</code>) for all Maven projects and check out the result&#160;(-&gt;&#160;Stability of the build).</li>
+</ul>
+<h5 id="reactor-build">Reactor build</h5>
+<ul>
+<li>[ ] Enable Maven <code>verify</code> for the <a href="https://github.com/apache/maven-sources">reactor build</a>.</li>
+<li>[ ] Enable reactor build for pull-requests of the subprojects&#160;-&gt;&#160;Trigger reactor build with particular branch of subproject repository (how to handle forks?).</li>
+</ul>
+<h2 id="detailed-build-investigation">Detailed Build investigation</h2>
+<h3 id="preconditions">Preconditions</h3>
+<p><a name="box:sac-maven-tools"></a><strong>Support and Care Maven Tools</strong></p>
+<p>If you are a member of the Support and Care team, or interested in our approach to the Maven build, you can use our <a href="https://github.com/support-and-care/sac-maven-tools.git">SAC Maven Tools</a> to check out and work with the <a href="#box:maven-source">box:maven-source</a> (Hint: Among others it asks you to perform the following step as well to get the Maven Source code, so the approach is not completely different).</p>
+<ul>
+<li>(Otherwise,{nbsp) Check out the <a href="#box:maven-source">box:maven-source</a> from the ASF GitHub repositories by following the instructions in the <a href="https://maven.apache.org/scm.html">SCM section</a> of the Maven documentation.</li>
+<li>Use JDK 21 (we found the following problems with Temurin 21.0.5 on Apple Silicon).</li>
+<li>Use Maven 3.9.9 and 4.0.0-RC-2 (not yet 3.6.3).</li>
+</ul>
+<h3 id="build-maven-projects-and-reactor">Build Maven projects and reactor</h3>
+<ul>
+<li><strong>Either (Users of <a href="#box:sac-maven-tools">Support and Care Maven Tools</a>)</strong>\
+Run the <code>run-maven</code> script from the <code>bin</code> directory of the Maven Source, e.g.,</li>
+<li><code>bin/run-maven clean verify</code> (Build all projects separately, except for the reactor)</li>
+<li><code>PROJECTS=core/maven,core/maven-3 bin/run-maven clean verify</code> (Build only Maven 3 + 4 core)</li>
+<li><code>PROJECTS=shared/shared-io bin/run-maven clean verify</code> (Build <code>maven-shared-io</code> only)</li>
+<li><code>PROJECTS=sources/aggregator bin/run-maven -P run-its clean install</code> (Build and install reactor and run integration tests)</li>
+<li><strong>Or</strong>\
+Build the Maven projects with <code>mvn</code> (few contain a Maven wrapper), e.g.,</li>
+<li><code>cd ...; mvn clean verify</code> (Build the respective project)</li>
+<li>If you want to build separate projects, you have to change to the respective directories.</li>
+<li><code>cd sources/aggregator mvn -P run-its clean install</code> (Build reactor and run integration tests)</li>
+</ul>
+<h3 id="general-questions">General questions</h3>
+<h4 id="maven-studies">Maven Studies</h4>
+<p>The <a href="#box:maven-source">box:maven-source</a> contains some case studies or proof-of-concepts (i.e., <code>maven-studies</code>).
+They live on different branches of the same repository, which makes it hard to work with them, in particular with the <code>repo</code> tool of <a href="#box:maven-source">box:maven-source</a>.</p>
+<ul>
+<li>Should we merge them into a single branch?</li>
+<li>Or completely drop them from the overall structure (at least from the reactor build)?</li>
+</ul>
+<p><strong>🔥 CAUTION</strong>\
+A similar problem might occur with the <code>core/maven</code> and <code>core/maven-3</code> repositories as they follow the same pattern which makes working with <a href="#box:maven-source">box:maven-source</a> difficult.</p>
+<h4 id="maven-4-00-rc-2-branches">Maven 4 (.0.0-RC-2) branches</h4>
+<p>Some projects have <code>mvn4</code> branches (some even <code>maven4</code>) which seem rather old (though Maven 4 is not yet GA released).
+Could we drop them as this is somehow irritating to new users of the Maven Source?</p>
+<h3 id="build-problems">Build problems</h3>
+<h4 id="reactor-build-problems">Reactor Build problems</h4>
+<p>A reactor build currently still reveals the following problems.</p>
+<ul>
+<li><strong>core/mvnd</strong>\
+Failed to create context for skin: Cannot use skin: has [1.11.1,2.0.0-M1) Doxia Sitetools prerequisite)</li>
+<li><strong>plexus/classworlds</strong>\
+Failed to obtain site model: Error parsing site descriptor: Unrecognised tag: 'name' (position: START_TAG seen ...&lt;bannerLeft&gt;\n    &lt;name&gt;... @24:11))</li>
+</ul>
+<h4 id="other-build-problems-not-part-of-reactor">Other build problems (not part of reactor)</h4>
+<h5 id="plexus-swizzle">Plexus Swizzle</h5>
+<p><a href="https://github.com/codehaus-plexus/plexus-swizzle.git">Plexus Swizzle</a>:</p>
+<ul>
+<li><code>The following artifacts could not be resolved: org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT (absent): org.codehaus.plexus:plexus-components:pom:4.0-SNAPSHOT</code></li>
+</ul>
+<h3 id="archived-components">Archived Components</h3>
+<p>Should the Maven committers drop them from Maven Source?</p>
+<ul>
+<li>https://github.com/apache/maven-sandbox</li>
+<li>https://github.com/apache/maven-repository-tools</li>
+<li>https://github.com/apache/maven-doxia-ide</li>
+<li>https://github.com/codehaus-plexus/plexus-components</li>
+<li>https://github.com/codehaus-plexus/plexus-containers</li>
+<li>https://github.com/codehaus-plexus/plexus-swizzle</li>
+<li>uses <code>org.codehaus.plexus:plexus-components</code> in version 4.0.0-SNAPSHOT as parent which does not resolve.
+  The parent is a SNAPSHOT, but the repository (version) needs to be identified.
+  Version <a href="https://github.com/codehaus-plexus/plexus-components/releases/tag/plexus-components-4.0">4.0</a> is close, but the owner has archived the source code by Dec. 2023, and it contains many later versions.</li>
+<li>https://github.com/codehaus-plexus/plexus-digest</li>
+<li>https://github.com/codehaus-plexus/plexus-cli</li>
+<li>https://github.com/codehaus-plexus/plexus-cipher</li>
+</ul>
+<h2 id="resolved-issues">Resolved issues</h2>
+<p>Since starting this epic, we could resolve the following issues.</p>
+<h3 id="initial-quick-wins">Initial Quick wins</h3>
+<dl><dt><strong>❗ IMPORTANT</strong></dt><dd>
+
+To visualize the problems and the results of below discussed quick wins, we added a build to the Maven projects.
+Both currently make use of JDK 21 and Maven 3.9.9, as well as Maven 4.0.0-RC-2.
+We can show the initial results of the builds (without changes), and the results for both Maven versions.
+
+It is clear that this does not yet cover all remaining (and to be detected) open problems of the Maven build.
+For instance, it does not yet cover full integration tests or documentation checks.
+Nevertheless, it is a starting point that allows for step-by-step improvements.
+In particular, it allows to build the projects (and execute at least their unit tests) with the required JDK and currently two out of three supported Maven versions.
+
+* For each of the single repositories below (running `mvn verify`), the builds (on the respective PRs) are successful.
+See the build links in the discussion below.
+* For the reactor build (running `mvn install site`. (Note: We know, `install` is not necessary here, `verify should do the job for a full reactor build. We already prepare for further build steps based on the fresh installation.)), it is a bit more complicated.
+  * For Maven 3.9.9, the build is successful, but with some errors (resulting from site building).
+  * For Maven 4.0.0-RC-2, the build still has some problems, and it will take us some time to resolve them&#160;(->&#160;Work-in-Progress).
+</dd></dl>
+
+<p>We derived the following tasks from the current state above.
+They make sure that we can at least execute the Maven build with the required JDK and Maven versions without running into basic build problems.</p>
+<ul>
+<li><strong>Triage</strong>\
+Check with the Maven committers if we could thin out the <em>reactor build</em> and the overall <a href="#box:maven-source">box:maven-source</a>.</li>
+<li>[ ] Archive unnecessary components. (Note: Actual archiving is up to the Maven committers and out of scope for the Maven Support &amp; Care team)</li>
+<li>[x] Drop them from the Maven Source (or at least from the reactor build; <a href="https://github.com/apache/maven-sources/pull/13">Merged PR for both M3 and M4</a>).
+  The reactor build would become easier if the following components were dropped from the reactor build<ul>
+<li>The so-called <em>Maven Studies</em> (as they are causing trouble, cf. our forks) are moved to a Maven profile (<code>studies</code>),</li>
+<li><a href="https://github.com/apache/maven-studies/tree/consumer-pom">Consumer POM</a> (SaC: <a href="https://github.com/support-and-care/maven-studies/tree/consumer-pom">fork</a>, <a href="https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-consumer-pom">bugfix</a>, <a href="https://github.com/support-and-care/maven-studies/actions/runs/12733456692">Successful GH Action with M3</a>),</li>
+<li><a href="https://github.com/apache/maven-studies/tree/maven-extension-demo">Extension Demo Study</a> (SaC: <a href="https://github.com/support-and-care/maven-studies/tree/maven-extension-demo">fork</a>, <a href="https://github.com/support-and-care/maven-studies/tree/bugfix/77-add-maven-verify-maven-extension-demo">bugfix</a>, <a href="https://github.com/support-and-care/maven-studies/actions/runs/12734023531">Successful GH Action with M3</a>),</li>
+<li><a href="https://github.com/apache/maven-studies/tree/maven-eventsound-extension">Eventsound Extension Demo</a> (SaC: <a href="https://github.com/support-and-care/maven-studies/tree/maven-eventsound-extension">fork</a>, <a href="https://github.com/support-and-care/maven-studies/tree/bugfix/77-make-project-build-again-maven-extension-demo">bugfix</a>, <a href="https://github.com/support-and-care/maven-studies/actions/runs/12734023531">Successful GH Action with M3</a>),</li>
+<li>The <a href="https://github.com/apache/maven-project-utils">Maven Project Utils</a> as they are soon to be archived,</li>
+<li>The <a href="https://github.com/apache/maven-artifact-transfer">Maven Artifact Transfer</a> as it is deprecated and should be archived soon, and</li>
+<li>The <a href="https://github.com/apache/maven-repository-tools">Maven Repository Tools</a> (aka.
+Maven <em>Meeper</em>) from the reactor build (<a href="https://github.com/apache/maven-sources/pull/13">Draft PR for M3</a> will be withdrawn) as</li>
+<li>It is archived (so no further development is expected),</li>
+<li>It has many non-straightforward problems (see below).</li>
+</ul>
+</li>
+</ul>
+<dl><dt><strong>❗ IMPORTANT</strong></dt><dd>
+
+For the next steps below, we assume that the components mentioned above
+will not survive the [triage](#desc-item:triage) and concentrate on the remaining components.
+</dd></dl>
+
+<ul>
+<li><strong>Maven 3 (.9.9) Updates</strong>\
+To enable a successful build with Maven 3 (.9.9) the following changes are necessary.</li>
+<li>[x] <a href="https://github.com/apache/maven-verifier-plugin">Maven Verifier Plugin</a><ul>
+<li>Update the Java version to at least Java 8, and</li>
+<li>Drop duplicate license from <a href="https://github.com/apache/maven-verifier-plugin/blob/1330656e1945dfe7ef1a1f3e8034b64138887f10/src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java#L29"><code>VerifierMojo.java</code></a> as it leads to a checkstyle error due to splitting the import statements.</li>
+</ul>
+</li>
+<li>[x] <a href="https://github.com/apache/maven-stage-plugin">Maven Stage Plugin</a>: Update the Java version to at least Java 8</li>
+<li>[x] <a href="https://github.com/apache/maven-mapping">Maven Mapping</a>: Update the Java version to at least Java 8</li>
+<li><strong>Maven 4 (.0.0-RC-2) updates</strong>\
+To enable a successful build with Maven 4 (.0.0-RC-2) the following changes are necessary.</li>
+<li>[x] <a href="https://github.com/apache/maven-shared-io">Maven Shared IO</a> (<a href="https://github.com/apache/maven-shared-io/pull/27">PR for M3</a>, also works with M4; <a href="https://github.com/support-and-care/maven-shared-io/actions/runs/12734042142">Successful GH Action</a>):<ul>
+<li>Fix parent,</li>
+<li>and add Plexus-XML dependency (in test scope).</li>
+</ul>
+</li>
+<li>[x] Maven Verifier Plugin (<a href="https://github.com/apache/maven-verifier-plugin/pull/6">Merged PR</a>, <a href="https://github.com/support-and-care/maven-verifier-plugin/actions/runs/12738839164">Successful GH Action</a>):<ul>
+<li>Upgrade to Parent version 43.</li>
+<li>Apply Spotless to the codebase.</li>
+</ul>
+</li>
+<li>[x] Maven Stage Plugin (<a href="https://github.com/apache/maven-stage-plugin/pull/15">Merged PR</a>, <a href="https://github.com/support-and-care/maven-stage-plugin/actions/runs/12738868925">Successful GH Action</a>):<ul>
+<li>Drop <code>parent.relativePath</code>.</li>
+<li>Refactor <code>DefaultRepositoryCopier::copy</code> to use less than 150 lines of code.</li>
+<li>Upgrade to Parent version 43.</li>
+<li>Apply Spotless to the codebase.</li>
+</ul>
+</li>
+<li>[x] Maven Mapping (<a href="https://github.com/apache/maven-mapping/pull/8">Merged PR</a>, <a href="https://github.com/support-and-care/maven-mapping/actions/runs/12734150620">Successful GH Action</a>):<ul>
+<li>Drop <code>parent.relativePath</code>.</li>
+<li>Upgrade to Parent version 43.</li>
+<li>Apply Spotless to the codebase.</li>
+</ul>
+</li>
+</ul>
+<p>In particular, the following problems were resolved</p>
+<h4 id="maven-wagon">Maven Wagon</h4>
+<p><a href="https://github.com/apache/maven-wagon">Maven Wagon</a> has Flaky (unit) tests (at least in the reactor builds).
++
+We perform no action by now, perhaps test retries in the future?</p>
+<h4 id="maven-verifier-plugin">Maven Verifier Plugin</h4>
+<p><a href="https://github.com/apache/maven-verifier-plugin">Maven Verifier Plugin</a></p>
+<ul>
+<li><strong>Maven 3 (.9.9)</strong>\
+Wrong Java Version</li>
+<li>
+<p>Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code></p>
+<p>-&gt; Change property <code>javaVersion</code> to <code>8</code> to resolve the problem.
+  * Reveals a checkstyle error due to duplicate license in <code>src/main/java/org/apache/maven/plugins/verifier/VerifierMojo.java</code>:</p>
+</li>
+</ul>
+<p>+
++
+-&gt; Dropping the license led to successful builds.</p>
+<ul>
+<li><strong>Maven 4 (.0.0-RC-2)</strong></li>
+<li>
+<p>Enforcer Error:</p>
+<div class="highlight"><pre><span></span><code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-verifier-plugin: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: &#39;void org.apache.maven.plugin.PluginParameterExpressionEvaluator.&lt;init&gt;(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)&#39;
+</code></pre></div>
+<p>-&gt; Update to Parent 43
+  * Spotless Errors:</p>
+<div class="highlight"><pre><span></span><code>[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-verifier-plugin: The following files had format violations:
+...
+</code></pre></div>
+<p>-&gt; Apply Spotless to the codebase.</p>
+</li>
+</ul>
+<h4 id="maven-stage-plugin">Maven Stage Plugin</h4>
+<p><a href="https://github.com/apache/maven-stage-plugin">Maven Stage Plugin</a></p>
+<ul>
+<li><strong>Maven 3 (.9.9)</strong>\
+Wrong Java Version</li>
+<li>
+<p>Enforcer error: <code>Restricted to JDK 1.7 yet commons-io:commons-io:jar:2.14.0:compile contains org/apache/commons/io/ByteOrderMark.class targeted to JDK 8
+  Found Banned Dependency: commons-io:commons-io:jar:2.14.0</code></p>
+<p>-&gt; Add property <code>javaVersion</code> with value <code>8</code> to resolve the problem.
+* <strong>Maven 4 (.0.0-RC-2)</strong>
+  * Validation error: ’parent.relativePath' of POM org.apache.maven.plugins:maven-stage-plugin:1.1-SNAPSHOT (/Users/ascheman/wrk/maven/maven/plugins/tools/maven-stage-plugin/pom.xml) points at '../../pom/maven/maven-plugins/pom.xml' but no POM could be found`</p>
+<p>-&gt; Drop.
+  * Enforcer Error: <code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-stage-plugin: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.&lt;init&gt;(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'</code></p>
+<p>-&gt; Update to Parent 43.
+  * Checkstyle error: `[ERROR] src/main/java/org/apache/maven/plugins/stage/DefaultRepositoryCopier.java:[83,5] (sizes) MethodLength: Method copy length is 192 lines (max allowed is 150).``</p>
+<p>-&gt; Refactor <code>DefaultRepositoryCopier::copy</code> to use less than 150 lines of code.
+  * Spotless error (cf. build this commit):</p>
+<div class="highlight"><pre><span></span><code>[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-stage-plugin: The following files had format violations:
+...
+</code></pre></div>
+<p>-&gt; Apply Spotless to the codebase.</p>
+</li>
+</ul>
+<h4 id="maven-artifact-transfer-deprecated">Maven Artifact Transfer (Deprecated)</h4>
+<p><a href="https://github.com/apache/maven-artifact-transfer">Maven Artifact Transfer</a>: Wrong Java Version</p>
+<ul>
+<li>Component is <em>deprecated</em> (on its <code>master</code> branch)</li>
+</ul>
+<p>-&gt; Dropping it from the reactor build.
+* Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code> ...</p>
+<p>-&gt; Change property <code>javaVersion</code> to <code>8</code> to resolve the problem.</p>
+<h4 id="maven-mapping">Maven Mapping</h4>
+<p><a href="https://github.com/apache/maven-mapping">Maven Mapping</a></p>
+<ul>
+<li><strong>Maven 3 (.9.9)</strong>\
+Wrong Java Version</li>
+<li>
+<p>Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code> ...</p>
+<p>-&gt; Change property <code>javaVersion</code> to <code>8</code> to resolve the problem.
+* <strong>Maven 4 (.0.0-RC-2)</strong>
+  * Validation error: ’parent.relativePath' of POM org.apache.maven.shared:maven-mapping:3.0.1-SNAPSHOT (/Users/ascheman/wrk/maven/maven/shared/mapping/pom.xml) points at '../../pom/maven/maven-shared-components/pom.xml' but no POM could be found, please verify your project structure @ line 23, column 3`</p>
+<p>-&gt; Drop.
+  * Enforcer error: <code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-mapping: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.&amp;lt;init&gt;(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'
+  ...</code></p>
+<p>-&gt; Update to Parent 43
+  * Spotless error: <code>[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-mapping: The following files had format violations:
+  ...</code></p>
+<p>-&gt; Apply Spotless to the codebase.</p>
+</li>
+</ul>
+<h4 id="maven-project-utils-deprecated">Maven Project Utils (Deprecated)</h4>
+<p><a href="https://github.com/apache/maven-project-utils">Maven Project Utils</a></p>
+<ul>
+<li><strong>Maven 3 (.9.9)</strong>\
+Wrong Java Version</li>
+<li>
+<p>Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code> ...</p>
+<p>-&gt; Change property <code>javaVersion</code> to <code>8</code> to resolve the problem.
+* <strong>Maven 4 (.0.0-RC-2)</strong>
+  * Enforcer error: <code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce (enforce-maven-version) on project maven-project-utils: Execution enforce-maven-version of goal org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce failed: An API incompatibility was encountered while executing org.apache.maven.plugins:maven-enforcer-plugin:1.4.1:enforce: java.lang.NoSuchMethodError: 'void org.apache.maven.plugin.PluginParameterExpressionEvaluator.&lt;init&gt;(org.apache.maven.execution.MavenSession, org.apache.maven.plugin.MojoExecution, org.apache.maven.project.path.PathTranslator, org.codehaus.plexus.logging.Logger, org.apache.maven.project.MavenProject, java.util.Properties)'</code> -&gt; Update to Parent 43
+  * Spotless error: <code>[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.43.0:check (default) on project maven-project-utils: The following files had format violations:
+  ...</code></p>
+</li>
+</ul>
+<h4 id="maven-studies_1">Maven Studies</h4>
+<p><a href="https://github.com/apache/maven-studies">Maven Studies</a>:</p>
+<ul>
+<li><strong>Maven 3 (.9.9)</strong>\
+Wrong Java Version(s)</li>
+<li><a href="https://github.com/apache/maven-studies/tree/consumer-pom">Consumer POM</a>:<ul>
+<li>Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code> ...</li>
+<li>Adding properties <code>maven.compiler.source</code> and <code>maven.compiler.target</code> with value <code>8</code> resolved the problem.</li>
+</ul>
+</li>
+<li><a href="https://github.com/apache/maven-studies/tree/maven-eventsound-extension">Eventsound Extension</a>: Checkstyle violations<ul>
+<li><code>There are two errors reported by Checkstyle 6.18 with config/maven_checks.xml ruleset.
+[ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[46] (javadoc) JavadocType: Missing a Javadoc comment.
+[ERROR] src/main/java/org/apache/maven/extensions/eventsound/SoundPlayingListener.java:[68,72] (whitespace) ParenPad: ')' is not preceded with whitespace.</code></li>
+<li>Adding a Javadoc comment to <code>SoundPlayingListener.java</code> and fixing the whitespace issue resolved the problem.</li>
+</ul>
+</li>
+<li>
+<p><a href="https://github.com/apache/maven-studies/tree/maven-extension-demo">Extension Demo Study</a>: Wrong Java Version</p>
+<ul>
+<li>Compile error(s): <code>Source option 7 is no longer supported. Use 8 or later.</code> ...</li>
+</ul>
+<p>-&gt; Add property <code>javaVersion</code> to <code>8</code> to resolve the problem.
+* <strong>Maven 4 (.0.0-RC-2)</strong>\
+Not investigated (we should drop them, at least from the reactor build).</p>
+</li>
+</ul>
+<h4 id="maven-repository-tools">Maven Repository Tools</h4>
+<p><a href="https://github.com/apache/maven-repository-tools">Maven Repository Tools</a>: Dependency problem + Wrong Java version</p>
+<p><strong>⚠️ WARNING</strong>\
+The project is in <em>archived</em> state (see <a href="#archived-components">Archived Components</a>)!
+Why is it still part of the reactor build?</p>
+<ul>
+<li>Build error: <code>[ERROR] Failed to execute goal on project maven-meeper: Could not collect dependencies for project org.apache.maven:maven-meeper:jar:1.0-SNAPSHOT
+[ERROR] Failed to read artifact descriptor for org.apache.commons:commons-csv:jar:1.0-SNAPSHOT</code></li>
+<li>Changing the version of <code>commons-csv</code> to <code>1.0</code> lead to the next problem: <code>[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:2.0.2:compile (default-compile) on project maven-meeper: Compilation failure: Compilation failure:
+[ERROR]: Source option 1.4 is no longer supported.
+Use 8 or later.
+[ERROR] error: Target option 1.4 is no longer supported.
+Use 8 or later.</code></li>
+</ul>
+<p>-&gt; Adding property <code>javaVersion</code> to <code>8</code> did <em>not</em> resolve the problem.
+  * Changing to a newer (current) parent POM (<code>43</code>) revealed new problems:
+  ...</p>
+<p><strong>🔥 CAUTION</strong>\
+This project has so many problems and seems completely unused&#160;-&gt;&#160;We suggest dropping it from the reactor build.</p>
+<h4 id="maven-shared-io">Maven Shared IO</h4>
+<p><a href="https://github.com/apache/maven-shared-io">Maven Shared IO</a>: Misc.&#160;errors</p>
+<ul>
+<li>The reactor build leads to <code>[ERROR] Failed to execute goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check (default) on project maven-shared-io: Execution default of goal com.diffplug.spotless:spotless-maven-plugin:2.28.0:check failed: An API incompatibility was encountered while executing com.diffplug.spotless:spotless-maven-plugin:2.28.0:check: java.lang.NoSuchMethodError: 'com.sun.tools.javac.tree.JCTree com.sun.tools.javac.tree.JCTree$JCImport.getQualifiedIdentifier()'</code></li>
+</ul>
+<p>-&gt; Upgrade to the current parent project (<code>43</code>)
+* Leads to: Test errors</p>
+<p><code>[ERROR] Errors:
+  [ERROR]   DefaultDownloadManagerTest.testShouldLookupInstanceDefaultRoleHint:77-&gt;PlexusTestCase.lookup:201-&gt;PlexusTestCase.getContainer:141-&gt;PlexusTestCase.setupContainer:98 » NoClassDefFound org/codehaus/plexus/util/xml/pull/XmlPullParserException</code></p>
+<p>-&gt; Add the dependency <code>org.codehaus.plexus:plexus-xml</code> (with <code>test</code> scope) to resolve the problem.</p>
+
+
+
+
+
+
+
+
+
+  
+  
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Support & Care for Apache Maven
+    </div>
+  
+  
+    Made with
+    <a href="https://zensical.org/" target="_blank" rel="noopener">
+      Zensical
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate":null,"base":"../..","features":[],"search":"../../assets/javascripts/workers/search.e2d2d235.min.js","tags":null,"translations":{"clipboard.copied":"Copied to clipboard","clipboard.copy":"Copy to clipboard","search.result.more.one":"1 more on this page","search.result.more.other":"# more on this page","search.result.none":"No matching documents","search.result.one":"1 matching document","search.result.other":"# matching documents","search.result.placeholder":"Type to start searching","search.result.term.missing":"Missing","select.version":"Select version"},"version":null}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.dbc0afdc.min.js"></script>
+      
+    
+  </body>
+</html>
