@@ -1,28 +1,22 @@
-= April 2025
-:icons: font
+# April 2025
 
-== Work Package 1 — Security of the Supply Chain
+## Work Package 1 — Security of the Supply Chain
 
-To create SBOMS for all Maven projects we work with the (https://projects.eclipse.org/projects/technology.apoapsis[Eclipse ORT-Server]).
+To create SBOMS for all Maven projects we work with the ([Eclipse ORT-Server](https://projects.eclipse.org/projects/technology.apoapsis)).
 We help fixing HelmCharts issues.
 
-== Work Package 2 — Maintenance
+## Work Package 2 — Maintenance
 
 * We helped to test further Jira projects migration (MBUILDCACHE, MEJB, MSOURCES, MCHANGELOG, MRAR, MVERIFIER, MJMOD, MACR, MSITE, MRESOURCES, MCOMPILER).
 We had some learning and extended the migration tool based on that learning.
-
 * We analyzed issues between MBUILDCACHE and protobuf-maven-plugin.
-
 * We fixed issues in MJLINK and MDEP.
 
-== Work Package 3 — Modernisation of Core Feature
+## Work Package 3 — Modernisation of Core Feature
 
 No work performed
 
-== Work Package 4 — Documentation
+## Work Package 4 — Documentation
 
 * We provided support for MBUILDCACHE and solved questioning issues.
-
 * We updated XML-Header descriptions in MBUILDCACHE.
-
-
