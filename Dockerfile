@@ -32,5 +32,8 @@ EXPOSE 3000
 
 CMD ["python", "-m", "http.server", "3000", "--bind", "0.0.0.0"]
 
+# Port 80 requires root in this image; acceptable for a static docs container.
+CMD ["python", "-m", "http.server", "80", "--bind", "0.0.0.0"]
+
 HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://127.0.0.1:3000/')" || exit 1
