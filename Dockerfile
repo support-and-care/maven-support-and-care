@@ -24,7 +24,6 @@ RUN zensical build
 # ----------------------------------------------------------------------------
 FROM python:3.12-slim AS runtime
 
-# Coolify warns Dockerfile healthchecks should use curl or wget; slim has neither by default.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends curl \
     && rm -rf /var/lib/apt/lists/*
@@ -32,11 +31,9 @@ RUN apt-get update \
 WORKDIR /srv
 COPY --from=builder /build/site .
 
-# Coolify often sets PORT; Traefik upstream must match whatever port we bind.
 ENV PORT=3000
 EXPOSE 3000
 
-# CMD JSON form does not perform Dockerfile variable substitution; the shell expands PORT at runtime.
 CMD ["sh", "-c", "exec python -m http.server ${PORT:-3000} --bind 0.0.0.0 --directory /srv"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
