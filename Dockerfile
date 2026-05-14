@@ -36,8 +36,8 @@ COPY --from=builder /build/site .
 ENV PORT=3000
 EXPOSE 3000
 
-# Use $$ so Docker does not bake in build-time PORT; Coolify can set PORT at runtime.
-CMD ["sh", "-c", "exec python -m http.server $${PORT:-3000} --bind 0.0.0.0 --directory /srv"]
+# CMD JSON form does not perform Dockerfile variable substitution; the shell expands PORT at runtime.
+CMD ["sh", "-c", "exec python -m http.server ${PORT:-3000} --bind 0.0.0.0 --directory /srv"]
 
 HEALTHCHECK --interval=30s --timeout=5s --start-period=30s --retries=3 \
-    CMD curl -fsS "http://127.0.0.1:$${PORT:-3000}/" >/dev/null || exit 1
+    CMD curl -fsS "http://127.0.0.1:${PORT:-3000}/" >/dev/null || exit 1
