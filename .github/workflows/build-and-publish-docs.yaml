@@ -1,119 +1,87 @@
-name: Build and Publish Documentation
+name: Build and Preview Documentation
 
 on:
   push:
+    branches: [main]
   pull_request:
+    types: [opened, reopened, synchronize, closed]
   workflow_dispatch:
-    inputs:
-      publish_docs:
-        description: Publish documents to GitHub Pages'
-        required: false
-        default: 'false'
 
-permissions:
-  contents: read
-  id-token: write
-  pages: write
-  pull-requests: write
+concurrency:
+  group: pr-preview-${{ github.event.pull_request.number || github.run_id }}
+  cancel-in-progress: true
 
 jobs:
-  build-docs:
+  build:
+    name: Build documentation with Zensical
+    if: github.event_name != 'pull_request' || github.event.action != 'closed'
     runs-on: ubuntu-latest
-
-    env:
-      GITHUB_LOGIN: ${{ github.repository_owner }}
-      GITHUB_OAUTH: ${{ github.token }}
 
     steps:
       - name: Check out code
         uses: actions/checkout@v4
 
-      - name: Run jQAssistant scan
-        run: mvn verify -fae -e -ntp
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
 
-      - name: Upload jqassistant/store artifact
+      - name: Install Zensical
+        run: pip install -r requirements.txt
+
+      - name: Build site
+        run: zensical build
+
+      - name: Upload built site
         uses: actions/upload-artifact@v4
         with:
-          name: generated-docs
-          path: target/generated-docs
+          name: site
+          path: site
+          if-no-files-found: error
 
-      - name: Upload jqassistant/store artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: jqassistant-store
-          path: target/jqassistant/store
-          
-  publish-docs:
-    needs: build-docs
-#    if: inputs.publish_docs == 'true' || github.ref_name == 'main'
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+  deploy-preview:
+    name: Deploy PR preview to GitHub Pages
+    needs: build
+    if: |
+      github.event_name == 'pull_request'
+      && github.event.action != 'closed'
+      && github.event.pull_request.head.repo.full_name == github.repository
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
     steps:
-      - name: Checkout
+      - name: Check out code
         uses: actions/checkout@v4
-        
-      - name: Download generated-docs artifact
+
+      - name: Download built site
         uses: actions/download-artifact@v4
         with:
-          name: generated-docs
-          path: target/generated-docs
-          
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
-        
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: target/generated-docs
-      
-      - name: Deploy to GitHub Pages
-        uses: actions/deploy-pages@v4
+          name: site
+          path: site
 
-  deploy-netlify-preview:
-    needs: build-docs
-    if: github.ref != 'refs/heads/main'
+      - name: Deploy preview
+        uses: rossjrw/pr-preview-action@v1.8.1
+        with:
+          source-dir: ./site
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: deploy
+
+  remove-preview:
+    name: Remove PR preview from GitHub Pages
+    if: github.event_name == 'pull_request' && github.event.action == 'closed'
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
 
     steps:
-      - name: Download generated-docs artifact
-        uses: actions/download-artifact@v4
+      - name: Remove preview
+        uses: rossjrw/pr-preview-action@v1.8.1
         with:
-          name: generated-docs
-          path: target/generated-docs
-
-      - name: Set Netlify alias
-        id: netlify-alias
-        run: |
-          if [ "${{ github.event_name }}" = "pull_request" ]; then
-            echo "alias=pr-${{ github.event.pull_request.number }}" >> $GITHUB_OUTPUT
-          else
-            BRANCH_NAME="${{ github.ref_name }}"
-            SANITIZED_BRANCH=$(echo "$BRANCH_NAME" | sed 's/\//-/g')
-            echo "alias=$SANITIZED_BRANCH" >> $GITHUB_OUTPUT
-          fi
-
-      - name: Deploy to Netlify (preview)
-        id: netlify-deploy-preview
-        uses: nwtgck/actions-netlify@v3
-        with:
-          publish-dir: './target/generated-docs'
-          production-deploy: false
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Preview deploy - ${{ github.event.head_commit.message || github.event.pull_request.title }}"
-          enable-pull-request-comment: true
-          enable-commit-comment: false
-          overwrites-pull-request-comment: true
-          alias: ${{ steps.netlify-alias.outputs.alias }}
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-
-      - name: Display Netlify URL
-        run: |
-          echo "### Netlify Preview" >> $GITHUB_STEP_SUMMARY
-          echo "" >> $GITHUB_STEP_SUMMARY
-          echo "Preview deploy successful!" >> $GITHUB_STEP_SUMMARY
-          echo "URL: ${{ steps.netlify-deploy-preview.outputs.deploy-url }}" >> $GITHUB_STEP_SUMMARY
-          echo "Alias: \`${{ steps.netlify-alias.outputs.alias }}\`" >> $GITHUB_STEP_SUMMARY
+          preview-branch: gh-pages
+          umbrella-dir: pr-preview
+          action: remove

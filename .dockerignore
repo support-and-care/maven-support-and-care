@@ -1,0 +1,13 @@
+.git
+.github
+.idea
+.vscode
+.venv
+venv
+__pycache__
+*.pyc
+site/
+target/
+.netlify
+.envrc
+*.log

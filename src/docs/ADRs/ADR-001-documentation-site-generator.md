@@ -115,4 +115,5 @@ Fits **Java-first** teams already on **Quarkus**: `mvn quarkus:dev` for local pr
 - [Zensical documentation](https://zensical.org/docs/)
 - [Roq](https://iamroq.com/) · [quarkus-roq](https://github.com/quarkiverse/quarkus-roq)
 - [Docusaurus](https://docusaurus.io/)
-- [The Slow Collapse of MkDocs](https://fpgmaas.com/blog/collapse-of-mkdocs/) — March 2026 article documenting the MkDocs maintainership crisis
+- [The Slow Collapse of MkDocs](https://fpgmaas.com/blog/collapse-of-mkdocs/) — March 2026 
+article documenting the MkDocs maintainership crisis

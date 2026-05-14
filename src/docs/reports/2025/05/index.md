@@ -1,11 +1,10 @@
-= May 2025
-:icons: font
+# May 2025
 
-== Work Package 1 — Security of the Supply Chain
+## Work Package 1 — Security of the Supply Chain
 
 * We setup an instance of Dependencytrack to store SBOMs of all Maven projects in future
 
-== Work Package 2 — Maintenance
+## Work Package 2 — Maintenance
 
 * We helped to test further Jira projects migration (MDOAP, MJDEPS, MLINKCHECK, MJDEPRSCAN, MSCMPUB,  MSCRIPTING, MJARSIGNER, SUREFIRE, MEAR, MINVOKER, MJAR).
 * We find a solution how to migration big jira projects.
@@ -14,11 +13,11 @@
 * We upgraded dependencies in the Maven Build Cache Extension to improve security and compatibility.
 * We analyzed and worked on issues between MBUILDCACHE and protobuf-maven-plugin.
 
-== Work Package 3 — Modernisation of Core Feature
+## Work Package 3 — Modernisation of Core Feature
 
 No work performed
 
-== Work Package 4 — Documentation
+## Work Package 4 — Documentation
 
 * Aligned site documentation with Maven source projects (removed outdated components, updated package diagrams, improved build processes).
 * Finished the first iteration of documentation about Maven DI.

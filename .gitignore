@@ -4,8 +4,11 @@
 .envrc
 *.log
 
-jqassistant/store/
-target/
+# Python virtual environments
+.venv/
+venv/
+__pycache__/
+*.pyc
 
-# Local Netlify folder
-.netlify
+# Zensical build output
+/site/
