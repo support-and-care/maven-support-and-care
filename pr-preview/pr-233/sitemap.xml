@@ -4,6 +4,9 @@
         <loc>https://support-and-care.openelements.com/</loc>
       </url>
       <url>
+        <loc>https://support-and-care.openelements.com/ADRs/</loc>
+      </url>
+      <url>
         <loc>https://support-and-care.openelements.com/ADRs/ADR-001-documentation-site-generator/</loc>
       </url>
       <url>
@@ -104,6 +107,9 @@
       </url>
       <url>
         <loc>https://support-and-care.openelements.com/funding/stf-2.0/proposals/proposed/versioned-maven-sites/</loc>
+      </url>
+      <url>
+        <loc>https://support-and-care.openelements.com/reports/</loc>
       </url>
       <url>
         <loc>https://support-and-care.openelements.com/reports/2024/12/</loc>
