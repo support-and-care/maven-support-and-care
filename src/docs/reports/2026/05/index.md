@@ -1,7 +1,8 @@
 # Mai 2026
 
 ## Work Package 1 — Security of the Supply Chain
-
+* Improve buildinfo-file handling for multimodule projects (https://github.com/apache/maven-artifact-plugin/issues/93)
+* Improve on cyclonedx 1.7 ECMA specification implementation for Java
 
 ## Work Package 2 — Maintenance
 
