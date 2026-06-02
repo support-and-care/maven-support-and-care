@@ -5,10 +5,10 @@
 * Improve on cyclonedx 1.7 ECMA specification implementation for Java
 
 ## Work Package 2 — Maintenance
-
+* Release train for 3.10.0 has been started wth backporting features from 4.x branch
 
 ## Work Package 3 — Modernization of Core Feature
-
+* Tool for automate the local release process for Apache Maven
 
 ## Work Package 4 — Documentation
 * Draw up suggestion for "Getting started" content
