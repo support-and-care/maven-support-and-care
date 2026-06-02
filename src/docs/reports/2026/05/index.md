@@ -6,9 +6,13 @@
 
 ## Work Package 2 — Maintenance
 * Release train for 3.10.0 has been started wth backporting features from 4.x branch
+* Testing and fixing of the 3.10.0 release train
+* Check and fix ASF maintained Maven plugins with 3.10.0
+* Release Maven 3.9.16 with bug fixes
 
 ## Work Package 3 — Modernization of Core Feature
 * Tool for automate the local release process for Apache Maven
+* Working on atr-maven-plugin to support the release process with ATR (Apache Trusted Releases) service
 
 ## Work Package 4 — Documentation
 * Draw up suggestion for "Getting started" content
