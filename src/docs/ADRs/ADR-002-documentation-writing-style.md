@@ -36,23 +36,22 @@ For the reader, we expect that the text is easier to read.
 - needs more time
 
 
-## Pros and Cons of the Options
+## Considered Options
 
 ### Informal Style
 
-We mean with informal style like "talking" to the reader to read the guide, e.g. "This page walks you through"
+In this context informal style means that an article is written like "talking to the reader", e.g. "This page walks you through"
 
 - Good: Easier to write in a motivating way
-- Good: 
 - Bad: Authors tend to "written like spoken", so that context can be lost. 
 
 ### Formal Style
 
-We mean with formal style to established conventions and avoid informality, ambiguity, and personal bias, e.g. "This guide covers the following"
+In this context, formal style means that an article is based on established conventions and avoids informality, ambiguity, and personal bias, e.g. "This guide covers the following"
 
 - Good: Focus on the topic
 - Good: Clearer for the reader
-- Bad: Hard to write 
+- Bad:  Requires more focus while writing to not drift into informal style
 
 
 ### Mix of both styles
