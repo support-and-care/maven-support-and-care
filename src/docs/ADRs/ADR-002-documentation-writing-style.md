@@ -43,7 +43,7 @@ For the reader, we expect that the text is easier to read.
 In this context informal style means that an article is written like "talking to the reader", e.g. "This page walks you through"
 
 - Good: Easier to write in a motivating way
-- Bad: Authors tend to "written like spoken", so that context can be lost. 
+- Bad: Authors tend to "written like spoken", so that context and accuracy can be lost. 
 
 ### Formal Style
 
