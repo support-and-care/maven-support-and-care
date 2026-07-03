@@ -6,7 +6,8 @@
 - Remove deprecated deployment feature for buildinfo files from Maven Artifact plugin
 
 ## Work Package 2 — Maintenance
-
+- fixing issues of new surefire mode using junit platform only
+- preparing release 3.10.0
 
 ## Work Package 3 — Modernization of Core Feature
 
