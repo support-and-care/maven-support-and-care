@@ -16,4 +16,4 @@
 
 ## Work Package 4 — Documentation
 - Authoring Getting Started documentation.
-
+- Starting a writing guide for documentation, in general.
