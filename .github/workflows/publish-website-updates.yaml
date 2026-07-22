@@ -224,6 +224,8 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          git config --local --unset-all http.https://github.com/.extraheader || true
+
           # Push to the fork (origin); keep OpenElements as upstream for PRs.
           git remote rename origin upstream
           git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${WEBSITE_ORIGIN}.git"
