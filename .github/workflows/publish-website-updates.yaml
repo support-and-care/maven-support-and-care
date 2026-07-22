@@ -158,12 +158,12 @@ jobs:
           echo "Publishing reports:"
           printf '  - %s\n' "${REPORTS[@]}"
 
-      - name: Check out open-elements-website
+      - name: Check out open-elements-website (upstream)
         if: steps.reports.outputs.found == 'true'
         uses: actions/checkout@v4
         with:
+          # Read from upstream; push goes to the fork (origin) below.
           repository: OpenElements/open-elements-website
-          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
           path: website
 
       - name: Merge updates into website JSON
@@ -210,17 +210,23 @@ jobs:
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_REPO: ${{ github.repository }}
           SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          WEBSITE_UPSTREAM: OpenElements/open-elements-website
+          WEBSITE_ORIGIN: Ndacyayisenga-droid/open-elements-website
         working-directory: website
         run: |
           set -euo pipefail
 
           if [[ -z "${GH_TOKEN:-}" ]]; then
-            echo "Missing secret WEBSITE_REPO_TOKEN (needs write access to OpenElements/open-elements-website)." >&2
+            echo "Missing secret WEBSITE_REPO_TOKEN (needs write access to ${WEBSITE_ORIGIN})." >&2
             exit 1
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          # Push to the fork (origin); keep OpenElements as upstream for PRs.
+          git remote rename origin upstream
+          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${WEBSITE_ORIGIN}.git"
 
           if git diff --quiet -- src/data/en/updates-maven.json src/data/de/updates-maven.json; then
             echo "Website JSON already up to date for: $MONTHS"
@@ -232,7 +238,8 @@ jobs:
           git commit -m "chore: publish Maven monthly updates ($MONTHS)"
           git push -u origin "$BRANCH" --force
 
-          EXISTING_PR="$(gh pr list --head "$BRANCH" --json number --jq '.[0].number // empty')"
+          HEAD_REF="Ndacyayisenga-droid:${BRANCH}"
+          EXISTING_PR="$(gh pr list --repo "$WEBSITE_UPSTREAM" --head "$HEAD_REF" --json number --jq '.[0].number // empty')"
           BODY="$(cat <<EOF
           ## Summary
           - Publish Maven monthly updates for **${MONTHS}** to \`/updates/maven\`
@@ -251,12 +258,15 @@ jobs:
           )"
 
           if [[ -n "$EXISTING_PR" ]]; then
-            echo "Updated existing PR #$EXISTING_PR"
-            gh pr edit "$EXISTING_PR" --body "$BODY"
-            gh pr comment "$EXISTING_PR" --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
+            echo "Updated existing PR #$EXISTING_PR on ${WEBSITE_UPSTREAM}"
+            gh pr edit "$EXISTING_PR" --repo "$WEBSITE_UPSTREAM" --body "$BODY"
+            gh pr comment "$EXISTING_PR" --repo "$WEBSITE_UPSTREAM" --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
             exit 0
           fi
 
           gh pr create \
+            --repo "$WEBSITE_UPSTREAM" \
+            --base main \
+            --head "$HEAD_REF" \
             --title "chore: publish Maven monthly updates ($MONTHS)" \
             --body "$BODY"
