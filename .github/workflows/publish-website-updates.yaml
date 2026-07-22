@@ -252,18 +252,21 @@ jobs:
           git commit -m "chore: publish Maven monthly updates ($MONTHS)"
           git push -u origin "$BRANCH" --force
 
-          HEAD_REF="Ndacyayisenga-droid:${BRANCH}"
-          EXISTING_PR="$(gh pr list --repo "$WEBSITE_UPSTREAM" --head "$HEAD_REF" --json number --jq '.[0].number // empty')"
+          # PR is opened on the fork. Opening into OpenElements/open-elements-website
+          # as the app requires installing the GitHub App on that org (needs admin access).
+          EXISTING_PR="$(gh pr list --repo "$WEBSITE_ORIGIN" --head "$BRANCH" --json number --jq '.[0].number // empty')"
           BODY="$(cat <<EOF
           ## Summary
           - Publish Maven monthly updates for **${MONTHS}** to \`/updates/maven\`
           - Generated from English-only structured reports in \`${SOURCE_REPO}\`
           - German text is a **Mittwald AI draft** created during automation
+          - Opened on fork \`${WEBSITE_ORIGIN}\` (GitHub App is installed there; not on OpenElements org)
 
           ## Review focus
           - [ ] German copy reviewed by a native speaker or someone who understands German
           - [ ] Preview EN and DE entries for ${MONTHS} on \`/updates/maven\`
           - [ ] Confirm types, links, excerpts, and contributors look correct
+          - [ ] When ready for production, open/merge an equivalent PR into \`${WEBSITE_UPSTREAM}\`
 
           ## Source
           - Commit: \`${SOURCE_SHA}\`
@@ -272,15 +275,15 @@ jobs:
           )"
 
           if [[ -n "$EXISTING_PR" ]]; then
-            echo "Updated existing PR #$EXISTING_PR on ${WEBSITE_UPSTREAM}"
-            gh pr edit "$EXISTING_PR" --repo "$WEBSITE_UPSTREAM" --body "$BODY"
-            gh pr comment "$EXISTING_PR" --repo "$WEBSITE_UPSTREAM" --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
+            echo "Updated existing PR #$EXISTING_PR on ${WEBSITE_ORIGIN}"
+            gh pr edit "$EXISTING_PR" --repo "$WEBSITE_ORIGIN" --body "$BODY"
+            gh pr comment "$EXISTING_PR" --repo "$WEBSITE_ORIGIN" --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
             exit 0
           fi
 
           gh pr create \
-            --repo "$WEBSITE_UPSTREAM" \
+            --repo "$WEBSITE_ORIGIN" \
             --base main \
-            --head "$HEAD_REF" \
+            --head "$BRANCH" \
             --title "chore: publish Maven monthly updates ($MONTHS)" \
             --body "$BODY"
