@@ -201,10 +201,20 @@ jobs:
             | sed -E 's/^-+//; s/-+$//')"
           echo "branch=chore/maven-updates-${SLUG}" >> "$GITHUB_OUTPUT"
 
+      - name: Create GitHub App token
+        if: steps.reports.outputs.found == 'true'
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.WEBSITE_APP_ID }}
+          private-key: ${{ secrets.WEBSITE_APP_PRIVATE_KEY }}
+          owner: Ndacyayisenga-droid
+          repositories: open-elements-website
+
       - name: Create pull request on website
         if: steps.reports.outputs.found == 'true'
         env:
-          GH_TOKEN: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           MONTHS: ${{ steps.merge.outputs.months }}
           BRANCH: ${{ steps.merge.outputs.branch }}
           SOURCE_SHA: ${{ github.sha }}
@@ -217,13 +227,15 @@ jobs:
           set -euo pipefail
 
           if [[ -z "${GH_TOKEN:-}" ]]; then
-            echo "Missing secret WEBSITE_REPO_TOKEN (needs write access to ${WEBSITE_ORIGIN})." >&2
+            echo "Missing GitHub App token (check WEBSITE_APP_ID / WEBSITE_APP_PRIVATE_KEY and app install on ${WEBSITE_ORIGIN})." >&2
             exit 1
           fi
 
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
 
+          # actions/checkout injects GITHUB_TOKEN via http.extraheader, which
+          # overrides URL credentials and would push as github-actions[bot].
           git config --local --unset-all http.https://github.com/.extraheader || true
 
           # Push to the fork (origin); keep OpenElements as upstream for PRs.
