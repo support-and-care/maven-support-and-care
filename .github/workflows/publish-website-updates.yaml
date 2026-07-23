@@ -245,11 +245,11 @@ jobs:
           add-paths: |
             src/data/en/updates-maven.json
             src/data/de/updates-maven.json
-          commit-message: chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})
-          title: chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})
+          commit-message: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
+          title: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
           body-path: website-pr-body.md
-          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
-          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          committer: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+          author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
           delete-branch: false
 
       - name: Comment on website PR refresh
