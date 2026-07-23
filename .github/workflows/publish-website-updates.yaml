@@ -162,7 +162,9 @@ jobs:
         if: steps.reports.outputs.found == 'true'
         uses: actions/checkout@v4
         with:
-          # Read from upstream; push goes to the fork (origin) below.
+          # Read from upstream OpenElements; peter-evans push-to-fork sends the
+          # branch to Ndacyayisenga-droid/open-elements-website and opens the PR
+          # against this parent repo.
           repository: OpenElements/open-elements-website
           path: website
 
@@ -201,89 +203,65 @@ jobs:
             | sed -E 's/^-+//; s/-+$//')"
           echo "branch=chore/maven-updates-${SLUG}" >> "$GITHUB_OUTPUT"
 
-      - name: Create GitHub App token
-        if: steps.reports.outputs.found == 'true'
-        id: app-token
-        uses: actions/create-github-app-token@v1
-        with:
-          app-id: ${{ secrets.WEBSITE_APP_ID }}
-          private-key: ${{ secrets.WEBSITE_APP_PRIVATE_KEY }}
-          owner: Ndacyayisenga-droid
-          repositories: open-elements-website
-
-      - name: Create pull request on website
+      - name: Write website PR body
         if: steps.reports.outputs.found == 'true'
         env:
-          GH_TOKEN: ${{ steps.app-token.outputs.token }}
           MONTHS: ${{ steps.merge.outputs.months }}
           BRANCH: ${{ steps.merge.outputs.branch }}
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_REPO: ${{ github.repository }}
           SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          WEBSITE_UPSTREAM: OpenElements/open-elements-website
           WEBSITE_ORIGIN: Ndacyayisenga-droid/open-elements-website
-        working-directory: website
         run: |
           set -euo pipefail
-
-          if [[ -z "${GH_TOKEN:-}" ]]; then
-            echo "Missing GitHub App token (check WEBSITE_APP_ID / WEBSITE_APP_PRIVATE_KEY and app install on ${WEBSITE_ORIGIN})." >&2
-            exit 1
-          fi
-
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-
-          # actions/checkout injects GITHUB_TOKEN via http.extraheader, which
-          # overrides URL credentials and would push as github-actions[bot].
-          git config --local --unset-all http.https://github.com/.extraheader || true
-
-          # Push to the fork (origin); keep OpenElements as upstream for PRs.
-          git remote rename origin upstream
-          git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${WEBSITE_ORIGIN}.git"
-
-          if git diff --quiet -- src/data/en/updates-maven.json src/data/de/updates-maven.json; then
-            echo "Website JSON already up to date for: $MONTHS"
-            exit 0
-          fi
-
-          git checkout -B "$BRANCH"
-          git add src/data/en/updates-maven.json src/data/de/updates-maven.json
-          git commit -m "chore: publish Maven monthly updates ($MONTHS)"
-          git push -u origin "$BRANCH" --force
-
-          # PR is opened on the fork. Opening into OpenElements/open-elements-website
-          # as the app requires installing the GitHub App on that org (needs admin access).
-          EXISTING_PR="$(gh pr list --repo "$WEBSITE_ORIGIN" --head "$BRANCH" --json number --jq '.[0].number // empty')"
-          BODY="$(cat <<EOF
+          cat > "$GITHUB_WORKSPACE/website-pr-body.md" <<EOF
           ## Summary
           - Publish Maven monthly updates for **${MONTHS}** to \`/updates/maven\`
           - Generated from English-only structured reports in \`${SOURCE_REPO}\`
           - German text is a **Mittwald AI draft** created during automation
-          - Opened on fork \`${WEBSITE_ORIGIN}\` (GitHub App is installed there; not on OpenElements org)
 
           ## Review focus
           - [ ] German copy reviewed by a native speaker or someone who understands German
           - [ ] Preview EN and DE entries for ${MONTHS} on \`/updates/maven\`
           - [ ] Confirm types, links, excerpts, and contributors look correct
-          - [ ] When ready for production, open/merge an equivalent PR into \`${WEBSITE_UPSTREAM}\`
 
           ## Source
           - Commit: \`${SOURCE_SHA}\`
           - Workflow run: ${SOURCE_RUN}
+          - Branch: \`${WEBSITE_ORIGIN}@${BRANCH}\`
           EOF
-          )"
 
-          if [[ -n "$EXISTING_PR" ]]; then
-            echo "Updated existing PR #$EXISTING_PR on ${WEBSITE_ORIGIN}"
-            gh pr edit "$EXISTING_PR" --repo "$WEBSITE_ORIGIN" --body "$BODY"
-            gh pr comment "$EXISTING_PR" --repo "$WEBSITE_ORIGIN" --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
-            exit 0
-          fi
+      - name: Create pull request on Open Elements website
+        if: steps.reports.outputs.found == 'true'
+        id: website-pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: website
+          # Personal PAT (Ndacyayisenga-droid): push branch to fork + open PR on OpenElements.
+          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          push-to-fork: Ndacyayisenga-droid/open-elements-website
+          branch: ${{ steps.merge.outputs.branch }}
+          base: main
+          add-paths: |
+            src/data/en/updates-maven.json
+            src/data/de/updates-maven.json
+          commit-message: chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})
+          title: chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})
+          body-path: website-pr-body.md
+          committer: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          author: github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>
+          delete-branch: false
 
-          gh pr create \
-            --repo "$WEBSITE_ORIGIN" \
-            --base main \
-            --head "$BRANCH" \
-            --title "chore: publish Maven monthly updates ($MONTHS)" \
-            --body "$BODY"
+      - name: Comment on website PR refresh
+        if: steps.website-pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          PR_NUMBER: ${{ steps.website-pr.outputs.pull-request-number }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REPO: ${{ github.repository }}
+          SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh pr comment "$PR_NUMBER" \
+            --repo OpenElements/open-elements-website \
+            --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
