@@ -6,6 +6,7 @@ Analyze Maven Artifact plugin to make improvements for buildinfo generation and 
 
 ## Work Package 2 — Maintenance
 
+fixing issues of new surefire mode using junit platform only. Preparing new release 3.6.0-M2 
 
 ## Work Package 3 — Modernization of Core Feature
 
