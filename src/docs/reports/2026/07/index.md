@@ -13,13 +13,14 @@
 
 ## Work Package 3 — Modernization of Core Feature
 
-- adding support for aliases in servers in Maven settings.xml 
-- and validation for Plexus-based plugin dependency injection in Maven plugins
+- Working on maven release 3.10 ([GitHub Issue](https://github.com/support-and-care/maven-support-and-care/issues/211))
+  - adding support for aliases in servers in Maven settings.xml 
+  - and validation for Plexus-based plugin dependency injection in Maven plugins
 
 ## Work Package 4 — Documentation
 - Enabled a writing guide ([GitHub Issue](https://github.com/support-and-care/doc-for-maven/issues/12))
-- Start working on an information architecture ([GitHub](https://github.com/support-and-care/doc-for-maven/issues/13))
+- Start working on an information architecture ([GitHub Issue](https://github.com/support-and-care/doc-for-maven/issues/13))
 - Starting writing chapter about
-  - Add and exclude dependencies ([GitHub](https://github.com/support-and-care/doc-for-maven/issues/18))
-  - The dependency mechanism([GitHub](https://github.com/support-and-care/doc-for-maven/issues/19))
+  - Add and exclude dependencies ([GitHub Issue](https://github.com/support-and-care/doc-for-maven/issues/18))
+  - The dependency mechanism([GitHub Issue](https://github.com/support-and-care/doc-for-maven/issues/19))
 
