@@ -162,9 +162,10 @@ jobs:
         if: steps.reports.outputs.found == 'true'
         uses: actions/checkout@v4
         with:
+          # Read from OpenElements; peter-evans push-to-fork sends the branch
+          # to herbie-bot/open-elements-website and opens the PR against this parent.
           repository: OpenElements/open-elements-website
           path: website
-          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
 
       - name: Merge updates into website JSON
         if: steps.reports.outputs.found == 'true'
@@ -209,7 +210,7 @@ jobs:
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_REPO: ${{ github.repository }}
           SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          WEBSITE_ORIGIN: OpenElements/open-elements-website
+          WEBSITE_ORIGIN: herbie-bot/open-elements-website
         run: |
           set -euo pipefail
           cat > "$GITHUB_WORKSPACE/website-pr-body.md" <<EOF
@@ -229,14 +230,28 @@ jobs:
           - Branch: \`${WEBSITE_ORIGIN}@${BRANCH}\`
           EOF
 
+      - name: Sync herbie-bot fork with upstream
+        if: steps.reports.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Keep the bot fork's main identical to OpenElements so PRs are never
+          # based on a stale fork. --force discards any unique commits on the fork.
+          gh repo sync herbie-bot/open-elements-website \
+            --branch main \
+            --source OpenElements/open-elements-website \
+            --force
+
       - name: Create pull request on Open Elements website
         if: steps.reports.outputs.found == 'true'
         id: website-pr
         uses: peter-evans/create-pull-request@v7
         with:
           path: website
-          # herbie-bot PAT: push branch + open PR on OpenElements/open-elements-website.
+          # herbie-bot PAT: push branch to fork + open PR on OpenElements.
           token: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          push-to-fork: herbie-bot/open-elements-website
           branch: ${{ steps.merge.outputs.branch }}
           base: main
           add-paths: |
