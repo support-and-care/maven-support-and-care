@@ -262,6 +262,7 @@ jobs:
           body-path: website-pr-body.md
           committer: "herbie-bot <herbie-bot@users.noreply.github.com>"
           author: "herbie-bot <herbie-bot@users.noreply.github.com>"
+          signoff: true
           delete-branch: false
 
       - name: Comment on website PR refresh
