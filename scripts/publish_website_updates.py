@@ -2,7 +2,8 @@
 """Convert English-only monthly reports into open-elements-website EN/DE update JSON.
 
 Output matches open-elements-website MonthlyUpdate shape:
-  month, year, excerpt, categories[{title, items[{text, type, link?}]}], contributors
+  month, year, excerpt, categories[{title, items[{text, type, link?}]}],
+  contributors {supportAndCare: [github urls], community?: [github urls]}
 
 German text is drafted with Mittwald AI Hosting (OpenAI-compatible). Unchanged
 English strings reuse prior German drafts when possible. Website PRs should still
@@ -117,6 +118,53 @@ def validate_contributor(url: str, path: Path) -> str:
     return cleaned
 
 
+def normalize_contributors(raw: object, path: Path) -> dict:
+    """Website contributors are grouped, not a flat list.
+
+    Report frontmatter may use either:
+      contributors: [url, ...]
+    or
+      contributors:
+        supportAndCare: [url, ...]
+        community: [url, ...]   # optional
+    A flat list is treated as supportAndCare.
+    """
+    if isinstance(raw, list):
+        urls = [validate_contributor(str(url), path) for url in raw]
+        if not urls:
+            raise ValueError(f"{path}: contributors must be a non-empty list")
+        return {"supportAndCare": urls}
+
+    if isinstance(raw, dict):
+        extra = set(raw) - {"supportAndCare", "community"}
+        if extra:
+            raise ValueError(
+                f"{path}: unsupported contributors keys {sorted(extra)}; "
+                "expected supportAndCare and optional community"
+            )
+        support = raw.get("supportAndCare") or []
+        community = raw.get("community") or []
+        if not isinstance(support, list) or not support:
+            raise ValueError(
+                f"{path}: contributors.supportAndCare must be a non-empty list"
+            )
+        if not isinstance(community, list):
+            raise ValueError(f"{path}: contributors.community must be a list")
+        result: dict = {
+            "supportAndCare": [validate_contributor(str(url), path) for url in support]
+        }
+        if community:
+            result["community"] = [
+                validate_contributor(str(url), path) for url in community
+            ]
+        return result
+
+    raise ValueError(
+        f"{path}: contributors must be a list of GitHub URLs, or a mapping "
+        "with supportAndCare (and optional community)"
+    )
+
+
 def parse_body_categories(body: str, path: Path) -> list[dict]:
     """Line-oriented parser for ## categories and typed items (website-compatible)."""
     categories: list[dict] = []
@@ -227,10 +275,8 @@ def parse_report(path: Path) -> dict:
         raise ValueError(f"{path}: year must be an integer")
     if not isinstance(excerpt, str) or not excerpt.strip():
         raise ValueError(f"{path}: excerpt must be a non-empty English string")
-    if not isinstance(contributors, list) or not contributors:
-        raise ValueError(f"{path}: contributors must be a non-empty list")
 
-    validated_contributors = [validate_contributor(str(url), path) for url in contributors]
+    validated_contributors = normalize_contributors(contributors, path)
     categories = parse_body_categories(body, path)
 
     return {
