@@ -162,11 +162,9 @@ jobs:
         if: steps.reports.outputs.found == 'true'
         uses: actions/checkout@v4
         with:
-          # Read from upstream OpenElements; peter-evans push-to-fork sends the
-          # branch to Ndacyayisenga-droid/open-elements-website and opens the PR
-          # against this parent repo.
           repository: OpenElements/open-elements-website
           path: website
+          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
 
       - name: Merge updates into website JSON
         if: steps.reports.outputs.found == 'true'
@@ -211,7 +209,7 @@ jobs:
           SOURCE_SHA: ${{ github.sha }}
           SOURCE_REPO: ${{ github.repository }}
           SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-          WEBSITE_ORIGIN: Ndacyayisenga-droid/open-elements-website
+          WEBSITE_ORIGIN: OpenElements/open-elements-website
         run: |
           set -euo pipefail
           cat > "$GITHUB_WORKSPACE/website-pr-body.md" <<EOF
@@ -237,9 +235,8 @@ jobs:
         uses: peter-evans/create-pull-request@v7
         with:
           path: website
-          # Personal PAT (Ndacyayisenga-droid): push branch to fork + open PR on OpenElements.
+          # herbie-bot PAT: push branch + open PR on OpenElements/open-elements-website.
           token: ${{ secrets.WEBSITE_REPO_TOKEN }}
-          push-to-fork: Ndacyayisenga-droid/open-elements-website
           branch: ${{ steps.merge.outputs.branch }}
           base: main
           add-paths: |
@@ -248,8 +245,8 @@ jobs:
           commit-message: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
           title: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
           body-path: website-pr-body.md
-          committer: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
-          author: "github-actions[bot] <41898282+github-actions[bot]@users.noreply.github.com>"
+          committer: "herbie-bot <herbie-bot@users.noreply.github.com>"
+          author: "herbie-bot <herbie-bot@users.noreply.github.com>"
           delete-branch: false
 
       - name: Comment on website PR refresh
