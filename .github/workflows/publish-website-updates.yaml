@@ -1,0 +1,280 @@
+name: Publish Maven Updates to Website
+
+on:
+  pull_request:
+    paths:
+      - 'src/docs/reports/**/index.md'
+      - 'scripts/publish_website_updates.py'
+      - 'scripts/category_titles_de.yaml'
+  workflow_dispatch:
+    inputs:
+      months:
+        description: 'Comma-separated months to publish (e.g. 2026/05,2026/06). Leave empty to use reports changed on the PR, or all structured reports under src/docs/reports.'
+        required: false
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  publish:
+    name: Create website updates PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out maven-support-and-care
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve candidate report files
+        id: candidates
+        env:
+          INPUT_MONTHS: ${{ inputs.months }}
+        run: |
+          set -euo pipefail
+
+          resolve_from_months() {
+            local months="$1"
+            local paths=()
+            IFS=',' read -ra parts <<< "$months"
+            for part in "${parts[@]}"; do
+              part="$(echo "$part" | xargs)"
+              [[ -z "$part" ]] && continue
+              local path="src/docs/reports/${part}/index.md"
+              if [[ ! -f "$path" ]]; then
+                echo "Report not found: $path" >&2
+                exit 1
+              fi
+              paths+=("$path")
+            done
+            printf '%s\n' "${paths[@]}"
+          }
+
+          CANDIDATES=()
+
+          if [[ -n "${INPUT_MONTHS:-}" ]]; then
+            while IFS= read -r path; do
+              [[ -n "$path" ]] && CANDIDATES+=("$path")
+            done < <(resolve_from_months "$INPUT_MONTHS")
+            echo "strict=true" >> "$GITHUB_OUTPUT"
+          elif [[ "${{ github.event_name }}" == "pull_request" ]]; then
+            BASE_SHA="${{ github.event.pull_request.base.sha }}"
+            HEAD_SHA="${{ github.event.pull_request.head.sha }}"
+            mapfile -t CANDIDATES < <(git diff --name-only "$BASE_SHA" "$HEAD_SHA" -- 'src/docs/reports/**/index.md' || true)
+            TMP=()
+            for path in "${CANDIDATES[@]:-}"; do
+              [[ -f "$path" ]] && TMP+=("$path")
+            done
+            CANDIDATES=("${TMP[@]:-}")
+            echo "strict=false" >> "$GITHUB_OUTPUT"
+          else
+            mapfile -t CANDIDATES < <(git ls-files 'src/docs/reports/**/index.md')
+            echo "strict=false" >> "$GITHUB_OUTPUT"
+          fi
+
+          if [[ ${#CANDIDATES[@]} -eq 0 ]]; then
+            echo "No candidate monthly reports."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          {
+            echo "found=true"
+            echo "files<<EOF"
+            printf '%s\n' "${CANDIDATES[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Candidate reports:"
+          printf '  - %s\n' "${CANDIDATES[@]}"
+
+      - name: Set up Python
+        if: steps.candidates.outputs.found == 'true'
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install script dependencies
+        if: steps.candidates.outputs.found == 'true'
+        run: pip install -r scripts/requirements.txt
+
+      - name: Validate reports with real parser
+        if: steps.candidates.outputs.found == 'true'
+        id: reports
+        env:
+          STRICT: ${{ steps.candidates.outputs.strict }}
+        run: |
+          set -euo pipefail
+
+          CANDIDATES=()
+          while IFS= read -r path; do
+            [[ -n "$path" ]] && CANDIDATES+=("$path")
+          done <<< "${{ steps.candidates.outputs.files }}"
+
+          REPORTS=()
+          SEEN_KEYS=()
+          for path in "${CANDIDATES[@]}"; do
+            CHECK_OUT="$(python scripts/publish_website_updates.py --check "$path" 2>&1)" && CHECK_OK=1 || CHECK_OK=0
+            echo "$CHECK_OUT"
+
+            if [[ "$CHECK_OK" -ne 1 ]]; then
+              if [[ "$STRICT" == "true" ]]; then
+                echo "Strict mode: refusing to continue with invalid report $path" >&2
+                exit 1
+              fi
+              echo "Skipping invalid/unstructured report: $path"
+              continue
+            fi
+
+            # OK line looks like: OK path -> MONTH YEAR
+            KEY="$(echo "$CHECK_OUT" | sed -n 's/^OK .* -> //p' | tail -n1)"
+            if [[ -z "$KEY" ]]; then
+              echo "Could not parse validation output for $path" >&2
+              exit 1
+            fi
+            for seen in "${SEEN_KEYS[@]:-}"; do
+              if [[ "$seen" == "$KEY" ]]; then
+                echo "Duplicate report for $KEY (path: $path)" >&2
+                exit 1
+              fi
+            done
+            SEEN_KEYS+=("$KEY")
+            REPORTS+=("$path")
+          done
+
+          if [[ ${#REPORTS[@]} -eq 0 ]]; then
+            echo "No valid structured monthly reports to publish."
+            echo "found=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          {
+            echo "found=true"
+            echo "files<<EOF"
+            printf '%s\n' "${REPORTS[@]}"
+            echo "EOF"
+          } >> "$GITHUB_OUTPUT"
+
+          echo "Publishing reports:"
+          printf '  - %s\n' "${REPORTS[@]}"
+
+      - name: Check out open-elements-website (upstream)
+        if: steps.reports.outputs.found == 'true'
+        uses: actions/checkout@v4
+        with:
+          # Read from OpenElements; peter-evans push-to-fork sends the branch
+          # to herbie-bot/open-elements-website and opens the PR against this parent.
+          repository: OpenElements/open-elements-website
+          path: website
+
+      - name: Merge updates into website JSON
+        if: steps.reports.outputs.found == 'true'
+        id: merge
+        env:
+          TRANSLATION_API_URL: ${{ vars.TRANSLATION_API_URL }}
+          TRANSLATION_API_KEY: ${{ secrets.TRANSLATION_API_KEY }}
+          TRANSLATION_MODEL: ${{ vars.TRANSLATION_MODEL }}
+        run: |
+          set -euo pipefail
+
+          if [[ -z "${TRANSLATION_API_KEY:-}" ]]; then
+            echo "Missing secret TRANSLATION_API_KEY (Mittwald AI Hosting key)." >&2
+            exit 1
+          fi
+
+          export TRANSLATION_API_URL="${TRANSLATION_API_URL:-https://llm.aihosting.mittwald.de/v1}"
+          export TRANSLATION_MODEL="${TRANSLATION_MODEL:-gpt-oss-120b}"
+
+          REPORTS=()
+          while IFS= read -r path; do
+            [[ -n "$path" ]] && REPORTS+=("$path")
+          done <<< "${{ steps.reports.outputs.files }}"
+
+          OUTPUT="$(python scripts/publish_website_updates.py "${REPORTS[@]}" --website-repo website)"
+          echo "$OUTPUT"
+          MONTHS="$(echo "$OUTPUT" | sed -n 's/^MONTHS=//p' | tail -n1)"
+          echo "months=$MONTHS" >> "$GITHUB_OUTPUT"
+
+          SLUG="$(printf '%s\n' "${REPORTS[@]}" \
+            | sed -E 's|src/docs/reports/||; s|/index\.md||' \
+            | paste -sd '-' - \
+            | tr -cs '[:alnum:]-' '-' \
+            | sed -E 's/^-+//; s/-+$//')"
+          echo "branch=chore/maven-updates-${SLUG}" >> "$GITHUB_OUTPUT"
+
+      - name: Write website PR body
+        if: steps.reports.outputs.found == 'true'
+        env:
+          MONTHS: ${{ steps.merge.outputs.months }}
+          BRANCH: ${{ steps.merge.outputs.branch }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REPO: ${{ github.repository }}
+          SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+          WEBSITE_ORIGIN: herbie-bot/open-elements-website
+        run: |
+          set -euo pipefail
+          cat > "$GITHUB_WORKSPACE/website-pr-body.md" <<EOF
+          ## Summary
+          - Publish Maven monthly updates for **${MONTHS}** to \`/updates/maven\`
+          - Generated from English-only structured reports in \`${SOURCE_REPO}\`
+          - German text is a **Mittwald AI draft** created during automation
+
+          ## Review focus
+          - [ ] German copy reviewed by a native speaker or someone who understands German
+          - [ ] Preview EN and DE entries for ${MONTHS} on \`/updates/maven\`
+          - [ ] Confirm types, links, excerpts, and contributors look correct
+
+          ## Source
+          - Commit: \`${SOURCE_SHA}\`
+          - Workflow run: ${SOURCE_RUN}
+          - Branch: \`${WEBSITE_ORIGIN}@${BRANCH}\`
+          EOF
+
+      - name: Sync herbie-bot fork with upstream
+        if: steps.reports.outputs.found == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_REPO_TOKEN }}
+        run: |
+          set -euo pipefail
+          # Keep the bot fork's main identical to OpenElements so PRs are never
+          # based on a stale fork. --force discards any unique commits on the fork.
+          gh repo sync herbie-bot/open-elements-website \
+            --branch main \
+            --source OpenElements/open-elements-website \
+            --force
+
+      - name: Create pull request on Open Elements website
+        if: steps.reports.outputs.found == 'true'
+        id: website-pr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          path: website
+          # herbie-bot PAT: push branch to fork + open PR on OpenElements.
+          token: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          push-to-fork: herbie-bot/open-elements-website
+          branch: ${{ steps.merge.outputs.branch }}
+          base: main
+          add-paths: |
+            src/data/en/updates-maven.json
+            src/data/de/updates-maven.json
+          commit-message: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
+          title: "chore: publish Maven monthly updates (${{ steps.merge.outputs.months }})"
+          body-path: website-pr-body.md
+          committer: "herbie-bot <herbie-bot@users.noreply.github.com>"
+          author: "herbie-bot <herbie-bot@users.noreply.github.com>"
+          signoff: true
+          delete-branch: false
+
+      - name: Comment on website PR refresh
+        if: steps.website-pr.outputs.pull-request-operation == 'updated'
+        env:
+          GH_TOKEN: ${{ secrets.WEBSITE_REPO_TOKEN }}
+          PR_NUMBER: ${{ steps.website-pr.outputs.pull-request-number }}
+          SOURCE_SHA: ${{ github.sha }}
+          SOURCE_REPO: ${{ github.repository }}
+          SOURCE_RUN: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -euo pipefail
+          gh pr comment "$PR_NUMBER" \
+            --repo OpenElements/open-elements-website \
+            --body "Refreshed from \`${SOURCE_REPO}@${SOURCE_SHA}\`. Run: ${SOURCE_RUN}"
