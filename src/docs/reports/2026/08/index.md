@@ -4,6 +4,7 @@ year: 2026
 excerpt: 
 contributors:
   - https://github.com/sparsick
+  - https://github.com/Ndacyayisenga-droid
 ---
 
 # August 2026
