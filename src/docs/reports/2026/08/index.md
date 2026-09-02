@@ -1,7 +1,7 @@
 ---
 month: AUGUST
 year: 2026
-excerpt: 
+excerpt: Continued modernization and maintenance work, including completing the JUnit3 to JUnit5 test migration, while also making progress on project documentation.
 contributors:
   - https://github.com/sparsick
   - https://github.com/Ndacyayisenga-droid
