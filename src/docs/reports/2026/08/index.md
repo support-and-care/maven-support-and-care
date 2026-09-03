@@ -15,9 +15,9 @@ contributors:
   link:
 
 ## Work Package 2 — Maintenance
-- type:
-  text:
-  link:
+- type: MAINTENANCE
+  text: Automate publishing monthly Maven updates to the Open Elements website
+  link: https://github.com/support-and-care/maven-support-and-care/pull/244
 
 ## Work Package 3 — Modernization of Core Feature
 - type: MAINTENANCE
@@ -25,6 +25,14 @@ contributors:
   link: https://github.com/support-and-care/maven-support-and-care/issues/136
 
 ## Work Package 4 — Documentation
-- type:
-  text:
-  link:
+- type: DOCUMENTATION
+  text: Publish the how-to on adding and excluding dependencies
+  link: https://github.com/support-and-care/doc-for-maven/pull/20
+
+- type: DOCUMENTATION
+  text: Publish the key concept chapter on the Maven dependency mechanism
+  link: https://github.com/support-and-care/doc-for-maven/pull/21
+
+- type: DOCUMENTATION
+  text: Start the tutorial for writing a first Maven plugin in Java
+  link: https://github.com/support-and-care/doc-for-maven/pull/24
