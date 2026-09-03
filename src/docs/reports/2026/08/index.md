@@ -10,21 +10,21 @@ contributors:
 # August 2026
 
 ## Work Package 1 — Security of the Supply Chain
-- type: 
-  text: 
+- type:
+  text:
   link:
-  
+
 ## Work Package 2 — Maintenance
-- type: 
-  text: 
-  link: 
+- type:
+  text:
+  link:
 
 ## Work Package 3 — Modernization of Core Feature
-- type: MAINTENANCE 
+- type: MAINTENANCE
   text: Finished migration of tests written in JUnit3 to JUnit5
-  link:https://github.com/support-and-care/maven-support-and-care/issues/136 
+  link: https://github.com/support-and-care/maven-support-and-care/issues/136
 
 ## Work Package 4 — Documentation
-- type: 
-  text: 
-  link: 
+- type:
+  text:
+  link:
