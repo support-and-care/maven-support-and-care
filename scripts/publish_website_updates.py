@@ -51,8 +51,15 @@ VALID_TYPES = {
 GITHUB_PROFILE_RE = re.compile(
     r"^https://github\.com/[A-Za-z0-9](?:[A-Za-z0-9]|-(?=[A-Za-z0-9])){0,38}$"
 )
-ITEM_TYPE_LINE_RE = re.compile(r"^- type:\s*(\w+)\s*$")
+ITEM_TYPE_LINE_RE = re.compile(r"^- type:\s*(\w*)\s*$")
 ITEM_FIELD_LINE_RE = re.compile(r"^([ \t]+)(\w+):\s*(.*)$")
+WORK_PACKAGE_HEADING_RE = re.compile(
+    r"^Work Package\s+\d+\s+[—–-]\s+(.+)$",
+    re.IGNORECASE,
+)
+CATEGORY_TITLE_ALIASES = {
+    "Modernization of Core Feature": "Modernization of Core Features",
+}
 
 DEFAULT_TRANSLATION_API_URL = "https://llm.aihosting.mittwald.de/v1"
 DEFAULT_TRANSLATION_MODEL = "gpt-oss-120b"
@@ -165,8 +172,22 @@ def normalize_contributors(raw: object, path: Path) -> dict:
     )
 
 
+def canonical_category_title(raw_title: str) -> str:
+    """Map report headings (including Work Package prefixes) to website titles."""
+    title = raw_title.strip()
+    match = WORK_PACKAGE_HEADING_RE.match(title)
+    if match:
+        title = match.group(1).strip()
+    return CATEGORY_TITLE_ALIASES.get(title, title)
+
+
 def parse_body_categories(body: str, path: Path) -> list[dict]:
-    """Line-oriented parser for ## categories and typed items (website-compatible)."""
+    """Line-oriented parser for ## categories and typed items (website-compatible).
+
+    Empty work-package stubs (`- type:` / `text:` / `link:` with no values) are
+    accepted in the markdown and omitted from website JSON. Categories with no
+    real items are also omitted.
+    """
     categories: list[dict] = []
     current_title: str | None = None
     current_items: list[dict] = []
@@ -176,7 +197,15 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
         nonlocal current_item
         if current_item is None:
             return
-        if "text" not in current_item or not current_item["text"]:
+        item_type = current_item.get("type")
+        text = current_item.get("text")
+        if not item_type and not text:
+            # Placeholder stub: keep in the report, skip for website publish.
+            current_item = None
+            return
+        if not item_type:
+            raise ValueError(f"{path}: item under {current_title!r} is missing type:")
+        if not text:
             raise ValueError(f"{path}: item under {current_title!r} is missing text:")
         current_items.append(current_item)
         current_item = None
@@ -186,9 +215,8 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
         flush_item()
         if current_title is None:
             return
-        if not current_items:
-            raise ValueError(f"{path}: category {current_title!r} has no items")
-        categories.append({"title": current_title, "items": current_items})
+        if current_items:
+            categories.append({"title": current_title, "items": current_items})
         current_title = None
         current_items = []
 
@@ -208,7 +236,7 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
 
         if line.startswith("## "):
             flush_category()
-            current_title = line[3:].strip()
+            current_title = canonical_category_title(line[3:].strip())
             if not current_title:
                 raise ValueError(f"{path}:{line_no}: empty category heading")
             continue
@@ -218,7 +246,11 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
             if current_title is None:
                 raise ValueError(f"{path}:{line_no}: item found before any ## category")
             flush_item()
-            item_type = type_match.group(1).upper()
+            raw_type = type_match.group(1)
+            if not raw_type:
+                current_item = {}
+                continue
+            item_type = raw_type.upper()
             if item_type not in VALID_TYPES:
                 raise ValueError(
                     f"{path}:{line_no}: invalid item type {item_type!r}; "
@@ -230,14 +262,15 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
         field_match = ITEM_FIELD_LINE_RE.match(line)
         if field_match and current_item is not None:
             _indent, key, value = field_match.groups()
+            cleaned = value.strip()
             if key == "text":
-                if not value.strip():
-                    raise ValueError(f"{path}:{line_no}: text: cannot be empty")
-                current_item["text"] = value.strip()
+                if cleaned:
+                    current_item["text"] = cleaned
             elif key == "link":
-                current_item["link"] = require_http_url(
-                    value.strip(), label="link", path=path
-                )
+                if cleaned:
+                    current_item["link"] = require_http_url(
+                        cleaned, label="link", path=path
+                    )
             else:
                 raise ValueError(
                     f"{path}:{line_no}: unsupported item field {key!r} "
@@ -252,7 +285,7 @@ def parse_body_categories(body: str, path: Path) -> list[dict]:
 
     flush_category()
     if not categories:
-        raise ValueError(f"{path}: no categories/items found")
+        raise ValueError(f"{path}: no publishable categories/items found")
     return categories
 
 
