@@ -24,6 +24,11 @@ contributors:
   text: Testing Maven 3.10.0 and fixing reported issues, improvement in IT testing
   link: https://github.com/support-and-care/maven-support-and-care/issues/211
 
+- type: MAINTENANCE
+  text: Release of Maven Surefire 3.6.0 (using Junit platform only) and fixing related issues
+  link: https://github.com/support-and-care/maven-support-and-care/issues/246
+  
+
 ## Work Package 3 — Modernization of Core Feature
 - type: MAINTENANCE
   text: Finished migration of tests written in JUnit3 to JUnit5
