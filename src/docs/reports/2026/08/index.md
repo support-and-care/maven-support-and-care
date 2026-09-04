@@ -5,6 +5,7 @@ excerpt: Continued modernization and maintenance work, including completing the 
 contributors:
   - https://github.com/sparsick
   - https://github.com/Ndacyayisenga-droid
+  - https://github.com/slawekjaranowski
 ---
 
 # August 2026
@@ -18,6 +19,10 @@ contributors:
 - type: MAINTENANCE
   text: Automate publishing monthly Maven updates to the Open Elements website
   link: https://github.com/support-and-care/maven-support-and-care/pull/244
+
+- type: MAINTENANCE
+  text: Testing Maven 3.10.0 and fixing reported issues, improvement in IT testing
+  link: https://github.com/support-and-care/maven-support-and-care/issues/211
 
 ## Work Package 3 — Modernization of Core Feature
 - type: MAINTENANCE
