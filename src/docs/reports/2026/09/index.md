@@ -10,6 +10,10 @@ contributors:
 
 ## Work Package 1 — Security of the Supply Chain
 
+- type: IMPROVEMENT
+  text: Create GH workflow for PR verifications, like required licenses
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/257](https://github.com/support-and-care/maven-support-and-care/issues/257#issuecomment-5969227974)
+
 ## Work Package 2 — Maintenance
 
 - type: MAINTENANCE
