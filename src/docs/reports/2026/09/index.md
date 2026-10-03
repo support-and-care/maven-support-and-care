@@ -14,6 +14,10 @@ contributors:
   text: Create GH workflow for PR verifications, like required licenses
   link: [https://github.com/support-and-care/maven-support-and-care/issues/257](https://github.com/support-and-care/maven-support-and-care/issues/257#issuecomment-5969227974)
 
+- type: IMPROVEMENT
+  text: Prepare configuration for ATR (Apache trust release)
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/256](https://github.com/support-and-care/maven-support-and-care/issues/256#issuecomment-5969391216)
+
 ## Work Package 2 — Maintenance
 
 - type: MAINTENANCE
