@@ -24,6 +24,10 @@ contributors:
   text: Follow of release of Maven Surefire 3.6.0 (using Junit platform only) to fix related issues
   link: [https://github.com/support-and-care/maven-support-and-care/issues/246](https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-5964175256)
 
+- type: MAINTENANCE
+  text: Fix Maven 4 related IT issues
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/253](https://github.com/support-and-care/maven-support-and-care/issues/253)
+
 ## Work Package 3 — Modernization of Core Feature
 
 ## Work Package 4 — Documentation
