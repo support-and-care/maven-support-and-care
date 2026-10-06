@@ -3,7 +3,11 @@ month: SEPTEMBER
 year: 2026
 excerpt: 
 contributors:
-  
+  - https://github.com/sparsick
+  - https://github.com/Ndacyayisenga-droid
+  - https://github.com/slawekjaranowski
+  - https://github.com/sebtiem
+  - https://github.com/olamy
 ---
 
 # September 2026
