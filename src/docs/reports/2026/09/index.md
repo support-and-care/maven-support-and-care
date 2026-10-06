@@ -25,8 +25,12 @@ contributors:
   link: [https://github.com/support-and-care/maven-support-and-care/issues/246](https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-5964175256)
 
 - type: MAINTENANCE
-  text: Fix Maven 4 related IT issues
+  text: Fix Maven 4 related IT issues in Maven Surefire
   link: [https://github.com/support-and-care/maven-support-and-care/issues/253](https://github.com/support-and-care/maven-support-and-care/issues/253)
+
+- type: MAINTENANCE
+  text: Optimize execution when phases of same lifecycle are called
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/252](https://github.com/support-and-care/maven-support-and-care/issues/252)
 
 ## Work Package 3 — Modernization of Core Feature
 
