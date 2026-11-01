@@ -19,6 +19,9 @@ contributors:
 
 ## Work Package 2 — Maintenance
 
+- type: MAINTENANCE
+  text: Release of Maven Surefire 3.6.1 (using Junit platform only) to fix related issues
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-6551558117](https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-6551558117)
 
 ## Work Package 3 — Modernization of Core Feature
 
