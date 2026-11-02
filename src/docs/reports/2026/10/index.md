@@ -23,6 +23,14 @@ contributors:
   text: Release of Maven Surefire 3.6.1 (using Junit platform only) to fix related issues
   link: [https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-6551558117](https://github.com/support-and-care/maven-support-and-care/issues/246#issuecomment-6551558117)
 
+- type: MAINTENANCE
+  text: Fix Maven 4 related IT issues in Maven Surefire
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/253](https://github.com/support-and-care/maven-support-and-care/issues/253)
+
+- type: MAINTENANCE
+  text: Optimize execution when phases of same lifecycle are called
+  link: [https://github.com/support-and-care/maven-support-and-care/issues/252](https://github.com/support-and-care/maven-support-and-care/issues/252)
+
 ## Work Package 3 — Modernization of Core Feature
 
 ## Work Package 4 — Documentation
