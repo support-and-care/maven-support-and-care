@@ -72,7 +72,3 @@ contributors:
 - type: MAINTENANCE
   text: Optimize execution when phases of same lifecycle are called
   link: https://github.com/support-and-care/maven-support-and-care/issues/252
-
-## Work Package 3 — Modernization of Core Feature
-
-## Work Package 4 — Documentation
