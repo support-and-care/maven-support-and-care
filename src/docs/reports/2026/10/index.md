@@ -31,6 +31,18 @@ contributors:
   text: Prepare atr-maven-plugin for automatically releases
   link: [https://github.com/support-and-care/maven-support-and-care/issues/259](https://github.com/support-and-care/maven-support-and-care/issues/259#issuecomment-6586791739)
 
+- type: IMPROVEMENT
+  text: Build the SBOM Reporting landing page
+  link: [https://github.com/support-and-care/sbom-reporting/pull/23](https://github.com/support-and-care/sbom-reporting/pull/23)
+
+- type: IMPROVEMENT
+  text: Connect SBOM Reporting to Dependency-Track for live project and artifact data
+  link: [https://github.com/support-and-care/sbom-reporting/pull/29](https://github.com/support-and-care/sbom-reporting/pull/29)
+
+- type: IMPROVEMENT
+  text: Add a concise SBOM explainer page
+  link: [https://github.com/support-and-care/sbom-reporting/pull/27](https://github.com/support-and-care/sbom-reporting/pull/27)
+
 ## Work Package 2 — Maintenance
 
 - type: MAINTENANCE
