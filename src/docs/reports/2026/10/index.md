@@ -43,6 +43,18 @@ contributors:
   text: Add a concise SBOM explainer page
   link: https://github.com/support-and-care/sbom-reporting/pull/27
 
+- type: IMPROVEMENT
+  text: Design the landing page for the SBOM Reporting frontend, including navigation, project overview, and search
+  link: https://github.com/support-and-care/sbom-reporting/issues/3
+
+- type: IMPROVEMENT
+  text: Design the project detail page showing all artifacts per project with version selection, vulnerability counts, and licenses, including alternative layout explorations after team review
+  link: https://github.com/support-and-care/sbom-reporting/issues/4
+
+- type: IMPROVEMENT
+  text: Design the artifact detail page covering version-dependent content, licenses, SBOM download, dependencies, and the presentation of known vulnerabilities
+  link: https://github.com/support-and-care/sbom-reporting/issues/5
+  
 ## Work Package 2 — Maintenance
 
 - type: MAINTENANCE
